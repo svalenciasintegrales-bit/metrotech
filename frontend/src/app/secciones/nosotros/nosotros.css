@@ -1,22 +1,93 @@
 .nosotros {
   display: grid;
-  gap: var(--e-12);
+  gap: var(--e-16);
+  align-items: center;
 }
 
 @media (min-width: 900px) {
   .nosotros {
-    grid-template-columns: 7fr 5fr;
-    gap: var(--e-16);
-    align-items: start;
+    grid-template-columns: 6fr 6fr;
+    gap: var(--e-20);
+  }
+
+  .nosotros.sin-imagen {
+    grid-template-columns: 1fr;
   }
 }
 
-.nosotros__texto {
+/* ------------------------------------------------------------ imagen */
+
+.visual {
+  position: relative;
+  margin: 0 0 var(--e-10) var(--e-6);
+}
+
+.visual .visual__regla {
+  position: absolute;
+  left: calc(var(--e-6) * -1);
+  top: var(--e-8);
+  bottom: var(--e-8);
+  height: auto;
+}
+
+.visual__marco {
+  overflow: hidden;
+  border-radius: var(--r-3);
+  background: var(--superficie-2);
+}
+
+.visual__marco img {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* El bloque azul oscuro montado sobre la foto. En móvil va en el flujo,
+   subido sobre el borde inferior de la imagen; en escritorio, flotando en
+   la esquina. */
+.visual__bloque {
+  position: relative;
+  width: 85%;
+  margin: calc(var(--e-10) * -1) 0 0 auto;
+  padding: var(--e-6);
+  border-radius: var(--r-3);
+  border-top: var(--linea-gruesa) solid var(--celeste);
+  box-shadow: var(--sombra-3);
+}
+
+@media (min-width: 900px) {
+  .visual__bloque {
+    position: absolute;
+    right: calc(var(--e-10) * -1);
+    bottom: calc(var(--e-10) * -1);
+    width: auto;
+    max-width: 300px;
+    margin: 0;
+    padding: var(--e-8);
+  }
+}
+
+.visual__pilares {
+  margin-top: var(--e-2);
+  color: var(--texto-2);
+}
+
+.visual figcaption {
+  margin-top: var(--e-3);
+}
+
+@media (min-width: 900px) {
+  .visual figcaption { max-width: 50%; }
+}
+
+/* ------------------------------------------------------------ texto */
+
+.texto {
   display: flex;
   flex-direction: column;
 }
 
-/* La pertenencia a la empresa matriz, con su logo tal cual. */
 .matriz {
   display: flex;
   align-items: center;
@@ -30,49 +101,4 @@
   width: 96px;
   height: auto;
   flex-shrink: 0;
-}
-
-/* ------------------------------------------------------------ pilares */
-
-.pilares {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.pilar {
-  position: relative;
-  display: grid;
-  grid-template-columns: var(--e-12) 1fr;
-  gap: var(--e-6);
-  padding-bottom: var(--e-10);
-}
-
-.pilar:last-child {
-  padding-bottom: 0;
-}
-
-.pilar__icono {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--e-12);
-  height: var(--e-12);
-  border: var(--linea-media) solid var(--borde-fuerte);
-  border-radius: var(--r-2);
-  color: var(--texto);
-  background: var(--fondo);
-  position: relative;
-  z-index: 1;
-}
-
-/* La línea baja del ícono al siguiente pilar y termina en su rombo. */
-.pilar .pilar__conector {
-  position: absolute;
-  height: auto;
-  left: calc(var(--e-12) / 2 - 5px);
-  top: calc(var(--e-12) + var(--e-2));
-  bottom: var(--e-2);
-  width: 10px;
 }

@@ -40,10 +40,8 @@
     }
   ],
   "hero": {
-    "etiqueta": "SALAZAR ARIAS COMPANY · PEREIRA",
-    "titulo": "Tecnología que impulsa",
-    "tituloAcento": "tu operación",
-    "texto": "Integración, precisión y estructura para que tu empresa convierta sus datos en decisiones confiables.",
+    "_nota": "Carrusel de fondo del inicio. Cada diapositiva tiene su imagen (ruta sin «-1920.webp» ni «-960.webp»: hay que subir las dos medidas) y su mensaje. Las imágenes de hoy son fondos hechos con los elementos de la marca; para usar fotos reales, se suben con esos dos tamaños y se cambia «imagen».",
+    "intervalo": 7000,
     "accion": {
       "texto": "Hablemos de tu operación",
       "ancla": "contacto"
@@ -51,7 +49,30 @@
     "accionSecundaria": {
       "texto": "Ver soluciones",
       "ancla": "servicios"
-    }
+    },
+    "diapositivas": [
+      {
+        "imagen": "img/hero/integracion",
+        "etiqueta": "INTEGRACIÓN",
+        "titulo": "Tecnología que impulsa",
+        "tituloAcento": "tu operación",
+        "texto": "Integración, precisión y estructura para que tu empresa convierta sus datos en decisiones confiables."
+      },
+      {
+        "imagen": "img/hero/precision",
+        "etiqueta": "PRECISIÓN",
+        "titulo": "Datos medidos,",
+        "tituloAcento": "decisiones confiables",
+        "texto": "Cada dato se mide y se verifica, para que cada decisión de tu operación se apoye en información en la que puedes creer."
+      },
+      {
+        "imagen": "img/hero/estructura",
+        "etiqueta": "ESTRUCTURA",
+        "titulo": "Un sistema que",
+        "tituloAcento": "conecta todo",
+        "texto": "Una base sólida sobre la que crece tu empresa: la información conectada entre todas sus áreas."
+      }
+    ]
   },
   "nosotros": {
     "titulo": "Quiénes somos",
@@ -186,6 +207,14 @@
         "alt": "Uniformes de MetroTech en sus dos versiones, azul oscuro y turquesa, con el monograma MT bordado. Imagen ilustrativa del manual de marca."
       }
     ]
+  },
+  "llamado": {
+    "titulo": "¿Listo para conectar",
+    "tituloAcento": "tu operación?",
+    "accion": {
+      "texto": "Hablemos de tu operación",
+      "ancla": "contacto"
+    }
   },
   "contacto": {
     "_nota": "Los mensajes del formulario se envían por WhatsApp: el botón abre WhatsApp con el mensaje ya escrito. Para que funcione, poner en \"whatsapp\" el número completo con indicativo y sin espacios ni signos, por ejemplo 573001234567, y en \"whatsappVisible\" como se muestra en pantalla.",

@@ -8,8 +8,9 @@ import { Pie } from '../estructura/pie/pie';
 import { WhatsappFlotante } from '../estructura/whatsapp-flotante';
 import { Contacto } from '../secciones/contacto/contacto';
 import { Hero } from '../secciones/hero/hero';
-import { Identidad } from '../secciones/identidad/identidad';
+import { Llamado } from '../secciones/llamado/llamado';
 import { Nosotros } from '../secciones/nosotros/nosotros';
+import { Pilares } from '../secciones/pilares/pilares';
 import { Proceso } from '../secciones/proceso/proceso';
 import { Servicios } from '../secciones/servicios/servicios';
 import { Valores } from '../secciones/valores/valores';
@@ -21,7 +22,7 @@ import { Valores } from '../secciones/valores/valores';
 @Component({
   selector: 'mt-pagina',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Cabecera, Pie, WhatsappFlotante, Contacto, Hero, Identidad, Nosotros, Proceso, Servicios, Valores],
+  imports: [Cabecera, Pie, WhatsappFlotante, Contacto, Hero, Llamado, Nosotros, Pilares, Proceso, Servicios, Valores],
   template: `
     <a class="saltar" href="#contenido">Saltar al contenido</a>
 
@@ -29,14 +30,17 @@ import { Valores } from '../secciones/valores/valores';
       <mt-cabecera [navegacion]="c.navegacion" [accion]="c.hero.accion" />
 
       <main id="contenido" tabindex="-1">
-        <mt-hero [hero]="c.hero" [marca]="c.marca" />
-        <mt-nosotros [nosotros]="c.nosotros" [marca]="c.marca" />
+        <mt-hero [hero]="c.hero" />
+        <mt-pilares [pilares]="c.nosotros.pilares" />
+        <mt-nosotros
+          [nosotros]="c.nosotros"
+          [marca]="c.marca"
+          [imagen]="c.identidad.visible && c.identidad.imagenes.length ? c.identidad.imagenes[0] : null"
+        />
         <mt-servicios [servicios]="c.servicios" />
         <mt-proceso [proceso]="c.proceso" />
         <mt-valores [valores]="c.valores" />
-        @if (c.identidad.visible && c.identidad.imagenes.length) {
-          <mt-identidad [identidad]="c.identidad" />
-        }
+        <mt-llamado [llamado]="c.llamado" />
         <mt-contacto [contacto]="c.contacto" [marca]="c.marca" />
       </main>
 

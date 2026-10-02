@@ -1,28 +1,26 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
 
-import { Contenido } from '../../../../comun/contenido';
+import { Contenido, Imagen } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
-import { icono } from '../../marca/iconos';
-import { LineaNodos } from '../../marca/linea-nodos';
 import { MarcaAgua } from '../../marca/marca-agua';
+import { Regla } from '../../marca/regla';
 import { TituloSeccion } from '../../marca/titulo-seccion';
 
 /**
- * Quiénes somos: el propósito (transformar datos en decisiones confiables),
- * la pertenencia a Salazar Arias Company y los tres pilares del concepto,
- * unidos por la línea con nodos como en el monograma.
+ * Quiénes somos: a la izquierda la imagen de identidad (uniformes del
+ * manual, marcada como ilustrativa) con un bloque azul oscuro montado
+ * encima que dice el concepto; a la derecha el propósito y la pertenencia a
+ * Salazar Arias Company.
  */
 @Component({
   selector: 'mt-nosotros',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideAngularModule, Aparecer, LineaNodos, MarcaAgua, TituloSeccion],
+  imports: [Aparecer, MarcaAgua, Regla, TituloSeccion],
   templateUrl: './nosotros.html',
   styleUrl: './nosotros.css'
 })
 export class Nosotros {
   readonly nosotros = input.required<Contenido['nosotros']>();
   readonly marca = input.required<Contenido['marca']>();
-
-  protected readonly icono = icono;
+  readonly imagen = input<Imagen | null>(null);
 }

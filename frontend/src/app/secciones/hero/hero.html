@@ -1,41 +1,119 @@
-<section id="inicio" class="seccion hero" data-theme="light" aria-labelledby="hero-titulo">
-  <mt-franjas esquina="inferior-derecha" ancho="clamp(200px, 34vw, 460px)" [nodo]="true" />
+<section
+  id="inicio"
+  class="hero"
+  data-theme="dark"
+  aria-roledescription="carrusel"
+  aria-label="Lo que hace MetroTech"
+  [class.con-movimiento]="!movimientoReducido()"
+  (mouseenter)="entrar()"
+  (mouseleave)="salir()"
+  (focusin)="entrar()"
+  (focusout)="salir($event)"
+  (keydown)="tecla($event)"
+  (pointerdown)="tocar($event)"
+  (pointerup)="soltar($event)"
+>
+  <!-- Las imágenes de fondo: decorativas, el mensaje va en el texto. -->
+  <div class="hero__fondos" aria-hidden="true">
+    @for (d of hero().diapositivas; track d.imagen; let i = $index) {
+      <img
+        class="hero__fondo"
+        [class.activa]="i === actual()"
+        [src]="d.imagen + '-1920.webp'"
+        [attr.srcset]="d.imagen + '-960.webp 960w, ' + d.imagen + '-1920.webp 1920w'"
+        sizes="100vw"
+        width="1920"
+        height="1080"
+        alt=""
+        [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+        [attr.fetchpriority]="i === 0 ? 'high' : null"
+        decoding="async"
+      />
+    }
+  </div>
+  <div class="hero__velo" aria-hidden="true"></div>
+  <mt-franjas esquina="inferior-derecha" ancho="clamp(200px, 30vw, 440px)" [nodo]="true" />
 
-  <div class="contenedor hero__rejilla">
-    <div class="hero__texto">
-      @if (hero().etiqueta) {
-        <p class="t-etiqueta acento-linea">{{ hero().etiqueta }}</p>
+  <div class="contenedor hero__contenido">
+    <div class="hero__diapositivas" [attr.aria-live]="corriendo() ? 'off' : 'polite'">
+      @for (d of hero().diapositivas; track d.imagen; let i = $index) {
+        <div
+          class="hero__diapositiva"
+          role="group"
+          aria-roledescription="diapositiva"
+          [attr.aria-label]="(i + 1) + ' de ' + total()"
+          [class.activa]="i === actual()"
+          [inert]="i !== actual()"
+        >
+          @if (d.etiqueta) {
+            <p class="t-etiqueta hero__etiqueta">{{ d.etiqueta }}</p>
+          }
+          @if (i === 0) {
+            <h1 class="hero__titulo">
+              {{ d.titulo }}
+              @if (d.tituloAcento) { <span class="t-acento">{{ d.tituloAcento }}</span> }
+            </h1>
+          } @else {
+            <h2 class="hero__titulo">
+              {{ d.titulo }}
+              @if (d.tituloAcento) { <span class="t-acento">{{ d.tituloAcento }}</span> }
+            </h2>
+          }
+          <p class="t-cuerpo-l hero__apoyo">{{ d.texto }}</p>
+        </div>
       }
+    </div>
 
-      <h1 id="hero-titulo" class="hero__titulo">
-        {{ hero().titulo }}
-        @if (hero().tituloAcento) {
-          <span class="t-acento">{{ hero().tituloAcento }}</span>
-        }
-      </h1>
+    <div class="hero__acciones">
+      <a class="boton boton--primario" [href]="'#' + hero().accion.ancla">{{ hero().accion.texto }}</a>
+      @if (hero().accionSecundaria; as s) {
+        <a class="boton boton--secundario" [href]="'#' + s.ancla">{{ s.texto }}</a>
+      }
+    </div>
 
-      <p class="t-cuerpo-l t-secundario hero__apoyo">{{ hero().texto }}</p>
+    @if (total() > 1) {
+      <div class="hero__controles">
+        <button type="button" class="control" (click)="alternarPausa()"
+          [attr.aria-label]="pausaUsuario() ? 'Reanudar el carrusel' : 'Pausar el carrusel'">
+          <lucide-icon [img]="pausaUsuario() ? Play : Pause" [size]="18" aria-hidden="true" />
+        </button>
+        <button type="button" class="control" (click)="anterior()" aria-label="Diapositiva anterior">
+          <lucide-icon [img]="ChevronLeft" [size]="20" aria-hidden="true" />
+        </button>
+        <button type="button" class="control" (click)="siguiente()" aria-label="Diapositiva siguiente">
+          <lucide-icon [img]="ChevronRight" [size]="20" aria-hidden="true" />
+        </button>
 
-      <div class="hero__acciones">
-        <a class="boton boton--primario" [href]="'#' + hero().accion.ancla">{{ hero().accion.texto }}</a>
-        @if (hero().accionSecundaria; as s) {
-          <a class="boton boton--secundario" [href]="'#' + s.ancla">{{ s.texto }}</a>
-        }
-      </div>
+        <!-- Los indicadores: rombos sobre una línea, como la línea con nodos de la T. -->
+        <div class="indicadores">
+          <span class="indicadores__linea" aria-hidden="true"></span>
+          @for (d of hero().diapositivas; track d.imagen; let i = $index) {
+            <button
+              type="button"
+              class="indicador"
+              [class.activo]="i === actual()"
+              [attr.aria-current]="i === actual() ? 'true' : null"
+              [attr.aria-label]="'Ir a la diapositiva ' + (i + 1) + ': ' + (d.etiqueta || d.titulo)"
+              (click)="ir(i)"
+            ></button>
+          }
+        </div>
 
-      <div class="hero__concepto">
-        <mt-linea-nodos [animar]="true" />
-        <p class="t-pequeno">
-          <strong>{{ marca().concepto }}</strong>
-          <span class="t-secundario"> · {{ marca().pilares.join(' + ') }}</span>
+        <p class="contador" aria-hidden="true">
+          <strong>{{ numero(actual()) }}</strong> / {{ numero(total() - 1) }}
         </p>
       </div>
-    </div>
 
-    <div class="hero__visual">
-      <mt-red-nodos [pilares]="marca().pilares" />
-    </div>
+      <!-- Progreso hasta la siguiente diapositiva: se reinicia en cada cambio. -->
+      <div class="hero__progreso" aria-hidden="true">
+        @if (corriendo()) {
+          <span
+            class="hero__progreso-barra"
+            [class.par]="cambios() % 2 === 0"
+            [style.animation-duration.ms]="hero().intervalo || 7000"
+          ></span>
+        }
+      </div>
+    }
   </div>
-
-  <mt-regla class="hero__regla" [largo]="12" />
 </section>
