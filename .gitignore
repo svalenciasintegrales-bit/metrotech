@@ -28,3 +28,6 @@ backend/modelos/*.local.php
 
 # Lo que escribe el sistema en desarrollo: correos de prueba y registros.
 backend/registros/
+
+# Referencia visual ajena (plantilla de otra marca): se consulta, no se versiona.
+manual de marca/diseño.png

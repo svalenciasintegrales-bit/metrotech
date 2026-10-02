@@ -44,7 +44,7 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 - El celeste con texto blanco da 3,82:1 y sobre azul oscuro 4,25:1: **no cumple AA en texto normal**. Va en íconos, títulos grandes, bordes, líneas y fondos decorativos; nunca como fondo de botón ni en texto pequeño.
 - El logo trae su propio celeste (`#0382B5`, distinto al de la paleta): el archivo del logo no se toca.
 - Colores de estado del formulario: **propuesta pendiente de aprobación** (`--verde-estado`, `--rojo-estado` y sus versiones claras para zona oscura). Siempre con ícono y palabra.
-- Zonas por `data-theme` en cada `<section>`: `light` (blanco), `tint` (celeste muy claro), `dark` (azul oscuro).
+- Zonas por `data-theme` en cada `<section>`: `light` (blanco), `tint` (celeste muy claro), `dark` (azul oscuro) y `celeste` (bandas de llamado, como el logo sobre celeste). En `celeste` el azul oscuro da 4,25:1 y el blanco 3,82:1: **solo títulos de 24 px o más y botones**, nunca texto pequeño.
 
 **Inconsistencias del manual que no se replican:** la lámina del monograma llama al celeste «limpieza, claridad» (texto heredado de otra marca); la lámina 2 habla de «verde y azul», pero el verde es de Salazar Arias Company, no de MetroTech; las líneas decorativas de las láminas usan `#002060`, que no es corporativo.
 
@@ -75,7 +75,15 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 | `<mt-titulo-seccion>` | Título de sección con doble línea |
 | `<mt-ejemplo>` | Marca CONTENIDO DE EJEMPLO |
 
-## 7. Tono y contenido
+## 7. Referencia visual
+
+`manual de marca/diseño.png` es una referencia de composición (una plantilla corporativa ajena): héroe oscuro a todo el ancho con imágenes de fondo, tarjetas que se montan sobre el borde del héroe, bloques con imagen y bandas de color. **Se toma la composición, nunca su color, tipografía, logo, textos ni imágenes**: todo eso sale del manual de MetroTech. Su naranja equivale aquí a los azules de la marca.
+
+- **Héroe:** carrusel de fondo a todo el ancho, velo azul oscuro para que el texto siempre se lea, un mensaje por diapositiva (desde `hero.diapositivas` en `contenido.json`). Botón de pausa, se detiene con el puntero o el foco encima, arranca quieto con movimiento reducido, flechas del teclado y deslizar.
+- **Imágenes del carrusel:** hoy son fondos hechos solo con elementos de la marca (red de nodos, instrumento de medición, capas), en `public/img/hero/` a 960 y 1920 px. Se reemplazan por fotos reales con el mismo par de tamaños, cambiando la ruta en el contenido.
+- **Pilares** montados sobre el borde inferior del héroe; **Quiénes somos** con imagen y bloque azul oscuro encima; **banda celeste** de llamado antes de Contacto.
+
+## 8. Tono y contenido
 
 - Slogan: «Tecnología que impulsa tu operación». Concepto: «Sistema que conecta todo» (integración + precisión + estructura). Propósito: transformar datos en decisiones confiables.
 - Tono: profesional con empatía, innovador, confiable y cercano. Dirigido a empresas.
@@ -84,21 +92,21 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 - Las imágenes de papelería y uniformes del manual son ilustrativas: se presentan como identidad de marca, nunca como fotos del equipo real. La de papelería **no se usa**: muestra la dirección, el teléfono y el correo de ejemplo del manual. A la de uniformes se le quitó el logo distorsionado que traía en la esquina.
 - Todo el texto vive en `frontend/public/contenido.json`.
 
-## 8. Contacto
+## 9. Contacto
 
 - **Los mensajes van por WhatsApp** (decisión del 2 de octubre de 2026): el formulario valida los datos y abre WhatsApp con el mensaje ya escrito. No pasa por el servidor ni se guarda.
 - Al lado del formulario se muestran el correo y los demás datos de contacto de `contenido.json`.
 - Sin número configurado, el formulario se ve pero no envía y lo dice.
 - **Panel administrativo: más adelante**, no ahora. Cuando llegue, el backend ya tiene la estructura de Tu Móvil para crecer.
 
-## 9. Calidad
+## 10. Calidad
 
 - Móvil primero; sin desplazamiento horizontal a 390 px.
 - AA: contraste, foco visible (2 px en `--foco`), etiquetas en campos, textos alternativos, navegación por teclado.
 - Movimiento sutil y solo con `prefers-reduced-motion: no-preference`.
 - Imágenes WebP al tamaño en que se muestran, `loading="lazy"` fuera de la primera pantalla.
 
-## 10. Fases
+## 11. Fases
 
 - **Fase 0 · Preparación.** ✔ Entregada.
 - **Fase 1 · Base y sistema de diseño.** ✔ Aprobada. Estructura, `contenido.json`, tokens, componentes base y elementos de marca; muestrario en `/sistema`.
