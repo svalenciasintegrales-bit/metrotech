@@ -1,0 +1,246 @@
+<a class="saltar" href="/sistema#contenido">Saltar al contenido</a>
+
+<header class="cabecera" data-theme="light">
+  <div class="contenedor fila cabecera__fila">
+    <mt-logo variante="color" [alto]="52" [prioritario]="true" />
+    <p class="t-pequeno t-secundario">Sistema de diseño · fase 1 · uso interno</p>
+  </div>
+  <mt-regla [largo]="10" [paso]="8" />
+</header>
+
+<main id="contenido">
+
+  <!-- ============================================================ color -->
+  <section class="seccion" data-theme="light" aria-labelledby="s-color">
+    <div class="contenedor">
+      <mt-titulo-seccion idTitulo="s-color" titulo="Color"
+        entradilla="Solo los colores del manual: los dos azules, sus tintes claros para fondos y los neutros." />
+      <ul class="muestras" role="list">
+        @for (c of colores; track c.token) {
+          <li class="muestra">
+            <span class="muestra__color" [style.background]="'var(' + c.token + ')'"></span>
+            <span class="t-h6">{{ c.nombre }}</span>
+            <code class="t-pequeno">{{ c.hex }} · {{ c.token }}</code>
+            <span class="t-pequeno t-secundario">{{ c.nota }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ tipografía -->
+  <section class="seccion" data-theme="tint" aria-labelledby="s-tipo">
+    <div class="contenedor">
+      <mt-titulo-seccion idTitulo="s-tipo" titulo="Tipografía"
+        entradilla="Archivo, en reemplazo de Acumin Variable Concept mientras no haya kit de Adobe Fonts. Semibold (600) como peso principal." />
+      <dl class="tipos">
+        @for (t of tipos; track t.nombre) {
+          <div class="tipo">
+            <dt class="t-pequeno t-secundario">{{ t.nombre }} · {{ t.medida }}</dt>
+            <dd [class]="t.clase">{{ t.texto }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================================ logo -->
+  <section class="seccion" data-theme="light" aria-labelledby="s-logo">
+    <div class="contenedor">
+      <mt-titulo-seccion idTitulo="s-logo" titulo="Logotipo"
+        entradilla="Las versiones permitidas, tal como salen del manual. El espacio en blanco va incluido en el componente; por debajo de 96 px de ancho pasa solo al monograma." />
+      <ul class="logos" role="list">
+        @for (l of logos; track $index) {
+          <li class="logos__item">
+            <div class="logos__fondo" [class]="'logos__fondo fondo-' + l.fondo">
+              <mt-logo [variante]="l.variante" [alto]="96" />
+            </div>
+            <span class="t-pequeno t-secundario">{{ l.nombre }}</span>
+          </li>
+        }
+      </ul>
+
+      <h3 class="t-h5 subtitulo">Monograma y tamaño mínimo</h3>
+      <div class="fila logos__mini">
+        @for (m of monogramas; track m.variante) {
+          <div [class]="'logos__fondo fondo-' + m.fondo">
+            <mt-logo [variante]="m.variante" [alto]="40" />
+          </div>
+        }
+        <div class="logos__fondo fondo-blanco">
+          <mt-logo variante="color" [alto]="32" />
+        </div>
+        <p class="t-pequeno t-secundario medida">
+          El último es el logo a color pedido a 32 px de alto: no alcanza los 96 px de ancho y el componente lo cambia solo por el monograma.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ zonas -->
+  @for (z of zonas; track z.tema) {
+    <section class="seccion" [attr.data-theme]="z.tema" [attr.aria-labelledby]="'s-zona-' + z.tema">
+      <div class="contenedor">
+        <mt-titulo-seccion [idTitulo]="'s-zona-' + z.tema" [titulo]="z.nombre"
+          [entradilla]="z.nota" etiqueta="COMPONENTES BASE" />
+
+        <div class="zona">
+          <div class="pila-6">
+            <h3 class="t-h5">Botones</h3>
+            <div class="fila">
+              <button type="button" class="boton boton--primario">
+                Hablemos de tu operación
+              </button>
+              <button type="button" class="boton boton--secundario">Ver soluciones</button>
+              <button type="button" class="boton boton--fantasma">Más información</button>
+              <button type="button" class="boton boton--primario" disabled>Deshabilitado</button>
+            </div>
+
+            <h3 class="t-h5">Tarjetas</h3>
+            <div class="grilla">
+              <article class="tarjeta">
+                <span class="tarjeta__icono"><lucide-icon [img]="Network" aria-hidden="true" /></span>
+                <h4 class="tarjeta__titulo">Tarjeta base</h4>
+                <p class="tarjeta__texto">Superficie con borde fino y sombra suave. Sin sombra nunca sobre el logo.</p>
+              </article>
+              <article class="tarjeta tarjeta--acento">
+                <span class="tarjeta__icono"><lucide-icon [img]="Network" aria-hidden="true" /></span>
+                <h4 class="tarjeta__titulo">Tarjeta con acento</h4>
+                <p class="tarjeta__texto">Línea celeste arriba, como la regla de la M.</p>
+              </article>
+            </div>
+
+            <h3 class="t-h5">Textos de marca</h3>
+            <p class="acento-linea t-cuerpo-l">Tecnología que impulsa tu operación</p>
+            <p><mt-ejemplo /></p>
+          </div>
+
+          <form class="pila-6 formulario" (submit)="$event.preventDefault()" [attr.aria-label]="'Ejemplo de formulario, ' + z.nombre">
+            <h3 class="t-h5">Campos</h3>
+            <div class="campo">
+              <label class="campo__etiqueta" [for]="'nombre-' + z.tema">Nombre</label>
+              <input class="campo__control" [id]="'nombre-' + z.tema" type="text" autocomplete="name" placeholder="Tu nombre" />
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" [for]="'empresa-' + z.tema">
+                Empresa <span class="campo__opcional">(opcional)</span>
+              </label>
+              <input class="campo__control" [id]="'empresa-' + z.tema" type="text" autocomplete="organization"
+                [attr.aria-describedby]="'empresa-ayuda-' + z.tema" />
+              <p class="campo__ayuda" [id]="'empresa-ayuda-' + z.tema">Así sabemos para quién es la solución.</p>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" [for]="'correo-' + z.tema">Correo</label>
+              <input class="campo__control" [id]="'correo-' + z.tema" type="email" autocomplete="email"
+                value="correo@empresa" aria-invalid="true" [attr.aria-describedby]="'correo-error-' + z.tema" />
+              <p class="campo__error" [id]="'correo-error-' + z.tema">
+                <lucide-icon [img]="CircleAlert" [size]="16" aria-hidden="true" />
+                Al correo le falta el dominio completo, por ejemplo: nombre&#64;empresa.com
+              </p>
+            </div>
+            <div class="campo">
+              <label class="campo__etiqueta" [for]="'mensaje-' + z.tema">Mensaje</label>
+              <textarea class="campo__control" [id]="'mensaje-' + z.tema" rows="3"></textarea>
+            </div>
+            <div class="aviso aviso--exito" role="status">
+              <lucide-icon [img]="CircleCheck" [size]="20" aria-hidden="true" />
+              <span>Mensaje enviado. Te respondemos pronto.</span>
+            </div>
+            <div class="aviso aviso--error" role="status">
+              <lucide-icon [img]="CircleAlert" [size]="20" aria-hidden="true" />
+              <span>No se pudo enviar. Revisa tu conexión e intenta de nuevo.</span>
+            </div>
+            <button type="submit" class="boton boton--primario boton--ancho">
+              <lucide-icon [img]="Send" [size]="20" aria-hidden="true" />
+              Enviar mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- ============================================================ elementos de marca -->
+  <section class="seccion" data-theme="light" aria-labelledby="s-elementos">
+    <div class="contenedor">
+      <mt-titulo-seccion idTitulo="s-elementos" titulo="Elementos gráficos de la marca"
+        entradilla="Tomados del logo y la papelería. Con moderación: mucho espacio en blanco." />
+
+      <div class="elementos">
+        <figure class="elemento">
+          <div class="elemento__lienzo elemento__lienzo--bajo">
+            <mt-regla />
+          </div>
+          <figcaption class="t-pequeno t-secundario"><strong>Regla</strong> · medición y precisión. Bordes de sección y separadores.</figcaption>
+        </figure>
+
+        <figure class="elemento">
+          <div class="elemento__lienzo elemento__lienzo--bajo">
+            <mt-linea-nodos />
+          </div>
+          <figcaption class="t-pequeno t-secundario"><strong>Línea con nodos</strong> · flujo de información. Separador y línea de tiempo.</figcaption>
+        </figure>
+
+        <figure class="elemento">
+          <div class="elemento__lienzo elemento__lienzo--bajo">
+            <mt-linea-nodos [animar]="true" />
+          </div>
+          <figcaption class="t-pequeno t-secundario"><strong>Línea con nodos, animada</strong> · se dibuja al entrar en pantalla (quieta con movimiento reducido).</figcaption>
+        </figure>
+
+        <figure class="elemento">
+          <div class="elemento__lienzo elemento__lienzo--vertical">
+            <mt-regla orientacion="vertical" />
+            <mt-linea-nodos orientacion="vertical" />
+            <mt-doble-linea />
+          </div>
+          <figcaption class="t-pequeno t-secundario"><strong>Verticales</strong> · regla, línea con nodos y doble línea de encabezado.</figcaption>
+        </figure>
+
+        <figure class="elemento">
+          <div class="elemento__lienzo elemento__lienzo--caja" data-theme="light">
+            <mt-marca-agua esquina="inferior-derecha" ancho="320px" />
+            <mt-franjas esquina="inferior-izquierda" ancho="220px" [nodo]="true" />
+          </div>
+          <figcaption class="t-pequeno t-secundario"><strong>Marca de agua y franjas</strong> en zona clara, como la hoja membrete.</figcaption>
+        </figure>
+
+        <figure class="elemento">
+          <div class="elemento__lienzo elemento__lienzo--caja" data-theme="dark">
+            <mt-marca-agua esquina="superior-derecha" zona="oscuro" ancho="320px" />
+            <mt-franjas esquina="inferior-derecha" ancho="220px" />
+          </div>
+          <figcaption class="t-pequeno t-secundario"><strong>Marca de agua y franjas</strong> en zona oscura, como el sobre.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ forma -->
+  <section class="seccion" data-theme="tint" aria-labelledby="s-forma">
+    <div class="contenedor">
+      <mt-titulo-seccion idTitulo="s-forma" titulo="Espacio, radios y sombras"
+        entradilla="Escala de 4 px. Esquinas cortas, de plano técnico. Sombras suaves, tintadas de azul oscuro." />
+
+      <h3 class="t-h5 subtitulo">Espaciado</h3>
+      <ul class="espacios" role="list">
+        @for (e of espacios; track e) {
+          <li class="espacio">
+            <span class="espacio__barra" [style.width.px]="e"></span>
+            <code class="t-pequeno">{{ e }}</code>
+          </li>
+        }
+      </ul>
+
+      <h3 class="t-h5 subtitulo">Radios y sombras</h3>
+      <div class="formas">
+        <div class="forma" style="border-radius: var(--r-1)"><code class="t-pequeno">--r-1 · 2px</code></div>
+        <div class="forma" style="border-radius: var(--r-2)"><code class="t-pequeno">--r-2 · 4px</code></div>
+        <div class="forma" style="border-radius: var(--r-3)"><code class="t-pequeno">--r-3 · 8px</code></div>
+        <div class="forma" style="box-shadow: var(--sombra-1)"><code class="t-pequeno">--sombra-1</code></div>
+        <div class="forma" style="box-shadow: var(--sombra-2)"><code class="t-pequeno">--sombra-2</code></div>
+        <div class="forma" style="box-shadow: var(--sombra-3)"><code class="t-pequeno">--sombra-3</code></div>
+      </div>
+    </div>
+  </section>
+</main>
