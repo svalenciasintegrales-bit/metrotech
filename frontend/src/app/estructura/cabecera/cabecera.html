@@ -1,0 +1,46 @@
+<header class="cabecera" data-theme="light" [class.con-sombra]="conSombra()">
+  <div class="contenedor cabecera__fila">
+    <a class="cabecera__logo" href="#inicio" aria-label="MetroTech, ir al inicio" (click)="cerrar()">
+      <mt-logo class="solo-movil" variante="monograma" [alto]="32" [decorativo]="true" [reserva]="false" [prioritario]="true" />
+      <mt-logo class="solo-escritorio" variante="color" [alto]="52" [decorativo]="true" [reserva]="false" [prioritario]="true" />
+    </a>
+
+    <nav class="cabecera__nav" aria-label="Secciones de la página">
+      <ul role="list">
+        @for (n of navegacion(); track n.ancla) {
+          @if (n.ancla !== accion().ancla) {
+            <li>
+              <a [href]="'#' + n.ancla" [attr.aria-current]="activa() === n.ancla ? 'true' : null">{{ n.texto }}</a>
+            </li>
+          }
+        }
+      </ul>
+    </nav>
+
+    <a class="boton boton--primario cabecera__accion" [href]="'#' + accion().ancla">{{ accion().texto }}</a>
+
+    <button
+      type="button"
+      class="cabecera__menu"
+      [attr.aria-expanded]="abierto()"
+      aria-controls="menu-movil"
+      (click)="alternar()"
+    >
+      <lucide-icon [img]="abierto() ? X : Menu" aria-hidden="true" />
+      <span class="visualmente-oculto">{{ abierto() ? 'Cerrar menú' : 'Abrir menú' }}</span>
+    </button>
+  </div>
+
+  <nav id="menu-movil" class="menu-movil" [class.abierto]="abierto()" aria-label="Secciones de la página" [attr.hidden]="abierto() ? null : ''">
+    <ul role="list" class="contenedor">
+      @for (n of navegacion(); track n.ancla) {
+        <li>
+          <a [href]="'#' + n.ancla" (click)="cerrar()" [attr.aria-current]="activa() === n.ancla ? 'true' : null">{{ n.texto }}</a>
+        </li>
+      }
+      <li class="menu-movil__accion">
+        <a class="boton boton--primario boton--ancho" [href]="'#' + accion().ancla" (click)="cerrar()">{{ accion().texto }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,60 @@
+<footer class="pie" data-theme="dark">
+  <mt-franjas esquina="inferior-derecha" ancho="clamp(180px, 26vw, 360px)" />
+
+  <div class="contenedor pie__rejilla">
+    <div class="pie__marca">
+      <mt-logo variante="sobre-negro" [alto]="72" />
+      <p class="acento-linea">{{ contenido().pie.texto }}</p>
+    </div>
+
+    <nav class="pie__columna" aria-label="Secciones de la página, pie">
+      <h2 class="t-etiqueta">SECCIONES</h2>
+      <ul role="list">
+        <li><a href="#inicio">Inicio</a></li>
+        @for (n of contenido().navegacion; track n.ancla) {
+          <li><a [href]="'#' + n.ancla">{{ n.texto }}</a></li>
+        }
+      </ul>
+    </nav>
+
+    <div class="pie__columna">
+      <h2 class="t-etiqueta">CONTACTO</h2>
+      <ul role="list">
+        <li>
+          @if (whatsapp(); as w) {
+            <a [href]="w" target="_blank" rel="noopener">
+              <lucide-icon [img]="MessageCircle" [size]="18" aria-hidden="true" />{{ contenido().contacto.whatsappVisible }}
+            </a>
+          } @else {
+            <span class="pendiente">{{ contenido().contacto.whatsappVisible }}</span>
+          }
+        </li>
+        <li>
+          @if (correo(); as c) {
+            <a [href]="'mailto:' + c"><lucide-icon [img]="Mail" [size]="18" aria-hidden="true" />{{ c }}</a>
+          } @else {
+            <span class="pendiente">{{ contenido().contacto.correoVisible }}</span>
+          }
+        </li>
+        <li class="t-secundario">{{ contenido().contacto.ciudad }}</li>
+      </ul>
+
+      @if (redes().length) {
+        <ul class="redes" role="list">
+          @for (r of redes(); track r.red) {
+            <li>
+              <a [href]="r.url" target="_blank" rel="noopener" [attr.aria-label]="r.nombre + ' de MetroTech'">
+                <lucide-icon [img]="r.icono" aria-hidden="true" />
+              </a>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+
+  <div class="contenedor pie__base">
+    <p class="t-pequeno t-secundario">{{ contenido().pie.mencion }}</p>
+    <p class="t-pequeno t-secundario">© {{ anio }} {{ contenido().marca.nombre }} · {{ contenido().marca.empresaMatriz }}</p>
+  </div>
+</footer>

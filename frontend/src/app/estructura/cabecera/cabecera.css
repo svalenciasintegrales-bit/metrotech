@@ -1,0 +1,150 @@
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-cabecera);
+  border-bottom: var(--linea-fina) solid var(--borde);
+  transition: box-shadow var(--dur-media) var(--curva);
+}
+
+.cabecera.con-sombra {
+  box-shadow: var(--sombra-1);
+}
+
+.cabecera__fila {
+  display: flex;
+  align-items: center;
+  gap: var(--e-6);
+  min-height: var(--alto-cabecera);
+}
+
+/* El logo va sin relleno propio: la cabecera le da el espacio en blanco
+   (manual, lámina 6) con su alto y el margen a la derecha. */
+.cabecera__logo {
+  display: inline-flex;
+  align-items: center;
+  margin-right: auto;
+  padding-block: var(--e-2);
+  border-radius: var(--r-2);
+}
+
+.cabecera__logo .solo-escritorio { display: none; }
+
+/* ------------------------------------------------------------ menú de escritorio */
+
+.cabecera__nav,
+.cabecera__accion {
+  display: none;
+}
+
+.cabecera__nav ul {
+  display: flex;
+  gap: var(--e-1);
+  margin: 0;
+  padding: 0;
+}
+
+.cabecera__nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--alto-control);
+  padding-inline: var(--e-3);
+  font-size: var(--t-pequeno);
+  font-weight: var(--peso-semibold);
+  color: var(--texto);
+  text-decoration: none;
+  border-radius: var(--r-2);
+}
+
+/* La sección activa: una línea celeste abajo, con su rombo, como la T. */
+.cabecera__nav a::after {
+  content: '';
+  position: absolute;
+  left: var(--e-3);
+  right: var(--e-3);
+  bottom: var(--e-2);
+  height: var(--linea-media);
+  background: var(--acento);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-media) var(--curva);
+}
+
+.cabecera__nav a:hover::after,
+.cabecera__nav a[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 900px) {
+  .cabecera__logo .solo-movil { display: none; }
+  .cabecera__logo .solo-escritorio { display: inline-block; }
+  .cabecera__nav { display: block; }
+  .cabecera__accion { display: inline-flex; }
+}
+
+/* ------------------------------------------------------------ menú móvil */
+
+.cabecera__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--alto-control);
+  height: var(--alto-control);
+  margin-right: calc(var(--e-3) * -1);
+  padding: 0;
+  color: var(--texto);
+  background: transparent;
+  border: 0;
+  border-radius: var(--r-2);
+  cursor: pointer;
+}
+
+/* Flota sobre el contenido: si ocupara espacio en la página, al cerrarse
+   tras tocar un enlace todo subiría y el ancla quedaría mal ubicada. */
+.menu-movil {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - var(--alto-cabecera));
+  overflow-y: auto;
+  border-top: var(--linea-fina) solid var(--borde);
+  background: var(--fondo);
+  box-shadow: var(--sombra-2);
+}
+
+.menu-movil[hidden] {
+  display: none;
+}
+
+.menu-movil ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-block: var(--e-2) var(--e-6);
+}
+
+.menu-movil a:not(.boton) {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  font-size: var(--t-cuerpo-l);
+  font-weight: var(--peso-semibold);
+  color: var(--texto);
+  text-decoration: none;
+  border-bottom: var(--linea-fina) solid var(--borde);
+}
+
+.menu-movil a[aria-current='true'] {
+  border-bottom-color: var(--acento);
+  border-bottom-width: var(--linea-media);
+}
+
+.menu-movil__accion {
+  padding-top: var(--e-6);
+}
+
+@media (min-width: 900px) {
+  .cabecera__menu,
+  .menu-movil { display: none; }
+}
