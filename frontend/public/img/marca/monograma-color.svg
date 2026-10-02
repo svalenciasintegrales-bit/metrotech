@@ -3,8 +3,6 @@
 <clipPath id="clip_1">
 <path transform="matrix(1,0,0,-1,-359.39997,423.09999)" d="M359.4 304.1H591.2V423.1H359.4Z"/>
 </clipPath>
-<clipPath id="clip_2">
-</clipPath>
 <clipPath id="clip_3">
 <path transform="matrix(1,0,0,-1,-359.39997,423.09999)" d="M0 .00012207H960V540.0001H0Z" clip-rule="evenodd"/>
 </clipPath>
@@ -181,7 +179,7 @@
 </clipPath>
 </defs>
 <g clip-path="url(#clip_1)">
-<g clip-path="url(#clip_2)">
+<g>
 <g clip-path="url(#clip_3)">
 </g>
 <g clip-path="url(#clip_4)">

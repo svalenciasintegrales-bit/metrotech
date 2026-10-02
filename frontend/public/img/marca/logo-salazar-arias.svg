@@ -3,8 +3,6 @@
 <clipPath id="clip_1">
 <path transform="matrix(1,0,0,-1,-764.4,149.4)" d="M764.4 35.5H911.9V149.4H764.4Z"/>
 </clipPath>
-<clipPath id="clip_2">
-</clipPath>
 <clipPath id="clip_3">
 <path transform="matrix(1,0,0,-1,-764.4,149.4)" d="M0 .00012207H960V540.0001H0Z" clip-rule="evenodd"/>
 </clipPath>
@@ -196,63 +194,63 @@
 </clipPath>
 </defs>
 <g clip-path="url(#clip_1)">
-<g clip-path="url(#clip_2)">
+<g>
 <g clip-path="url(#clip_3)">
 </g>
 <g clip-path="url(#clip_4)">
 <g clip-path="url(#clip_5)">
 <g clip-path="url(#clip_6)">
-<use data-text=" " xlink:href="#font_7_54" transform="matrix(20.78434,0,-.0000098728019,-20.773476,.25267185,99.75422)" fill="#0e2233"/>
-<use data-text=" " xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,17.234438,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_54" transform="matrix(20.78434,0,-.0000098728019,-20.773476,.25267185,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,17.234438,99.75422)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_8)">
-<use data-text=" " xlink:href="#font_7_79" transform="matrix(20.78434,0,-.0000098728019,-20.773476,29.903462,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_79" transform="matrix(20.78434,0,-.0000098728019,-20.773476,29.903462,99.75422)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_9)">
-<use data-text=" " xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,37.733575,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,37.733575,99.75422)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_10)">
-<use data-text=" " xlink:href="#font_7_93" transform="matrix(20.78434,0,-.0000098728019,-20.773476,51.72414,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_93" transform="matrix(20.78434,0,-.0000098728019,-20.773476,51.72414,99.75422)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_11)">
-<use data-text=" " xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,64.1602,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,64.1602,99.75422)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_12)">
-<use data-text=" " xlink:href="#font_7_85" transform="matrix(20.78434,0,-.0000098728019,-20.773476,78.20834,99.75422)" fill="#0e2233"/>
+<use xlink:href="#font_7_85" transform="matrix(20.78434,0,-.0000098728019,-20.773476,78.20834,99.75422)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_13)">
-<use data-text=" " xlink:href="#font_7_36" transform="matrix(20.78434,0,-.0000098728019,-20.773476,88.05356,99.75422)" fill="#2fb087"/>
+<use xlink:href="#font_7_36" transform="matrix(20.78434,0,-.0000098728019,-20.773476,88.05356,99.75422)" fill="#2fb087"/>
 </g>
 <g clip-path="url(#clip_14)">
-<use data-text=" " xlink:href="#font_7_85" transform="matrix(20.78434,0,-.0000098728019,-20.773476,104.807689,99.75422)" fill="#2fb087"/>
+<use xlink:href="#font_7_85" transform="matrix(20.78434,0,-.0000098728019,-20.773476,104.807689,99.75422)" fill="#2fb087"/>
 </g>
 <g clip-path="url(#clip_15)">
-<use data-text=" " xlink:href="#font_7_76" transform="matrix(20.78434,0,-.0000098728019,-20.773476,114.99835,99.75422)" fill="#2fb087"/>
+<use xlink:href="#font_7_76" transform="matrix(20.78434,0,-.0000098728019,-20.773476,114.99835,99.75422)" fill="#2fb087"/>
 </g>
 <g clip-path="url(#clip_16)">
-<use data-text=" " xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,122.88604,99.75422)" fill="#2fb087"/>
+<use xlink:href="#font_7_68" transform="matrix(20.78434,0,-.0000098728019,-20.773476,122.88604,99.75422)" fill="#2fb087"/>
 </g>
 <g clip-path="url(#clip_17)">
-<use data-text=" " xlink:href="#font_7_86" transform="matrix(20.78434,0,-.0000098728019,-20.773476,136.76148,99.75422)" fill="#2fb087"/>
+<use xlink:href="#font_7_86" transform="matrix(20.78434,0,-.0000098728019,-20.773476,136.76148,99.75422)" fill="#2fb087"/>
 </g>
 <g clip-path="url(#clip_18)">
-<use data-text=" " xlink:href="#font_19_38" transform="matrix(9.557343,0,-.0000045398485,-9.552347,36.23665,112.7017)" fill="#0e2233"/>
-<use data-text=" " xlink:href="#font_19_50" transform="matrix(9.557343,0,-.0000045398485,-9.552347,47.742998,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_38" transform="matrix(9.557343,0,-.0000045398485,-9.552347,36.23665,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_50" transform="matrix(9.557343,0,-.0000045398485,-9.552347,47.742998,112.7017)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_20)">
-<use data-text=" " xlink:href="#font_19_48" transform="matrix(9.557343,0,-.0000045398485,-9.552347,59.55426,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_48" transform="matrix(9.557343,0,-.0000045398485,-9.552347,59.55426,112.7017)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_21)">
-<use data-text=" " xlink:href="#font_19_51" transform="matrix(9.557343,0,-.0000045398485,-9.552347,72.623638,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_51" transform="matrix(9.557343,0,-.0000045398485,-9.552347,72.623638,112.7017)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_22)">
-<use data-text=" " xlink:href="#font_19_36" transform="matrix(9.557343,0,-.0000045398485,-9.552347,82.81429,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_36" transform="matrix(9.557343,0,-.0000045398485,-9.552347,82.81429,112.7017)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_23)">
-<use data-text=" " xlink:href="#font_19_49" transform="matrix(9.557343,0,-.0000045398485,-9.552347,93.92615,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_49" transform="matrix(9.557343,0,-.0000045398485,-9.552347,93.92615,112.7017)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_24)">
-<use data-text=" " xlink:href="#font_19_60" transform="matrix(9.557343,0,-.0000045398485,-9.552347,105.78646,112.7017)" fill="#0e2233"/>
+<use xlink:href="#font_19_60" transform="matrix(9.557343,0,-.0000045398485,-9.552347,105.78646,112.7017)" fill="#0e2233"/>
 </g>
 <g clip-path="url(#clip_25)">
 <path transform="matrix(2.3989313,0,-.0000011395201,-2.3976775,.079956058,115.06099)" d="M21.37 33.881H9.2456C8.0223 33.881 6.9311 34.881 6.8927 36.103 6.8359 37.796 7.6266 38.643 9.2648 38.643H30.696V45.523H9.9106C4.7775 45.523 .59279 41.362 .60239 36.229 .61359 30.078 3.6999 27.002 9.8614 27.002H21.993C23.216 27.002 24.307 26.002 24.346 24.78 24.4 23.086 23.608 22.239 21.968 22.24H.53517V15.362H21.37C21.621 15.362 21.857 15.375 22.097 15.385L29.935 28.968C28.712 32.238 25.857 33.875 21.37 33.881Z" fill="#0e2233"/>
