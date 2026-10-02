@@ -16,10 +16,24 @@
   padding-bottom: var(--e-10);
 }
 
+@media (min-width: 600px) {
+  .pie__rejilla {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pie__marca {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (min-width: 900px) {
   .pie__rejilla {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--e-16);
+  }
+
+  .pie__marca {
+    grid-column: auto;
   }
 }
 

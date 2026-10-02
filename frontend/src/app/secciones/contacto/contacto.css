@@ -14,29 +14,21 @@
 /* ------------------------------------------------------------ datos */
 
 .datos {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: var(--e-6);
   margin: 0;
   padding: 0;
 }
 
-.dato {
-  display: grid;
-  grid-template-columns: var(--e-10) 1fr;
-  gap: var(--e-4);
-  align-items: start;
+@media (min-width: 600px) and (max-width: 899px) {
+  .datos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-.dato__icono {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--e-10);
-  height: var(--e-10);
-  border-radius: var(--r-2);
-  background: var(--celeste-50);
-  color: var(--azul-oscuro);
+.dato {
+  display: grid;
+  grid-template-columns: var(--e-10) minmax(0, 1fr);
+  gap: var(--e-4);
+  align-items: start;
 }
 
 .dato a {

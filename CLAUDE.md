@@ -25,7 +25,7 @@ MetroTech es una marca de Salazar Arias Company (Pereira, Risaralda, Colombia) e
 
 - Estilos: **CSS plano** con tokens en `frontend/comun/tokens.css` y componentes en `frontend/comun/componentes.css`. Ningún color, tamaño o espacio fuera de los tokens.
 - Elementos de marca como componentes de Angular en `frontend/src/app/marca/`.
-- Íconos: Lucide (`lucide-angular`), de línea, trazo 1,75. Los que se nombran desde el contenido se registran en `src/app/marca/iconos.ts`.
+- **Íconos de contenido: propios** (`<mt-icono>` en `src/app/marca/icono.ts`), dibujados con el lenguaje del logo: trazo geométrico de esquina viva y los remates de la línea del monograma (cuadro y rombo) en celeste. Van en un mosaico azul oscuro (`.icono-marca`) para que se vean. Nombres válidos en `NOMBRES_ICONO`. Lucide queda solo para controles de interfaz (menú, flechas, pausa, avisos) y redes sociales.
 - Backend: `enrutador.php` (CORS, cabeceras, errores JSON) + `despachar()` con niveles de permiso cerrados por defecto. Credenciales en `*.local.php` (en .gitignore) con su `*.local.ejemplo.php`.
 - Apache cerrado por defecto: el `.htaccess` raíz niega todo; solo abren `backend/controladores/` y el build.
 - No se agregan librerías sin justificarlo y sin aprobación.
@@ -101,7 +101,7 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 
 ## 10. Calidad
 
-- Móvil primero; sin desplazamiento horizontal a 390 px.
+- Móvil primero y adaptable a cualquier pantalla: se audita de 320 a 2560 px y en celular horizontal, sin desplazamiento horizontal, sin elementos fuera de pantalla ni textos cortados. Tableta (600–899) con su propia disposición (pilares en 3 columnas, datos y pie en 2); en monitores de 1920 px o más el contenedor se ensancha y la letra sube.
 - AA: contraste, foco visible (2 px en `--foco`), etiquetas en campos, textos alternativos, navegación por teclado.
 - Movimiento sutil y solo con `prefers-reduced-motion: no-preference`.
 - Imágenes WebP al tamaño en que se muestran, `loading="lazy"` fuera de la primera pantalla.

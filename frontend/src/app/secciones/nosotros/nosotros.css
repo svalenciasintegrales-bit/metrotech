@@ -19,7 +19,13 @@
 
 .visual {
   position: relative;
-  margin: 0 0 var(--e-10) var(--e-6);
+  width: calc(100% - var(--e-6));
+  max-width: 600px;
+  margin: 0 auto var(--e-10) var(--e-6);
+}
+
+@media (min-width: 900px) {
+  .visual { max-width: none; }
 }
 
 .visual .visual__regla {

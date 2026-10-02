@@ -110,7 +110,9 @@
   /* Margen lateral de la página y alto de cada sección: crecen con la pantalla. */
   --margen: clamp(16px, 4vw, 40px);
   --seccion: clamp(64px, 9vw, 128px);
-  --contenedor: 1200px;
+  /* Ancho máximo del contenido: 1200 px en escritorio y más en monitores
+     grandes, para que la página no quede como una franja en el centro. */
+  --contenedor: clamp(1200px, 72vw, 1520px);
 
   /* ------------------------------------------------------------ forma */
 
@@ -159,7 +161,18 @@
      600px   tableta vertical
      900px   tableta horizontal / portátil pequeño
      1200px  escritorio
+     1920px  monitor grande (la letra sube un poco)
 */
+
+/* En monitores grandes todo el texto crece en proporción: los tamaños de
+   letra están en rem y siguen a esta base. */
+@media (min-width: 1920px) {
+  html { font-size: 106.25%; }   /* 17 px */
+}
+
+@media (min-width: 2400px) {
+  html { font-size: 118.75%; }   /* 19 px */
+}
 
 @media (prefers-reduced-motion: reduce) {
   :root {
