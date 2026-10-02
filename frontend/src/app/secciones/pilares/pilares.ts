@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
 
 import { ItemIcono } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
-import { icono } from '../../marca/iconos';
+import { Icono } from '../../marca/icono';
 import { LineaNodos } from '../../marca/linea-nodos';
 
 /**
@@ -14,7 +13,7 @@ import { LineaNodos } from '../../marca/linea-nodos';
 @Component({
   selector: 'mt-pilares',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideAngularModule, Aparecer, LineaNodos],
+  imports: [Aparecer, Icono, LineaNodos],
   template: `
     <section class="pilares" aria-label="Integración, precisión y estructura">
       <div class="contenedor">
@@ -22,7 +21,7 @@ import { LineaNodos } from '../../marca/linea-nodos';
           @for (p of pilares(); track p.titulo; let i = $index) {
             <li class="pilar" mtAparecer [retraso]="i * 120">
               <div class="pilar__cabeza">
-                <span class="pilar__icono"><lucide-icon [img]="icono(p.icono)" aria-hidden="true" /></span>
+                <span class="icono-marca pilar__icono"><mt-icono [nombre]="p.icono" /></span>
                 <span class="pilar__numero" aria-hidden="true">{{ '0' + (i + 1) }}</span>
               </div>
               <h2 class="t-h4">{{ p.titulo }}</h2>
@@ -48,7 +47,7 @@ import { LineaNodos } from '../../marca/linea-nodos';
       gap: var(--e-4);
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 600px) {
       .pilares__lista {
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
@@ -70,9 +69,9 @@ import { LineaNodos } from '../../marca/linea-nodos';
       box-shadow: var(--sombra-2);
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 600px) {
       .pilar {
-        padding: var(--e-10) var(--e-8) var(--e-12);
+        padding: var(--e-8) var(--e-5) var(--e-12);
         border-radius: 0;
         box-shadow: none;
       }
@@ -91,7 +90,7 @@ import { LineaNodos } from '../../marca/linea-nodos';
       .pilar:nth-child(2) .t-secundario { color: var(--gris-300-sobre-oscuro); }
       .pilar:nth-child(2) .pilar__icono {
         background: var(--azul-600);
-        color: var(--celeste);
+        box-shadow: inset 0 0 0 var(--linea-fina) rgba(255, 255, 255, 0.12);
       }
     }
 
@@ -100,17 +99,6 @@ import { LineaNodos } from '../../marca/linea-nodos';
       align-items: center;
       justify-content: space-between;
       margin-bottom: var(--e-2);
-    }
-
-    .pilar__icono {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--e-12);
-      height: var(--e-12);
-      border-radius: var(--r-2);
-      background: var(--celeste-50);
-      color: var(--azul-oscuro);
     }
 
     /* El número en celeste: tamaño de título, solo decorativo. */
@@ -132,16 +120,19 @@ import { LineaNodos } from '../../marca/linea-nodos';
       color: var(--celeste);
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 600px) {
       .pilar .pilar__linea {
-        left: var(--e-8);
-        right: var(--e-8);
+        left: var(--e-5);
+        right: var(--e-5);
       }
+    }
+
+    @media (min-width: 900px) {
+      .pilar { padding: var(--e-10) var(--e-8) var(--e-12); }
+      .pilar .pilar__linea { left: var(--e-8); right: var(--e-8); }
     }
   `
 })
 export class Pilares {
   readonly pilares = input.required<ItemIcono[]>();
-
-  protected readonly icono = icono;
 }

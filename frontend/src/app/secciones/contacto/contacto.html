@@ -12,7 +12,7 @@
 
       <ul class="datos" role="list">
         <li class="dato">
-          <span class="dato__icono"><lucide-icon [img]="MessageCircle" aria-hidden="true" /></span>
+          <span class="icono-marca icono-marca--chico"><mt-icono nombre="whatsapp" [tamano]="24" /></span>
           <div>
             <p class="t-pequeno t-secundario">WhatsApp</p>
             @if (whatsapp(); as w) {
@@ -24,7 +24,7 @@
         </li>
 
         <li class="dato">
-          <span class="dato__icono"><lucide-icon [img]="Mail" aria-hidden="true" /></span>
+          <span class="icono-marca icono-marca--chico"><mt-icono nombre="correo" [tamano]="24" /></span>
           <div>
             <p class="t-pequeno t-secundario">Correo</p>
             @if (correo(); as c) {
@@ -36,7 +36,7 @@
         </li>
 
         <li class="dato">
-          <span class="dato__icono"><lucide-icon [img]="Phone" aria-hidden="true" /></span>
+          <span class="icono-marca icono-marca--chico"><mt-icono nombre="telefono" [tamano]="24" /></span>
           <div>
             <p class="t-pequeno t-secundario">Teléfono</p>
             @if (telefono(); as t) {
@@ -48,7 +48,7 @@
         </li>
 
         <li class="dato">
-          <span class="dato__icono"><lucide-icon [img]="MapPin" aria-hidden="true" /></span>
+          <span class="icono-marca icono-marca--chico"><mt-icono nombre="direccion" [tamano]="24" /></span>
           <div>
             <p class="t-pequeno t-secundario">Dirección</p>
             <p [class.pendiente]="!esDato(contacto().direccion)">{{ contacto().direccion }}</p>
@@ -60,7 +60,7 @@
         </li>
 
         <li class="dato">
-          <span class="dato__icono"><lucide-icon [img]="Clock" aria-hidden="true" /></span>
+          <span class="icono-marca icono-marca--chico"><mt-icono nombre="horario" [tamano]="24" /></span>
           <div>
             <p class="t-pequeno t-secundario">Horario</p>
             <p [class.pendiente]="!esDato(contacto().horario)">{{ contacto().horario }}</p>

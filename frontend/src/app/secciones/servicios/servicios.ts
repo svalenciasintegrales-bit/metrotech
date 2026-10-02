@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
 
 import { Contenido } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
 import { Franjas } from '../../marca/franjas';
-import { icono } from '../../marca/iconos';
+import { Icono } from '../../marca/icono';
 import { TituloSeccion } from '../../marca/titulo-seccion';
 
 /**
@@ -16,7 +15,7 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
 @Component({
   selector: 'mt-servicios',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideAngularModule, Aparecer, Franjas, TituloSeccion],
+  imports: [Aparecer, Franjas, Icono, TituloSeccion],
   template: `
     <section id="servicios" class="seccion" data-theme="tint" aria-labelledby="servicios-titulo">
       <mt-franjas esquina="inferior-izquierda" ancho="clamp(180px, 28vw, 380px)" />
@@ -31,7 +30,7 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
           @for (s of servicios().items; track $index) {
             <li class="servicio" mtAparecer [retraso]="($index % 3) * 100">
               <div class="servicio__cabeza">
-                <span class="servicio__icono"><lucide-icon [img]="icono(s.icono)" aria-hidden="true" /></span>
+                <span class="icono-marca servicio__icono"><mt-icono [nombre]="s.icono" /></span>
                 <span class="servicio__numero" aria-hidden="true">{{ ($index + 1).toString().padStart(2, '0') }}</span>
               </div>
               <h3 class="tarjeta__titulo">{{ s.titulo }}</h3>
@@ -74,21 +73,15 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
       margin-bottom: var(--e-3);
     }
 
+    /* Al pasar el puntero el mosaico se invierte: celeste con trazo azul. */
     .servicio__icono {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--e-12);
-      height: var(--e-12);
-      border-radius: var(--r-2);
-      background: var(--celeste-50);
-      color: var(--azul-oscuro);
       transition: background-color var(--dur-media) var(--curva), color var(--dur-media) var(--curva);
     }
 
     .servicio:hover .servicio__icono {
-      background: var(--azul-oscuro);
-      color: var(--celeste);
+      --icono-acento: var(--blanco);
+      background: var(--celeste);
+      color: var(--azul-oscuro);
     }
 
     .servicio__numero {
@@ -131,6 +124,4 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
 })
 export class Servicios {
   readonly servicios = input.required<Contenido['servicios']>();
-
-  protected readonly icono = icono;
 }

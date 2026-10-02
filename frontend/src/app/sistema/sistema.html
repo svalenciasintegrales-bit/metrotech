@@ -99,16 +99,23 @@
             <h3 class="t-h5">Tarjetas</h3>
             <div class="grilla">
               <article class="tarjeta">
-                <span class="tarjeta__icono"><lucide-icon [img]="Network" aria-hidden="true" /></span>
+                <span class="icono-marca"><mt-icono nombre="red" /></span>
                 <h4 class="tarjeta__titulo">Tarjeta base</h4>
                 <p class="tarjeta__texto">Superficie con borde fino y sombra suave. Sin sombra nunca sobre el logo.</p>
               </article>
               <article class="tarjeta tarjeta--acento">
-                <span class="tarjeta__icono"><lucide-icon [img]="Network" aria-hidden="true" /></span>
+                <span class="icono-marca"><mt-icono nombre="red" /></span>
                 <h4 class="tarjeta__titulo">Tarjeta con acento</h4>
                 <p class="tarjeta__texto">Línea celeste arriba, como la regla de la M.</p>
               </article>
             </div>
+
+            <h3 class="t-h5">Íconos propios</h3>
+            <ul class="iconos" role="list">
+              @for (i of iconos; track i) {
+                <li><span class="icono-marca"><mt-icono [nombre]="i" /></span><code class="t-micro">{{ i }}</code></li>
+              }
+            </ul>
 
             <h3 class="t-h5">Textos de marca</h3>
             <p class="acento-linea t-cuerpo-l">Tecnología que impulsa tu operación</p>

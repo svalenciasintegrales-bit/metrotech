@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { Facebook, Instagram, Linkedin, LucideAngularModule, LucideIconData, Mail, MessageCircle } from 'lucide-angular';
+import { Facebook, Instagram, Linkedin, LucideAngularModule, LucideIconData } from 'lucide-angular';
 
 import { Contenido, enlaceWhatsapp, esDato } from '../../../../comun/contenido';
 import { Franjas } from '../../marca/franjas';
+import { Icono } from '../../marca/icono';
 import { Logo } from '../../marca/logo';
 
 const ICONOS_RED: Record<string, LucideIconData> = {
@@ -19,15 +20,13 @@ const ICONOS_RED: Record<string, LucideIconData> = {
 @Component({
   selector: 'mt-pie',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideAngularModule, Franjas, Logo],
+  imports: [LucideAngularModule, Franjas, Icono, Logo],
   templateUrl: './pie.html',
   styleUrl: './pie.css'
 })
 export class Pie {
   readonly contenido = input.required<Contenido>();
 
-  protected readonly Mail = Mail;
-  protected readonly MessageCircle = MessageCircle;
   protected readonly anio = new Date().getFullYear();
 
   protected readonly redes = computed(() =>

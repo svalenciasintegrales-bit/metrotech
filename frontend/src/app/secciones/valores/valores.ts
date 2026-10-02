@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
 
 import { Contenido } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
-import { icono } from '../../marca/iconos';
+import { Icono } from '../../marca/icono';
 import { Regla } from '../../marca/regla';
 import { TituloSeccion } from '../../marca/titulo-seccion';
 
@@ -15,7 +14,7 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
 @Component({
   selector: 'mt-valores',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideAngularModule, Aparecer, Regla, TituloSeccion],
+  imports: [Aparecer, Icono, Regla, TituloSeccion],
   template: `
     <section id="valores" class="seccion" data-theme="light" aria-labelledby="valores-titulo">
       <div class="contenedor">
@@ -24,7 +23,7 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
         <div class="valores">
           <div class="central" data-theme="dark" mtAparecer>
             <mt-regla class="central__regla" orientacion="vertical" [largo]="14" />
-            <span class="central__icono"><lucide-icon [img]="icono(valores().central.icono)" [size]="32" aria-hidden="true" /></span>
+            <span class="icono-marca central__icono"><mt-icono [nombre]="valores().central.icono" [tamano]="32" /></span>
             <p class="t-etiqueta central__etiqueta">VALOR CENTRAL</p>
             <h3 class="t-h2">{{ valores().central.titulo }}</h3>
           </div>
@@ -32,7 +31,7 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
           <ul class="lista" role="list">
             @for (v of valores().items; track v.titulo) {
               <li class="valor" mtAparecer [retraso]="($index % 2) * 100">
-                <lucide-icon class="valor__icono" [img]="icono(v.icono)" aria-hidden="true" />
+                <span class="icono-marca icono-marca--chico"><mt-icono [nombre]="v.icono" [tamano]="24" /></span>
                 <h3 class="t-h5">{{ v.titulo }}</h3>
               </li>
             }
@@ -75,7 +74,6 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
     }
 
     .central__icono {
-      color: var(--acento);
       margin-bottom: auto;
     }
 
@@ -103,14 +101,8 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
       border-bottom: var(--linea-fina) solid var(--borde);
     }
 
-    .valor__icono {
-      flex-shrink: 0;
-      color: var(--acento);
-    }
   `
 })
 export class Valores {
   readonly valores = input.required<Contenido['valores']>();
-
-  protected readonly icono = icono;
 }

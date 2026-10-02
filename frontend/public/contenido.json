@@ -3,7 +3,7 @@
     "Todo el texto de la página sale de este archivo. Se edita aquí, sin tocar código y sin recompilar: basta con subir el archivo nuevo al servidor.",
     "Las secciones con \"ejemplo\": true muestran en pantalla la marca CONTENIDO DE EJEMPLO. Cuando llegue el contenido real, se reemplaza el texto y se cambia a false.",
     "Lo que dice PENDIENTE son datos que la empresa todavía no ha entregado. Ninguno se inventó: un teléfono o una dirección falsos son peores que un espacio vacío.",
-    "Íconos: nombre de Lucide (https://lucide.dev) en minúsculas con guiones. Los disponibles están en src/app/marca/iconos.ts."
+    "Íconos: son propios de MetroTech, dibujados con el lenguaje del logo. Los nombres válidos están en src/app/marca/icono.ts (NOMBRES_ICONO): integracion, precision, estructura, red, analitica, datos, servidor, seguridad, rendimiento, familia, perseverancia, responsabilidad, lealtad, integralidad, educacion, empatia, whatsapp, correo, telefono, direccion, horario."
   ],
   "marca": {
     "nombre": "MetroTech",
@@ -90,17 +90,17 @@
     ],
     "pilares": [
       {
-        "icono": "workflow",
+        "icono": "integracion",
         "titulo": "Integración",
         "texto": "Líneas conectadas: la información fluye entre las áreas de tu empresa."
       },
       {
-        "icono": "ruler",
+        "icono": "precision",
         "titulo": "Precisión",
         "texto": "Nodos de control: cada dato se mide y se verifica."
       },
       {
-        "icono": "layers",
+        "icono": "estructura",
         "titulo": "Estructura",
         "texto": "Una base corporativa sólida sobre la que crece tu operación."
       }
@@ -112,32 +112,32 @@
     "entradilla": "PENDIENTE: una línea que resuma qué resuelve MetroTech para las empresas.",
     "items": [
       {
-        "icono": "network",
+        "icono": "red",
         "titulo": "Servicio de ejemplo 1",
         "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
       },
       {
-        "icono": "chart-line",
+        "icono": "analitica",
         "titulo": "Servicio de ejemplo 2",
         "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
       },
       {
-        "icono": "database",
+        "icono": "datos",
         "titulo": "Servicio de ejemplo 3",
         "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
       },
       {
-        "icono": "server",
+        "icono": "servidor",
         "titulo": "Servicio de ejemplo 4",
         "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
       },
       {
-        "icono": "shield-check",
+        "icono": "seguridad",
         "titulo": "Servicio de ejemplo 5",
         "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
       },
       {
-        "icono": "gauge",
+        "icono": "rendimiento",
         "titulo": "Servicio de ejemplo 6",
         "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
       }
@@ -171,32 +171,32 @@
     "titulo": "Por qué MetroTech",
     "entradilla": "Los valores y la cultura que nos definen como empresa.",
     "central": {
-      "icono": "house-heart",
+      "icono": "familia",
       "titulo": "Familia como valor central"
     },
     "items": [
       {
-        "icono": "mountain",
+        "icono": "perseverancia",
         "titulo": "Perseverancia y constancia"
       },
       {
-        "icono": "clipboard-check",
+        "icono": "responsabilidad",
         "titulo": "Responsabilidad y disciplina"
       },
       {
-        "icono": "handshake",
+        "icono": "lealtad",
         "titulo": "Lealtad, interna y con nuestros clientes"
       },
       {
-        "icono": "puzzle",
+        "icono": "integralidad",
         "titulo": "Integralidad en las soluciones"
       },
       {
-        "icono": "graduation-cap",
+        "icono": "educacion",
         "titulo": "Educación continua de nuestro personal"
       },
       {
-        "icono": "heart-handshake",
+        "icono": "empatia",
         "titulo": "Profesionalismo con empatía"
       }
     ]

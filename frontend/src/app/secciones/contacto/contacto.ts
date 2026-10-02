@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  CircleAlert, CircleCheck, Clock, LucideAngularModule, Mail, MapPin, MessageCircle, Phone, Send
-} from 'lucide-angular';
+import { CircleAlert, CircleCheck, LucideAngularModule, Send } from 'lucide-angular';
 
 import { Contenido, enlaceWhatsapp, esDato } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
 import { Franjas } from '../../marca/franjas';
+import { Icono } from '../../marca/icono';
 import { TituloSeccion } from '../../marca/titulo-seccion';
 
 type Campo = 'nombre' | 'empresa' | 'correo' | 'telefono' | 'mensaje';
@@ -23,7 +22,7 @@ type Campo = 'nombre' | 'empresa' | 'correo' | 'telefono' | 'mensaje';
 @Component({
   selector: 'mt-contacto',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, LucideAngularModule, Aparecer, Franjas, TituloSeccion],
+  imports: [ReactiveFormsModule, LucideAngularModule, Aparecer, Franjas, Icono, TituloSeccion],
   templateUrl: './contacto.html',
   styleUrl: './contacto.css'
 })
@@ -31,11 +30,6 @@ export class Contacto {
   readonly contacto = input.required<Contenido['contacto']>();
   readonly marca = input.required<Contenido['marca']>();
 
-  protected readonly Mail = Mail;
-  protected readonly Phone = Phone;
-  protected readonly MapPin = MapPin;
-  protected readonly Clock = Clock;
-  protected readonly MessageCircle = MessageCircle;
   protected readonly Send = Send;
   protected readonly CircleAlert = CircleAlert;
   protected readonly CircleCheck = CircleCheck;

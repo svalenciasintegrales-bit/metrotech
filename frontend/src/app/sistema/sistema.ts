@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { CircleAlert, CircleCheck, LucideAngularModule, Network, Send } from 'lucide-angular';
+import { CircleAlert, CircleCheck, LucideAngularModule, Send } from 'lucide-angular';
 
 import { DobleLinea } from '../marca/doble-linea';
 import { Ejemplo } from '../marca/ejemplo';
 import { Franjas } from '../marca/franjas';
+import { Icono, NOMBRES_ICONO } from '../marca/icono';
 import { LineaNodos } from '../marca/linea-nodos';
 import { Logo, VarianteLogo } from '../marca/logo';
 import { MarcaAgua } from '../marca/marca-agua';
@@ -20,13 +21,13 @@ import { TituloSeccion } from '../marca/titulo-seccion';
   selector: 'mt-sistema',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    LucideAngularModule, DobleLinea, Ejemplo, Franjas, LineaNodos, Logo, MarcaAgua, Regla, TituloSeccion
+    LucideAngularModule, DobleLinea, Ejemplo, Franjas, Icono, LineaNodos, Logo, MarcaAgua, Regla, TituloSeccion
   ],
   templateUrl: './sistema.html',
   styleUrl: './sistema.css'
 })
 export class Sistema {
-  protected readonly Network = Network;
+  protected readonly iconos = NOMBRES_ICONO;
   protected readonly Send = Send;
   protected readonly CircleCheck = CircleCheck;
   protected readonly CircleAlert = CircleAlert;

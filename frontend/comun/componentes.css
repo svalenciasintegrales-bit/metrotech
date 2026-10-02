@@ -177,8 +177,11 @@ a:hover {
   .grilla { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 900px) {
   .grilla--3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1200px) {
   .grilla--4 { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -302,6 +305,53 @@ a:hover {
 
 .tarjeta__texto {
   color: var(--texto-2);
+}
+
+/* ------------------------------------------------------------ íconos */
+
+/* El mosaico de los íconos propios (`<mt-icono>`): azul oscuro con el trazo
+   blanco y el acento celeste (4,25:1, por encima del 3:1 que pide un
+   gráfico), como la tarjeta de presentación. Grande para que se vea. */
+.icono-marca {
+  --icono-acento: var(--celeste);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--e-12);
+  height: var(--e-12);
+  border-radius: var(--r-2);
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+}
+
+@media (min-width: 900px) {
+  .icono-marca:not(.icono-marca--chico) {
+    width: var(--e-16);
+    height: var(--e-16);
+  }
+}
+
+/* En zona oscura el mosaico sube de tono para separarse del fondo. */
+/* El dibujo ocupa el 60 % del mosaico, en cualquier tamaño. */
+.icono-marca > mt-icono {
+  width: 60%;
+  height: 60%;
+}
+
+.icono-marca > mt-icono svg {
+  width: 100%;
+  height: 100%;
+}
+
+[data-theme="dark"] .icono-marca {
+  background: var(--azul-600);
+  box-shadow: inset 0 0 0 var(--linea-fina) rgba(255, 255, 255, 0.12);
+}
+
+.icono-marca--chico {
+  width: var(--e-10);
+  height: var(--e-10);
 }
 
 /* ------------------------------------------------------------ campos */

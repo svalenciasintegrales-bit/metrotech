@@ -23,7 +23,7 @@
         <li>
           @if (whatsapp(); as w) {
             <a [href]="w" target="_blank" rel="noopener">
-              <lucide-icon [img]="MessageCircle" [size]="18" aria-hidden="true" />{{ contenido().contacto.whatsappVisible }}
+              <mt-icono nombre="whatsapp" [tamano]="20" />{{ contenido().contacto.whatsappVisible }}
             </a>
           } @else {
             <span class="pendiente">{{ contenido().contacto.whatsappVisible }}</span>
@@ -31,7 +31,7 @@
         </li>
         <li>
           @if (correo(); as c) {
-            <a [href]="'mailto:' + c"><lucide-icon [img]="Mail" [size]="18" aria-hidden="true" />{{ c }}</a>
+            <a [href]="'mailto:' + c"><mt-icono nombre="correo" [tamano]="20" />{{ c }}</a>
           } @else {
             <span class="pendiente">{{ contenido().contacto.correoVisible }}</span>
           }
