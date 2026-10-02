@@ -33,6 +33,16 @@ export interface Imagen {
   alt: string;
 }
 
+export interface Diapositiva {
+  /** Ruta sin medida ni extensión: se arman `-960.webp` y `-1920.webp`. */
+  imagen: string;
+  etiqueta?: string;
+  titulo: string;
+  /** El final del título, en celeste: como «Tech» en el logo. */
+  tituloAcento?: string;
+  texto: string;
+}
+
 export interface Red {
   red: string;
   nombre: string;
@@ -50,13 +60,11 @@ export interface Contenido {
   };
   navegacion: Enlace[];
   hero: {
-    etiqueta?: string;
-    titulo: string;
-    /** El final del título, en celeste: como «Tech» en el logo. */
-    tituloAcento?: string;
-    texto: string;
+    /** Milisegundos entre diapositivas. */
+    intervalo: number;
     accion: Enlace;
     accionSecundaria?: Enlace;
+    diapositivas: Diapositiva[];
   };
   nosotros: {
     titulo: string;
@@ -105,6 +113,11 @@ export interface Contenido {
     ciudad: string;
     horario: string;
     mapaUrl: string;
+  };
+  llamado: {
+    titulo: string;
+    tituloAcento?: string;
+    accion: Enlace;
   };
   redes: Red[];
   pie: {

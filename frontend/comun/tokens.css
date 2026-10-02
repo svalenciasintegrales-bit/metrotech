@@ -266,3 +266,34 @@
 
   color-scheme: dark;
 }
+
+/* Celeste: bandas de llamado, como el sobre y la versión del logo sobre
+   celeste (manual, lámina 8). Azul oscuro sobre celeste da 4,25:1: alcanza
+   AA solo en texto grande. En esta zona van ÚNICAMENTE títulos (24 px o
+   más) y botones; nada de texto pequeño. */
+[data-theme="celeste"] {
+  --fondo: var(--celeste);
+  --superficie: var(--celeste);
+  --superficie-2: var(--celeste);
+  --texto: var(--azul-oscuro);
+  --texto-2: var(--azul-oscuro);
+  --borde: rgba(14, 34, 51, 0.25);
+  --borde-control: var(--azul-oscuro);
+  --borde-fuerte: var(--azul-oscuro);
+  --acento: var(--blanco);              /* solo decoración */
+  --linea-1: var(--azul-oscuro);
+  --linea-2: var(--blanco);
+
+  --accion: var(--azul-oscuro);
+  --sobre-accion: var(--blanco);
+  --accion-hover: var(--azul-700);
+  --enlace: var(--azul-oscuro);
+  --foco: var(--azul-oscuro);
+
+  --exito: var(--verde-estado);
+  --exito-fondo: var(--verde-estado-fondo);
+  --error: var(--rojo-estado);
+  --error-fondo: var(--rojo-estado-fondo);
+
+  color-scheme: light;
+}
