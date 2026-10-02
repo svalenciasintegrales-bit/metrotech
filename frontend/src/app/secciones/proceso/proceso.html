@@ -1,0 +1,33 @@
+<section id="proceso" class="seccion" data-theme="dark" aria-labelledby="proceso-titulo">
+  <mt-marca-agua esquina="inferior-derecha" zona="oscuro" ancho="clamp(320px, 50vw, 720px)" />
+
+  <div class="contenedor">
+    <div class="proceso__cabeza">
+      <mt-titulo-seccion
+        idTitulo="proceso-titulo"
+        [titulo]="proceso().titulo"
+        [entradilla]="proceso().entradilla"
+        [ejemplo]="proceso().ejemplo"
+      />
+      <p class="proceso__lema t-acento">{{ proceso().lema }}</p>
+    </div>
+
+    <div class="proceso__recorrido">
+      <mt-linea-nodos class="proceso__linea proceso__linea--h" inicio="ninguno" [animar]="true" />
+      <mt-linea-nodos class="proceso__linea proceso__linea--v" orientacion="vertical" inicio="ninguno" [animar]="true" />
+
+      <ol class="pasos" role="list" [style.--pasos]="proceso().pasos.length">
+        @for (p of proceso().pasos; track $index) {
+          <li class="paso" mtAparecer [retraso]="$index * 150">
+            <span class="paso__nodo" aria-hidden="true"></span>
+            <span class="paso__numero" aria-hidden="true">{{ numero($index) }}</span>
+            <h3 class="t-h4">
+              <span class="visualmente-oculto">Paso {{ $index + 1 }}: </span>{{ p.titulo }}
+            </h3>
+            <p class="t-secundario">{{ p.texto }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

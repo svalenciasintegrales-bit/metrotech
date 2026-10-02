@@ -1,0 +1,105 @@
+.proceso__cabeza {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  margin-bottom: var(--e-12);
+}
+
+@media (min-width: 900px) {
+  .proceso__cabeza {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--e-8);
+  }
+}
+
+/* El concepto en celeste: tamaño de título, AA para texto grande (4,25:1). */
+.proceso__lema {
+  font-size: var(--t-h3);
+  font-weight: var(--peso-semibold);
+  line-height: var(--i-subtitulo);
+  margin-bottom: var(--e-10);
+}
+
+.proceso__recorrido {
+  position: relative;
+}
+
+/* ------------------------------------------------------------ línea */
+
+.proceso__recorrido .proceso__linea {
+  position: absolute;
+}
+
+/* Móvil: la línea baja por la izquierda, por el centro de los nodos. */
+.proceso__recorrido .proceso__linea--h { display: none; }
+
+.proceso__recorrido .proceso__linea--v {
+  left: -1px;
+  top: var(--e-2);
+  bottom: 0;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .proceso__recorrido .proceso__linea--v { display: none; }
+
+  .proceso__recorrido .proceso__linea--h {
+    display: flex;
+    top: -3px;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* ------------------------------------------------------------ pasos */
+
+.pasos {
+  display: grid;
+  gap: var(--e-10);
+  margin: 0;
+  padding: 0 0 0 var(--e-10);
+}
+
+@media (min-width: 900px) {
+  .pasos {
+    grid-template-columns: repeat(var(--pasos, 4), 1fr);
+    gap: var(--e-8);
+    padding: var(--e-10) 0 0;
+  }
+}
+
+.paso {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+}
+
+/* El nodo de cada paso sobre la línea: un cuadro, como el inicio de la
+   línea en la M. */
+.paso__nodo {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--fondo);
+  border: var(--linea-media) solid var(--acento);
+  left: calc(var(--e-10) * -1 - 2px);
+  top: var(--e-1);
+}
+
+@media (min-width: 900px) {
+  .paso__nodo {
+    left: 0;
+    top: calc(var(--e-10) * -1 - 4px);
+  }
+}
+
+.paso__numero {
+  font-size: var(--t-h2);
+  font-weight: var(--peso-semibold);
+  line-height: 1;
+  color: var(--acento);
+  font-variant-numeric: tabular-nums;
+}

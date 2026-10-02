@@ -5,31 +5,54 @@
     "Lo que dice PENDIENTE son datos que la empresa todavía no ha entregado. Ninguno se inventó: un teléfono o una dirección falsos son peores que un espacio vacío.",
     "Íconos: nombre de Lucide (https://lucide.dev) en minúsculas con guiones. Los disponibles están en src/app/marca/iconos.ts."
   ],
-
   "marca": {
     "nombre": "MetroTech",
     "slogan": "Tecnología que impulsa tu operación",
     "concepto": "Sistema que conecta todo",
-    "pilares": ["integración", "precisión", "estructura"],
+    "pilares": [
+      "integración",
+      "precisión",
+      "estructura"
+    ],
     "empresaMatriz": "Salazar Arias Company",
     "ciudad": "Pereira, Risaralda, Colombia"
   },
-
   "navegacion": [
-    { "ancla": "nosotros", "texto": "Quiénes somos" },
-    { "ancla": "servicios", "texto": "Soluciones" },
-    { "ancla": "proceso", "texto": "Cómo trabajamos" },
-    { "ancla": "valores", "texto": "Por qué MetroTech" },
-    { "ancla": "contacto", "texto": "Contacto" }
+    {
+      "ancla": "nosotros",
+      "texto": "Quiénes somos"
+    },
+    {
+      "ancla": "servicios",
+      "texto": "Soluciones"
+    },
+    {
+      "ancla": "proceso",
+      "texto": "Cómo trabajamos"
+    },
+    {
+      "ancla": "valores",
+      "texto": "Por qué MetroTech"
+    },
+    {
+      "ancla": "contacto",
+      "texto": "Contacto"
+    }
   ],
-
   "hero": {
-    "titulo": "Tecnología que impulsa tu operación",
+    "etiqueta": "SALAZAR ARIAS COMPANY · PEREIRA",
+    "titulo": "Tecnología que impulsa",
+    "tituloAcento": "tu operación",
     "texto": "Integración, precisión y estructura para que tu empresa convierta sus datos en decisiones confiables.",
-    "accion": { "texto": "Hablemos de tu operación", "ancla": "contacto" },
-    "accionSecundaria": { "texto": "Ver soluciones", "ancla": "servicios" }
+    "accion": {
+      "texto": "Hablemos de tu operación",
+      "ancla": "contacto"
+    },
+    "accionSecundaria": {
+      "texto": "Ver soluciones",
+      "ancla": "servicios"
+    }
   },
-
   "nosotros": {
     "titulo": "Quiénes somos",
     "entradilla": "MetroTech es la marca de soluciones tecnológicas para empresas de Salazar Arias Company, en Pereira.",
@@ -38,54 +61,120 @@
       "Medimos con precisión, conectamos la información y construimos sobre una estructura sólida, para que cada decisión de tu operación se apoye en datos que puedes creer."
     ],
     "pilares": [
-      { "icono": "workflow", "titulo": "Integración", "texto": "Líneas conectadas: la información fluye entre las áreas de tu empresa." },
-      { "icono": "ruler", "titulo": "Precisión", "texto": "Nodos de control: cada dato se mide y se verifica." },
-      { "icono": "layers", "titulo": "Estructura", "texto": "Una base corporativa sólida sobre la que crece tu operación." }
+      {
+        "icono": "workflow",
+        "titulo": "Integración",
+        "texto": "Líneas conectadas: la información fluye entre las áreas de tu empresa."
+      },
+      {
+        "icono": "ruler",
+        "titulo": "Precisión",
+        "texto": "Nodos de control: cada dato se mide y se verifica."
+      },
+      {
+        "icono": "layers",
+        "titulo": "Estructura",
+        "texto": "Una base corporativa sólida sobre la que crece tu operación."
+      }
     ]
   },
-
   "servicios": {
     "ejemplo": true,
     "titulo": "Soluciones",
     "entradilla": "PENDIENTE: una línea que resuma qué resuelve MetroTech para las empresas.",
     "items": [
-      { "icono": "network", "titulo": "Servicio de ejemplo 1", "texto": "PENDIENTE: descripción real del servicio en una o dos líneas." },
-      { "icono": "chart-line", "titulo": "Servicio de ejemplo 2", "texto": "PENDIENTE: descripción real del servicio en una o dos líneas." },
-      { "icono": "database", "titulo": "Servicio de ejemplo 3", "texto": "PENDIENTE: descripción real del servicio en una o dos líneas." },
-      { "icono": "server", "titulo": "Servicio de ejemplo 4", "texto": "PENDIENTE: descripción real del servicio en una o dos líneas." },
-      { "icono": "shield-check", "titulo": "Servicio de ejemplo 5", "texto": "PENDIENTE: descripción real del servicio en una o dos líneas." },
-      { "icono": "gauge", "titulo": "Servicio de ejemplo 6", "texto": "PENDIENTE: descripción real del servicio en una o dos líneas." }
+      {
+        "icono": "network",
+        "titulo": "Servicio de ejemplo 1",
+        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+      },
+      {
+        "icono": "chart-line",
+        "titulo": "Servicio de ejemplo 2",
+        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+      },
+      {
+        "icono": "database",
+        "titulo": "Servicio de ejemplo 3",
+        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+      },
+      {
+        "icono": "server",
+        "titulo": "Servicio de ejemplo 4",
+        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+      },
+      {
+        "icono": "shield-check",
+        "titulo": "Servicio de ejemplo 5",
+        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+      },
+      {
+        "icono": "gauge",
+        "titulo": "Servicio de ejemplo 6",
+        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+      }
     ]
   },
-
   "proceso": {
     "ejemplo": true,
     "titulo": "Cómo trabajamos",
     "lema": "Sistema que conecta todo",
     "entradilla": "PENDIENTE: confirmar los pasos reales con los que MetroTech acompaña a un cliente.",
     "pasos": [
-      { "titulo": "Paso de ejemplo 1", "texto": "PENDIENTE: qué pasa en este paso." },
-      { "titulo": "Paso de ejemplo 2", "texto": "PENDIENTE: qué pasa en este paso." },
-      { "titulo": "Paso de ejemplo 3", "texto": "PENDIENTE: qué pasa en este paso." },
-      { "titulo": "Paso de ejemplo 4", "texto": "PENDIENTE: qué pasa en este paso." }
+      {
+        "titulo": "Paso de ejemplo 1",
+        "texto": "PENDIENTE: qué pasa en este paso."
+      },
+      {
+        "titulo": "Paso de ejemplo 2",
+        "texto": "PENDIENTE: qué pasa en este paso."
+      },
+      {
+        "titulo": "Paso de ejemplo 3",
+        "texto": "PENDIENTE: qué pasa en este paso."
+      },
+      {
+        "titulo": "Paso de ejemplo 4",
+        "texto": "PENDIENTE: qué pasa en este paso."
+      }
     ]
   },
-
   "valores": {
     "titulo": "Por qué MetroTech",
     "entradilla": "Los valores y la cultura que nos definen como empresa.",
-    "central": { "icono": "house-heart", "titulo": "Familia como valor central" },
+    "central": {
+      "icono": "house-heart",
+      "titulo": "Familia como valor central"
+    },
     "items": [
-      { "icono": "mountain", "titulo": "Perseverancia y constancia" },
-      { "icono": "clipboard-check", "titulo": "Responsabilidad y disciplina" },
-      { "icono": "handshake", "titulo": "Lealtad, interna y con nuestros clientes" },
-      { "icono": "puzzle", "titulo": "Integralidad en las soluciones" },
-      { "icono": "graduation-cap", "titulo": "Educación continua de nuestro personal" },
-      { "icono": "heart-handshake", "titulo": "Profesionalismo con empatía" }
+      {
+        "icono": "mountain",
+        "titulo": "Perseverancia y constancia"
+      },
+      {
+        "icono": "clipboard-check",
+        "titulo": "Responsabilidad y disciplina"
+      },
+      {
+        "icono": "handshake",
+        "titulo": "Lealtad, interna y con nuestros clientes"
+      },
+      {
+        "icono": "puzzle",
+        "titulo": "Integralidad en las soluciones"
+      },
+      {
+        "icono": "graduation-cap",
+        "titulo": "Educación continua de nuestro personal"
+      },
+      {
+        "icono": "heart-handshake",
+        "titulo": "Profesionalismo con empatía"
+      }
     ]
   },
-
   "identidad": {
+    "_nota": "La imagen de papelería del manual (img/fotos/papeleria) no se usa: muestra la dirección, el teléfono y el correo de ejemplo del manual, que no son reales.",
     "visible": true,
     "titulo": "Nuestra identidad",
     "texto": "Azul oscuro para la estructura, celeste para la tecnología. Así se ve MetroTech en cada punto de contacto.",
@@ -95,43 +184,47 @@
         "ancho": 1248,
         "alto": 954,
         "alt": "Uniformes de MetroTech en sus dos versiones, azul oscuro y turquesa, con el monograma MT bordado. Imagen ilustrativa del manual de marca."
-      },
-      {
-        "src": "img/fotos/papeleria",
-        "ancho": 1536,
-        "alto": 1024,
-        "alt": "Papelería de MetroTech: hoja membrete, sobre, tarjetas de presentación y bolígrafo con el monograma MT. Imagen ilustrativa del manual de marca."
       }
     ]
   },
-
   "contacto": {
+    "_nota": "Los mensajes del formulario se envían por WhatsApp: el botón abre WhatsApp con el mensaje ya escrito. Para que funcione, poner en \"whatsapp\" el número completo con indicativo y sin espacios ni signos, por ejemplo 573001234567, y en \"whatsappVisible\" como se muestra en pantalla.",
     "ejemplo": true,
     "titulo": "Contacto",
-    "entradilla": "Cuéntanos cómo funciona tu operación y te respondemos.",
-    "correo": "",
+    "entradilla": "Cuéntanos cómo funciona tu operación. Tu mensaje llega directo a nuestro WhatsApp.",
     "whatsapp": "",
     "whatsappVisible": "PENDIENTE: número de WhatsApp",
+    "mensajeWhatsapp": "Hola, MetroTech. Les escribo desde la página web.",
+    "correo": "",
+    "correoVisible": "PENDIENTE: correo de contacto",
     "telefono": "",
     "telefonoVisible": "PENDIENTE: teléfono",
     "direccion": "PENDIENTE: dirección",
     "ciudad": "Pereira, Risaralda",
     "horario": "PENDIENTE: horario de atención",
-    "mapaUrl": "",
-    "mensajeWhatsapp": "Hola, MetroTech. Les escribo desde la página web."
+    "mapaUrl": ""
   },
-
   "redes": [
-    { "red": "linkedin", "nombre": "LinkedIn", "url": "" },
-    { "red": "instagram", "nombre": "Instagram", "url": "" },
-    { "red": "facebook", "nombre": "Facebook", "url": "" }
+    {
+      "red": "linkedin",
+      "nombre": "LinkedIn",
+      "url": ""
+    },
+    {
+      "red": "instagram",
+      "nombre": "Instagram",
+      "url": ""
+    },
+    {
+      "red": "facebook",
+      "nombre": "Facebook",
+      "url": ""
+    }
   ],
-
   "pie": {
     "texto": "Tecnología que impulsa tu operación.",
     "mencion": "MetroTech es una marca de Salazar Arias Company."
   },
-
   "seo": {
     "titulo": "MetroTech · Tecnología que impulsa tu operación",
     "descripcion": "MetroTech, de Salazar Arias Company: soluciones tecnológicas para empresas en Pereira. Integración, precisión y estructura para transformar datos en decisiones confiables.",

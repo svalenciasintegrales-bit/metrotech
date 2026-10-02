@@ -1,0 +1,164 @@
+<section id="contacto" class="seccion" data-theme="light" aria-labelledby="contacto-titulo">
+  <mt-franjas esquina="inferior-derecha" ancho="clamp(200px, 30vw, 420px)" [nodo]="true" />
+
+  <div class="contenedor contacto">
+    <div class="contacto__datos" mtAparecer>
+      <mt-titulo-seccion
+        idTitulo="contacto-titulo"
+        [titulo]="contacto().titulo"
+        [entradilla]="contacto().entradilla"
+        [ejemplo]="contacto().ejemplo"
+      />
+
+      <ul class="datos" role="list">
+        <li class="dato">
+          <span class="dato__icono"><lucide-icon [img]="MessageCircle" aria-hidden="true" /></span>
+          <div>
+            <p class="t-pequeno t-secundario">WhatsApp</p>
+            @if (whatsapp(); as w) {
+              <a [href]="w" target="_blank" rel="noopener">{{ contacto().whatsappVisible }}</a>
+            } @else {
+              <p class="pendiente">{{ contacto().whatsappVisible }}</p>
+            }
+          </div>
+        </li>
+
+        <li class="dato">
+          <span class="dato__icono"><lucide-icon [img]="Mail" aria-hidden="true" /></span>
+          <div>
+            <p class="t-pequeno t-secundario">Correo</p>
+            @if (correo(); as c) {
+              <a [href]="'mailto:' + c">{{ c }}</a>
+            } @else {
+              <p class="pendiente">{{ contacto().correoVisible }}</p>
+            }
+          </div>
+        </li>
+
+        <li class="dato">
+          <span class="dato__icono"><lucide-icon [img]="Phone" aria-hidden="true" /></span>
+          <div>
+            <p class="t-pequeno t-secundario">Teléfono</p>
+            @if (telefono(); as t) {
+              <a [href]="'tel:' + t">{{ contacto().telefonoVisible }}</a>
+            } @else {
+              <p class="pendiente">{{ contacto().telefonoVisible }}</p>
+            }
+          </div>
+        </li>
+
+        <li class="dato">
+          <span class="dato__icono"><lucide-icon [img]="MapPin" aria-hidden="true" /></span>
+          <div>
+            <p class="t-pequeno t-secundario">Dirección</p>
+            <p [class.pendiente]="!esDato(contacto().direccion)">{{ contacto().direccion }}</p>
+            <p class="t-pequeno t-secundario">{{ contacto().ciudad }}</p>
+            @if (esDato(contacto().mapaUrl)) {
+              <a class="t-pequeno" [href]="contacto().mapaUrl" target="_blank" rel="noopener">Ver en el mapa</a>
+            }
+          </div>
+        </li>
+
+        <li class="dato">
+          <span class="dato__icono"><lucide-icon [img]="Clock" aria-hidden="true" /></span>
+          <div>
+            <p class="t-pequeno t-secundario">Horario</p>
+            <p [class.pendiente]="!esDato(contacto().horario)">{{ contacto().horario }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate mtAparecer [retraso]="120"
+      aria-labelledby="formulario-titulo">
+      <div class="pila-2">
+        <h3 id="formulario-titulo" class="t-h4">Escríbenos</h3>
+        <p class="t-pequeno t-secundario">Al enviar se abre WhatsApp con tu mensaje listo. Solo tienes que tocar «Enviar».</p>
+      </div>
+
+      <div class="campo">
+        <label class="campo__etiqueta" for="contacto-nombre">Nombre</label>
+        <input class="campo__control" id="contacto-nombre" type="text" formControlName="nombre" autocomplete="name"
+          [attr.aria-invalid]="error('nombre') ? 'true' : null"
+          [attr.aria-describedby]="error('nombre') ? 'contacto-nombre-error' : null" />
+        @if (error('nombre'); as e) {
+          <p class="campo__error" id="contacto-nombre-error">
+            <lucide-icon [img]="CircleAlert" [size]="16" aria-hidden="true" />{{ e }}
+          </p>
+        }
+      </div>
+
+      <div class="campo">
+        <label class="campo__etiqueta" for="contacto-empresa">Empresa <span class="campo__opcional">(opcional)</span></label>
+        <input class="campo__control" id="contacto-empresa" type="text" formControlName="empresa" autocomplete="organization"
+          [attr.aria-invalid]="error('empresa') ? 'true' : null"
+          [attr.aria-describedby]="error('empresa') ? 'contacto-empresa-error' : null" />
+        @if (error('empresa'); as e) {
+          <p class="campo__error" id="contacto-empresa-error">
+            <lucide-icon [img]="CircleAlert" [size]="16" aria-hidden="true" />{{ e }}
+          </p>
+        }
+      </div>
+
+      <div class="campos-dobles">
+        <div class="campo">
+          <label class="campo__etiqueta" for="contacto-correo">Correo</label>
+          <input class="campo__control" id="contacto-correo" type="email" formControlName="correo" autocomplete="email"
+            inputmode="email"
+            [attr.aria-invalid]="error('correo') ? 'true' : null"
+            [attr.aria-describedby]="error('correo') ? 'contacto-correo-error' : null" />
+          @if (error('correo'); as e) {
+            <p class="campo__error" id="contacto-correo-error">
+              <lucide-icon [img]="CircleAlert" [size]="16" aria-hidden="true" />{{ e }}
+            </p>
+          }
+        </div>
+
+        <div class="campo">
+          <label class="campo__etiqueta" for="contacto-telefono">Teléfono <span class="campo__opcional">(opcional)</span></label>
+          <input class="campo__control" id="contacto-telefono" type="tel" formControlName="telefono" autocomplete="tel"
+            inputmode="tel"
+            [attr.aria-invalid]="error('telefono') ? 'true' : null"
+            [attr.aria-describedby]="error('telefono') ? 'contacto-telefono-error' : null" />
+          @if (error('telefono'); as e) {
+            <p class="campo__error" id="contacto-telefono-error">
+              <lucide-icon [img]="CircleAlert" [size]="16" aria-hidden="true" />{{ e }}
+            </p>
+          }
+        </div>
+      </div>
+
+      <div class="campo">
+        <label class="campo__etiqueta" for="contacto-mensaje">Mensaje</label>
+        <textarea class="campo__control" id="contacto-mensaje" rows="5" formControlName="mensaje"
+          placeholder="¿Qué necesita tu operación?"
+          [attr.aria-invalid]="error('mensaje') ? 'true' : null"
+          [attr.aria-describedby]="error('mensaje') ? 'contacto-mensaje-error' : null"></textarea>
+        @if (error('mensaje'); as e) {
+          <p class="campo__error" id="contacto-mensaje-error">
+            <lucide-icon [img]="CircleAlert" [size]="16" aria-hidden="true" />{{ e }}
+          </p>
+        }
+      </div>
+
+      <div aria-live="polite">
+        @if (!whatsapp()) {
+          <p class="aviso aviso--error">
+            <lucide-icon [img]="CircleAlert" [size]="20" aria-hidden="true" />
+            <span>El número de WhatsApp todavía no está configurado, así que el formulario aún no puede enviar mensajes.</span>
+          </p>
+        } @else if (enviado()) {
+          <p class="aviso aviso--exito">
+            <lucide-icon [img]="CircleCheck" [size]="20" aria-hidden="true" />
+            <span>Abrimos WhatsApp con tu mensaje. Si no se abrió, revisa que tu navegador permita ventanas emergentes.</span>
+          </p>
+        }
+      </div>
+
+      <button type="submit" class="boton boton--primario boton--ancho" [disabled]="!whatsapp()">
+        <lucide-icon [img]="Send" [size]="20" aria-hidden="true" />
+        Enviar por WhatsApp
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section id="nosotros" class="seccion" data-theme="light" aria-labelledby="nosotros-titulo">
+  <mt-marca-agua esquina="inferior-derecha" ancho="clamp(300px, 46vw, 680px)" />
+  <div class="contenedor nosotros">
+    <div class="nosotros__texto" mtAparecer>
+      <mt-titulo-seccion idTitulo="nosotros-titulo" [titulo]="nosotros().titulo" [entradilla]="nosotros().entradilla" />
+      <div class="pila-4 medida">
+        @for (p of nosotros().parrafos; track $index) {
+          <p>{{ p }}</p>
+        }
+      </div>
+
+      <figure class="matriz">
+        <img src="img/marca/logo-salazar-arias.svg" width="148" height="114" alt="Salazar Arias Company" loading="lazy" decoding="async" />
+        <figcaption class="t-pequeno t-secundario">
+          {{ marca().nombre }} es una marca de {{ marca().empresaMatriz }}.
+        </figcaption>
+      </figure>
+    </div>
+
+    <ol class="pilares" role="list">
+      @for (p of nosotros().pilares; track p.titulo; let ultimo = $last) {
+        <li class="pilar" mtAparecer [retraso]="$index * 120">
+          <span class="pilar__icono"><lucide-icon [img]="icono(p.icono)" aria-hidden="true" /></span>
+          <div class="pila-2">
+            <h3 class="t-h4">{{ p.titulo }}</h3>
+            @if (p.texto) {
+              <p class="t-secundario">{{ p.texto }}</p>
+            }
+          </div>
+          @if (!ultimo) {
+            <mt-linea-nodos class="pilar__conector" orientacion="vertical" inicio="ninguno" [animar]="true" />
+          }
+        </li>
+      }
+    </ol>
+  </div>
+</section>

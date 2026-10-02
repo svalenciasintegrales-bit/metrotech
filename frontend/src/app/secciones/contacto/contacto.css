@@ -1,0 +1,80 @@
+.contacto {
+  display: grid;
+  gap: var(--e-12);
+}
+
+@media (min-width: 900px) {
+  .contacto {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--e-16);
+    align-items: start;
+  }
+}
+
+/* ------------------------------------------------------------ datos */
+
+.datos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-6);
+  margin: 0;
+  padding: 0;
+}
+
+.dato {
+  display: grid;
+  grid-template-columns: var(--e-10) 1fr;
+  gap: var(--e-4);
+  align-items: start;
+}
+
+.dato__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--e-10);
+  height: var(--e-10);
+  border-radius: var(--r-2);
+  background: var(--celeste-50);
+  color: var(--azul-oscuro);
+}
+
+.dato a {
+  font-weight: var(--peso-semibold);
+  overflow-wrap: anywhere;
+}
+
+/* Un dato que la empresa no ha entregado: se ve, pero apagado e inclinado. */
+.pendiente {
+  color: var(--texto-2);
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------ formulario */
+
+.formulario {
+  position: relative;
+  z-index: var(--z-contenido);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5);
+  padding: var(--e-6);
+  background: var(--superficie);
+  border: var(--linea-fina) solid var(--borde);
+  border-top: var(--linea-gruesa) solid var(--acento);
+  border-radius: var(--r-3);
+  box-shadow: var(--sombra-2);
+}
+
+@media (min-width: 900px) {
+  .formulario { padding: var(--e-10); }
+}
+
+.campos-dobles {
+  display: grid;
+  gap: var(--e-5);
+}
+
+@media (min-width: 600px) {
+  .campos-dobles { grid-template-columns: 1fr 1fr; }
+}

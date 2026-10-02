@@ -1,0 +1,79 @@
+.hero {
+  padding-block: var(--e-12) var(--e-20);
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding-block: var(--e-20) var(--e-24);
+  }
+}
+
+.hero__rejilla {
+  display: grid;
+  gap: var(--e-12);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero__rejilla {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--e-16);
+  }
+}
+
+.hero__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-6);
+}
+
+.hero__titulo {
+  font-size: var(--t-h1);
+  max-width: 14ch;
+}
+
+.hero__titulo .t-acento {
+  display: block;
+}
+
+.hero__apoyo {
+  max-width: 46ch;
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+  padding-top: var(--e-2);
+}
+
+/* En móvil, los dos botones a todo el ancho: objetivo grande para el pulgar. */
+@media (max-width: 599px) {
+  .hero__acciones { width: 100%; }
+  .hero__acciones .boton { flex: 1 1 100%; }
+}
+
+.hero__concepto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  width: 100%;
+  max-width: 420px;
+  padding-top: var(--e-6);
+}
+
+.hero__visual {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+/* La regla como borde inferior de la sección. */
+.hero__regla {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-contenido);
+}

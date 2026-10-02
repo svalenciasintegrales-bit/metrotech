@@ -1,0 +1,41 @@
+<section id="inicio" class="seccion hero" data-theme="light" aria-labelledby="hero-titulo">
+  <mt-franjas esquina="inferior-derecha" ancho="clamp(200px, 34vw, 460px)" [nodo]="true" />
+
+  <div class="contenedor hero__rejilla">
+    <div class="hero__texto">
+      @if (hero().etiqueta) {
+        <p class="t-etiqueta acento-linea">{{ hero().etiqueta }}</p>
+      }
+
+      <h1 id="hero-titulo" class="hero__titulo">
+        {{ hero().titulo }}
+        @if (hero().tituloAcento) {
+          <span class="t-acento">{{ hero().tituloAcento }}</span>
+        }
+      </h1>
+
+      <p class="t-cuerpo-l t-secundario hero__apoyo">{{ hero().texto }}</p>
+
+      <div class="hero__acciones">
+        <a class="boton boton--primario" [href]="'#' + hero().accion.ancla">{{ hero().accion.texto }}</a>
+        @if (hero().accionSecundaria; as s) {
+          <a class="boton boton--secundario" [href]="'#' + s.ancla">{{ s.texto }}</a>
+        }
+      </div>
+
+      <div class="hero__concepto">
+        <mt-linea-nodos [animar]="true" />
+        <p class="t-pequeno">
+          <strong>{{ marca().concepto }}</strong>
+          <span class="t-secundario"> · {{ marca().pilares.join(' + ') }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <mt-red-nodos [pilares]="marca().pilares" />
+    </div>
+  </div>
+
+  <mt-regla class="hero__regla" [largo]="12" />
+</section>
