@@ -40,8 +40,8 @@
     }
   ],
   "hero": {
-    "_nota": "Carrusel de fondo del inicio. Cada diapositiva tiene su imagen (ruta sin «-1920.webp» ni «-960.webp»: hay que subir las dos medidas) y su mensaje. Las imágenes de hoy son fondos hechos con los elementos de la marca; para usar fotos reales, se suben con esos dos tamaños y se cambia «imagen».",
-    "intervalo": 7000,
+    "_nota": "Carrusel de fondo del inicio: pasa solo cada «intervalo» milisegundos. Cada diapositiva tiene su imagen (ruta sin «-1920.webp» ni «-960.webp»: hay que subir las dos medidas) y su mensaje. Las fotos de hoy son imágenes generadas con IA en la paleta de la marca, sin personas reconocibles ni textos; se pueden cambiar por fotos reales de la empresa con el mismo par de tamaños.",
+    "intervalo": 6000,
     "accion": {
       "texto": "Hablemos de tu operación",
       "ancla": "contacto"
@@ -52,25 +52,32 @@
     },
     "diapositivas": [
       {
-        "imagen": "img/hero/integracion",
+        "imagen": "img/hero/foto-integracion",
         "etiqueta": "INTEGRACIÓN",
         "titulo": "Tecnología que impulsa",
         "tituloAcento": "tu operación",
         "texto": "Integración, precisión y estructura para que tu empresa convierta sus datos en decisiones confiables."
       },
       {
-        "imagen": "img/hero/precision",
+        "imagen": "img/hero/foto-precision",
         "etiqueta": "PRECISIÓN",
         "titulo": "Datos medidos,",
         "tituloAcento": "decisiones confiables",
         "texto": "Cada dato se mide y se verifica, para que cada decisión de tu operación se apoye en información en la que puedes creer."
       },
       {
-        "imagen": "img/hero/estructura",
+        "imagen": "img/hero/foto-estructura",
         "etiqueta": "ESTRUCTURA",
         "titulo": "Un sistema que",
         "tituloAcento": "conecta todo",
         "texto": "Una base sólida sobre la que crece tu empresa: la información conectada entre todas sus áreas."
+      },
+      {
+        "imagen": "img/hero/foto-equipo",
+        "etiqueta": "PROFESIONALISMO CON EMPATÍA",
+        "titulo": "A tu lado",
+        "tituloAcento": "en cada paso",
+        "texto": "Soluciones confiables y a la medida de tus necesidades, con un equipo que te acompaña en cada paso del camino."
       }
     ]
   },

@@ -11,13 +11,15 @@ import { Franjas } from '../../marca/franjas';
  * (azul oscuro, como el sobre de la papelería), con un mensaje por
  * diapositiva y el título en dos tonos como «Metro»/«Tech» en el logo.
  *
+ * Avanza solo siempre, también con el puntero encima (el héroe ocupa toda
+ * la pantalla: si se detuviera con el puntero, casi nunca se movería).
+ *
  * Accesibilidad (patrón de carrusel de WAI-ARIA):
  * - Botón de pausa: lo que se mueve solo más de 5 s tiene que poder parar.
- * - Se detiene mientras el puntero o el foco están encima, y con la pestaña
- *   oculta.
- * - Con `prefers-reduced-motion` arranca quieto y sin zoom; si la persona
- *   toca «Reanudar», avanza (la preferencia decide el arranque, no la
- *   prohíbe).
+ * - Se detiene mientras alguien lo recorre con el teclado (foco visible),
+ *   para que el texto no cambie mientras lo lee, y con la pestaña oculta.
+ * - Con `prefers-reduced-motion` sigue pasando, pero sin el acercamiento
+ *   lento de la imagen: solo un fundido.
  * - Solo la diapositiva visible existe para el lector de pantalla (las
  *   demás van `inert`), y avisa del cambio cuando el carrusel está quieto.
  * - Flechas del teclado y deslizar con el dedo.
@@ -42,7 +44,8 @@ export class Hero {
   protected readonly cambios = signal(0);
   /** Pausa pedida con el botón: manda sobre todo lo demás. */
   protected readonly pausaUsuario = signal(false);
-  private readonly encima = signal(false);
+  /** Foco de teclado dentro del carrusel. */
+  private readonly enfocado = signal(false);
   private readonly pestanaVisible = signal(true);
   protected readonly movimientoReducido = signal(false);
 
@@ -52,7 +55,7 @@ export class Hero {
   protected readonly corriendo = computed(() =>
     this.total() > 1 &&
     !this.pausaUsuario() &&
-    !this.encima() &&
+    !this.enfocado() &&
     this.pestanaVisible()
   );
 
@@ -74,15 +77,7 @@ export class Hero {
     afterNextRender(() => {
       const consulta = window.matchMedia('(prefers-reduced-motion: reduce)');
       this.movimientoReducido.set(consulta.matches);
-      if (consulta.matches) {
-        this.pausaUsuario.set(true);
-      }
-      const alCambiar = (e: MediaQueryListEvent) => {
-        this.movimientoReducido.set(e.matches);
-        if (e.matches) {
-          this.pausaUsuario.set(true);
-        }
-      };
+      const alCambiar = (e: MediaQueryListEvent) => this.movimientoReducido.set(e.matches);
       consulta.addEventListener('change', alCambiar);
 
       const alOcultar = () => this.pestanaVisible.set(document.visibilityState === 'visible');
@@ -113,17 +108,19 @@ export class Hero {
     this.pausaUsuario.update(p => !p);
   }
 
-  protected entrar() {
-    this.encima.set(true);
+  /** Solo el foco de teclado pausa: un clic en una flecha no detiene el carrusel. */
+  protected enfocar(e: FocusEvent) {
+    const el = e.target as HTMLElement;
+    this.enfocado.set(el.matches(':focus-visible'));
   }
 
-  protected salir(e?: FocusEvent) {
-    // Al moverse el foco entre controles del mismo carrusel, sigue «encima».
-    const destino = e?.relatedTarget as Node | null;
-    if (e && destino && (e.currentTarget as HTMLElement).contains(destino)) {
+  protected desenfocar(e: FocusEvent) {
+    // Al moverse el foco entre controles del mismo carrusel, sigue enfocado.
+    const destino = e.relatedTarget as Node | null;
+    if (destino && (e.currentTarget as HTMLElement).contains(destino)) {
       return;
     }
-    this.encima.set(false);
+    this.enfocado.set(false);
   }
 
   protected tecla(e: KeyboardEvent) {
