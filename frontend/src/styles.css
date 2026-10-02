@@ -1,0 +1,15 @@
+/* =====================================================================
+   Estilos propios de la página.
+
+   Los tokens y los componentes viven en `comun/`. Aquí solo va lo que es
+   de esta aplicación y de ninguna otra.
+   ===================================================================== */
+
+/* La página es zona clara (<html data-theme="light">). Las zonas de tinte y
+   oscuras se declaran en su <section>. */
+html { background: var(--fondo); }
+
+body { min-height: 100dvh; }
+
+/* El pie no se pega al contenido cuando la página es corta. */
+mt-root { display: flex; flex-direction: column; min-height: 100dvh; }
