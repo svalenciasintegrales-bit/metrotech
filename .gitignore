@@ -1,0 +1,30 @@
+# ---- Angular / Node (frontend) ----
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+frontend/out-tsc/
+npm-debug.log
+yarn-error.log
+
+# ---- Compilados varios ----
+/tmp
+/coverage
+
+# ---- Editores ----
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.history/*
+
+# ---- Sistema ----
+.DS_Store
+Thumbs.db
+
+# ---- Backend: nunca versionar credenciales reales ----
+# Todas las credenciales locales (base, correo). Los *.local.ejemplo.php sí
+# van: documentan la forma sin llevarse los secretos.
+backend/modelos/*.local.php
+
+# Lo que escribe el sistema en desarrollo: correos de prueba y registros.
+backend/registros/

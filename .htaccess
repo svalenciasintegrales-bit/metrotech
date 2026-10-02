@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Nada de este proyecto se sirve por HTTP, salvo lo que se abra a proposito.
+#
+# Sin esto Apache entrega la carpeta entera a quien escriba la URL: el
+# listado de directorios, el codigo fuente del frontend, el manual de marca y
+# los archivos `*.local.php` del backend con las credenciales de la base y
+# del correo.
+#
+# La regla se invierte: aqui se niega todo, y cada carpeta que de verdad
+# tiene que responder se abre a proposito con su propio .htaccess. Si manana
+# alguien agrega una carpeta y olvida pensar en esto, queda cerrada, no
+# abierta.
+#
+# Puertas abiertas hoy, y ninguna mas:
+#   backend/controladores/           la API (formulario de contacto)
+#   frontend/dist/sitio/browser/     el build de la pagina
+# ---------------------------------------------------------------------------
+
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+
+# Apache 2.2, por si el despliegue es viejo.
+<IfModule !mod_authz_core.c>
+  Order deny,allow
+  Deny from all
+</IfModule>
