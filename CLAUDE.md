@@ -81,19 +81,26 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 - Tono: profesional con empatía, innovador, confiable y cercano. Dirigido a empresas.
 - Valores (lámina 16): familia como valor central, perseverancia y constancia, responsabilidad y disciplina, lealtad (interna y con clientes), integralidad en soluciones, educación continua del personal, profesionalismo con empatía.
 - Los datos de contacto de la papelería del manual son de ejemplo: **no se usan**.
-- Las imágenes de papelería y uniformes del manual son ilustrativas: se presentan como identidad de marca, nunca como fotos del equipo real.
+- Las imágenes de papelería y uniformes del manual son ilustrativas: se presentan como identidad de marca, nunca como fotos del equipo real. La de papelería **no se usa**: muestra la dirección, el teléfono y el correo de ejemplo del manual. A la de uniformes se le quitó el logo distorsionado que traía en la esquina.
 - Todo el texto vive en `frontend/public/contenido.json`.
 
-## 8. Calidad
+## 8. Contacto
+
+- **Los mensajes van por WhatsApp** (decisión del 2 de octubre de 2026): el formulario valida los datos y abre WhatsApp con el mensaje ya escrito. No pasa por el servidor ni se guarda.
+- Al lado del formulario se muestran el correo y los demás datos de contacto de `contenido.json`.
+- Sin número configurado, el formulario se ve pero no envía y lo dice.
+- **Panel administrativo: más adelante**, no ahora. Cuando llegue, el backend ya tiene la estructura de Tu Móvil para crecer.
+
+## 9. Calidad
 
 - Móvil primero; sin desplazamiento horizontal a 390 px.
 - AA: contraste, foco visible (2 px en `--foco`), etiquetas en campos, textos alternativos, navegación por teclado.
 - Movimiento sutil y solo con `prefers-reduced-motion: no-preference`.
 - Imágenes WebP al tamaño en que se muestran, `loading="lazy"` fuera de la primera pantalla.
 
-## 9. Fases
+## 10. Fases
 
 - **Fase 0 · Preparación.** ✔ Entregada.
-- **Fase 1 · Base y sistema de diseño.** Estructura, `contenido.json`, tokens, componentes base y elementos de marca; muestrario en `/sistema`.
-- **Fase 2 · Página plana.** Cabecera, héroe, quiénes somos, soluciones, cómo trabajamos, valores, identidad, contacto (preguntar antes cómo se envían los mensajes) y pie.
+- **Fase 1 · Base y sistema de diseño.** ✔ Aprobada. Estructura, `contenido.json`, tokens, componentes base y elementos de marca; muestrario en `/sistema`.
+- **Fase 2 · Página plana.** Cabecera, héroe, quiénes somos, soluciones, cómo trabajamos, valores, identidad, contacto por WhatsApp y pie.
 - **Fase 3 · Calidad.** Responsive, animaciones, AA, rendimiento, SEO (título, descripción, Open Graph, datos estructurados, favicon).

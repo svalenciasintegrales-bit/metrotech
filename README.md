@@ -39,6 +39,19 @@ Todo el texto está en `frontend/public/contenido.json`. Se edita ahí, sin toca
 - Secciones con `"ejemplo": true` muestran la marca **CONTENIDO DE EJEMPLO** hasta que llegue el texto real.
 - Lo que dice `PENDIENTE` es un dato que la empresa todavía no ha entregado.
 
+### Activar el formulario de contacto (WhatsApp)
+
+El formulario no envía correos: abre WhatsApp con el mensaje ya escrito. Para activarlo, en `contacto` de `contenido.json`:
+
+```json
+"whatsapp": "573001234567",
+"whatsappVisible": "+57 300 123 4567",
+"correo": "contacto@empresa.com",
+"correoVisible": "contacto@empresa.com"
+```
+
+`whatsapp` va con indicativo de país, sin espacios ni signos. Con el número puesto también aparece el botón flotante de WhatsApp.
+
 ## Cambiar la tipografía
 
 Hoy va **Archivo** en lugar de **Acumin Variable Concept** (Adobe Fonts, con licencia). Cuando exista el kit de Adobe Fonts:
