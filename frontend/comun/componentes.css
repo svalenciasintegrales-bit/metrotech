@@ -1,0 +1,446 @@
+/* =====================================================================
+   Componentes base de MetroTech.
+
+   Solo leen tokens de `tokens.css`; ningún color, tamaño ni espacio va
+   escrito a mano. Los elementos gráficos de la marca (regla, línea con
+   nodos, marca de agua, franjas, doble línea) son componentes de Angular en
+   `src/app/marca/`: aquí está lo que es puro CSS.
+   ===================================================================== */
+
+/* ------------------------------------------------------------ base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Las anclas no quedan tapadas por la cabecera fija. */
+  scroll-padding-top: calc(var(--alto-cabecera) + var(--e-4));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: var(--t-cuerpo);
+  font-weight: var(--peso-regular);
+  line-height: var(--i-cuerpo);
+  color: var(--texto);
+  background: var(--fondo);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Cada zona pinta su propio fondo y su propio texto. */
+[data-theme] {
+  background-color: var(--fondo);
+  color: var(--texto);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* ------------------------------------------------------------ tipografía */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: var(--peso-semibold);
+  color: var(--texto);
+  text-wrap: balance;
+}
+
+/* Las clases .t-h* dan el estilo de título a lo que no es un <h> (un
+   número grande, el texto de muestra del sistema). */
+.t-h1, .t-h2, .t-h3, .t-h4, .t-h5, .t-h6 {
+  font-weight: var(--peso-semibold);
+}
+
+h1, .t-h1 { font-size: var(--t-h1); line-height: var(--i-titulo); letter-spacing: var(--tracking-titulo); }
+h2, .t-h2 { font-size: var(--t-h2); line-height: var(--i-titulo); letter-spacing: var(--tracking-titulo); }
+h3, .t-h3 { font-size: var(--t-h3); line-height: var(--i-subtitulo); }
+h4, .t-h4 { font-size: var(--t-h4); line-height: var(--i-subtitulo); }
+h5, .t-h5 { font-size: var(--t-h5); line-height: var(--i-compacto); }
+h6, .t-h6 { font-size: var(--t-h6); line-height: var(--i-compacto); }
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.t-cuerpo-l { font-size: var(--t-cuerpo-l); line-height: var(--i-cuerpo); }
+.t-cuerpo   { font-size: var(--t-cuerpo); line-height: var(--i-cuerpo); }
+.t-pequeno  { font-size: var(--t-pequeno); line-height: var(--i-compacto); }
+.t-micro    { font-size: var(--t-micro); line-height: var(--i-compacto); font-weight: var(--peso-medio); }
+
+/* Etiqueta corta sobre un título. Las versales van escritas en el
+   contenido, no con text-transform: así un lector de pantalla no deletrea. */
+.t-etiqueta {
+  font-size: var(--t-micro);
+  line-height: var(--i-compacto);
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-etiqueta);
+  color: var(--texto-2);
+}
+
+.t-secundario { color: var(--texto-2); }
+
+/* El celeste en texto, solo en tamaño de título (AA para texto grande). */
+.t-acento { color: var(--acento); }
+
+.medida { max-width: var(--medida); }
+
+a {
+  color: var(--enlace);
+  text-decoration-thickness: var(--linea-fina);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: var(--linea-media);
+}
+
+/* ------------------------------------------------------------ foco */
+
+/* Anillo sólido en todo control. Nunca `outline: none` sin reemplazo. */
+:focus-visible {
+  outline: var(--foco-ancho) solid var(--foco);
+  outline-offset: var(--foco-separacion);
+}
+
+/* ------------------------------------------------------------ disposición */
+
+.contenedor {
+  width: 100%;
+  max-width: calc(var(--contenedor) + 2 * var(--margen));
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+
+.seccion {
+  position: relative;
+  padding-block: var(--seccion);
+  overflow: hidden;   /* las decoraciones de esquina no desbordan la página */
+}
+
+/* Lo que va encima de las decoraciones. */
+.seccion > .contenedor {
+  position: relative;
+  z-index: var(--z-contenido);
+}
+
+.pila { display: flex; flex-direction: column; }
+.pila-2 { display: flex; flex-direction: column; gap: var(--e-2); }
+.pila-4 { display: flex; flex-direction: column; gap: var(--e-4); }
+.pila-6 { display: flex; flex-direction: column; gap: var(--e-6); }
+.pila-8 { display: flex; flex-direction: column; gap: var(--e-8); }
+
+.fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-4);
+}
+
+/* Grilla de tarjetas: una columna en móvil, dos en tableta, tres en escritorio. */
+.grilla {
+  display: grid;
+  gap: var(--e-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .grilla { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .grilla--3 { grid-template-columns: repeat(3, 1fr); }
+  .grilla--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ------------------------------------------------------------ botones */
+
+/* Rectángulo de esquina corta. El principal es azul oscuro con texto
+   blanco (16,2:1); el celeste nunca es fondo de botón (3,8:1). En zona
+   oscura el principal se invierte solo: blanco con texto azul oscuro. */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: var(--alto-control);
+  padding: 0 var(--e-6);
+  border: var(--linea-media) solid transparent;
+  border-radius: var(--r-2);
+  font-family: inherit;
+  font-size: var(--t-boton);
+  font-weight: var(--peso-semibold);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-rapida) var(--curva),
+    border-color var(--dur-rapida) var(--curva),
+    color var(--dur-rapida) var(--curva);
+}
+
+.boton:hover { text-decoration: none; }
+
+.boton[disabled],
+.boton[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.boton--primario {
+  background: var(--accion);
+  color: var(--sobre-accion);
+}
+
+.boton--primario:hover:not([disabled]) {
+  background: var(--accion-hover);
+}
+
+.boton--secundario {
+  background: transparent;
+  color: var(--texto);
+  border-color: var(--borde-fuerte);
+}
+
+.boton--secundario:hover:not([disabled]) {
+  background: var(--superficie-2);
+}
+
+/* Sin caja: para acciones de menos peso. El subrayado aparece al pasar. */
+.boton--fantasma {
+  background: transparent;
+  color: var(--texto);
+  padding-inline: var(--e-2);
+}
+
+.boton--fantasma:hover:not([disabled]) {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.boton--ancho { width: 100%; }
+
+.boton lucide-icon,
+.boton svg {
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------ tarjetas */
+
+.tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+  padding: var(--e-6);
+  background: var(--superficie);
+  border: var(--linea-fina) solid var(--borde);
+  border-radius: var(--r-3);
+  box-shadow: var(--sombra-1);
+}
+
+@media (min-width: 900px) {
+  .tarjeta { padding: var(--e-8); }
+}
+
+/* Acento de marca: una línea celeste arriba, como la regla de la M. */
+.tarjeta--acento {
+  border-top: var(--linea-gruesa) solid var(--acento);
+}
+
+/* El ícono de la tarjeta: cuadro de esquina corta en tinte celeste. */
+.tarjeta__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--e-12);
+  height: var(--e-12);
+  border-radius: var(--r-2);
+  background: var(--celeste-50);
+  color: var(--azul-oscuro);
+}
+
+[data-theme="dark"] .tarjeta__icono {
+  background: var(--azul-oscuro);
+  color: var(--celeste);
+}
+
+.tarjeta__titulo {
+  font-size: var(--t-h4);
+  line-height: var(--i-subtitulo);
+}
+
+.tarjeta__texto {
+  color: var(--texto-2);
+}
+
+/* ------------------------------------------------------------ campos */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+}
+
+/* El rótulo siempre visible encima: un placeholder no es un rótulo. */
+.campo__etiqueta {
+  font-size: var(--t-pequeno);
+  font-weight: var(--peso-semibold);
+  line-height: var(--i-compacto);
+  color: var(--texto);
+}
+
+.campo__opcional {
+  font-weight: var(--peso-regular);
+  color: var(--texto-2);
+}
+
+/* 16 px de letra: con menos, iOS hace zoom al tocar el campo. */
+.campo__control {
+  width: 100%;
+  min-height: var(--alto-control);
+  padding: var(--e-3) var(--e-4);
+  font-family: inherit;
+  font-size: var(--t-cuerpo);
+  line-height: var(--i-compacto);
+  color: var(--texto);
+  background: var(--superficie);
+  border: var(--linea-fina) solid var(--borde-control);
+  border-radius: var(--r-2);
+  transition: border-color var(--dur-rapida) var(--curva);
+}
+
+.campo__control::placeholder {
+  color: var(--texto-2);
+  opacity: 1;
+}
+
+.campo__control:hover {
+  border-color: var(--borde-fuerte);
+}
+
+.campo__control:focus-visible {
+  outline: var(--foco-ancho) solid var(--foco);
+  outline-offset: 0;
+  border-color: var(--borde-fuerte);
+}
+
+textarea.campo__control {
+  min-height: calc(var(--alto-control) * 3);
+  resize: vertical;
+}
+
+.campo__ayuda {
+  font-size: var(--t-pequeno);
+  line-height: var(--i-compacto);
+  color: var(--texto-2);
+}
+
+/* El error se dice con palabra e ícono, no solo con el borde rojo. */
+.campo__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-2);
+  font-size: var(--t-pequeno);
+  line-height: var(--i-compacto);
+  color: var(--error);
+}
+
+.campo__control[aria-invalid="true"] {
+  border-color: var(--error);
+  border-width: var(--linea-media);
+}
+
+/* Aviso de todo el formulario: enviado o fallido. */
+.aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  padding: var(--e-4);
+  border-radius: var(--r-2);
+  border-left: var(--linea-gruesa) solid currentColor;
+  font-size: var(--t-pequeno);
+  line-height: var(--i-compacto);
+}
+
+.aviso--exito { color: var(--exito); background: var(--exito-fondo); }
+.aviso--error { color: var(--error); background: var(--error-fondo); }
+
+/* ------------------------------------------------------------ marca */
+
+/* Línea vertical fina junto a un texto corto, como el slogan en la
+   papelería: «| Tecnología que impulsa tu operación». */
+.acento-linea {
+  padding-left: var(--e-4);
+  border-left: var(--linea-media) solid var(--acento);
+}
+
+/* Contenido de ejemplo: se ve a propósito hasta que llegue el real. */
+.ejemplo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: var(--e-1) var(--e-2);
+  border: var(--linea-fina) dashed currentColor;
+  border-radius: var(--r-1);
+  font-size: var(--t-micro);
+  font-weight: var(--peso-semibold);
+  line-height: var(--i-compacto);
+  letter-spacing: var(--tracking-etiqueta);
+  color: var(--texto-2);
+}
+
+/* ------------------------------------------------------------ utilidades */
+
+/* Oculto a la vista, presente para lectores de pantalla. */
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* «Saltar al contenido»: invisible hasta que llega el foco del teclado. */
+.saltar {
+  position: absolute;
+  top: var(--e-2);
+  left: var(--e-2);
+  z-index: var(--z-menu);
+  padding: var(--e-3) var(--e-4);
+  background: var(--accion);
+  color: var(--sobre-accion);
+  border-radius: var(--r-2);
+  font-weight: var(--peso-semibold);
+  transform: translateY(-200%);
+}
+
+.saltar:focus-visible {
+  transform: none;
+}

@@ -1,0 +1,266 @@
+/* =====================================================================
+   Tokens de MetroTech.
+
+   Todo color, tamaño, espacio, radio, sombra y duración de la página sale
+   de aquí. Ningún componente escribe un valor a mano: si hace falta uno
+   nuevo, se agrega aquí con su motivo.
+
+   Fuente de verdad: `manual de marca/MANUAL DE MARCA METROTECH.pdf`.
+   «Solo los colores establecidos en el manual son permitidos» (lámina 13):
+   los dos azules, sus tintes claros para fondos (como en la papelería) y
+   los neutros que el manual acepta en las versiones del logo.
+   ===================================================================== */
+
+:root {
+  /* ------------------------------------------------------------ marca */
+
+  /* Pantone 282 C · RGB 14, 34, 51. Estructura, lo corporativo. */
+  --azul-oscuro: #0E2233;
+
+  /* Pantone 639 C · RGB 21, 141, 180. Tecnología, innovación y claridad en
+     los datos. Con texto blanco encima da 3,82:1 y sobre azul oscuro 4,25:1:
+     no alcanza AA en texto normal. Por eso es acento —íconos, bordes,
+     líneas, títulos grandes, fondos decorativos— y nunca el color de un
+     botón o de un texto pequeño. */
+  --celeste: #158DB4;
+
+  /* Tintes de los dos azules, solo para fondos y superficies. */
+  --celeste-50: #EEF7FA;
+  --celeste-100: #D6ECF3;
+  --celeste-200: #ADD9E7;
+  --azul-50: #E7E9EB;
+  --azul-700: #0A1926;      /* el azul oscuro sombreado: solo hover de botones */
+  --azul-600: #16324A;      /* superficie elevada dentro de la zona oscura */
+
+  /* Neutros. Grises puros, sin tinte de otro color. */
+  --blanco: #FFFFFF;
+  --gris-50: #F6F7F8;
+  --gris-100: #ECEEF0;
+  --gris-200: #D9DCDF;
+  --gris-400: #83888E;      /* 3,6:1 sobre blanco y 3,3:1 sobre el tinte: bordes de campos (mínimo 3:1) */
+  --gris-600: #5B6168;      /* 6,3:1 sobre blanco: texto secundario */
+  --gris-300-sobre-oscuro: #C3CAD1;  /* 9,8:1 sobre azul oscuro: texto secundario en zona oscura */
+  --negro: #000000;
+
+  /* Estados del formulario. PROPUESTA PENDIENTE DE APROBACIÓN: el manual no
+     define colores de estado. Son sobrios y se usan siempre con ícono y
+     palabra, nunca solos. */
+  --verde-estado: #1E6B4F;         /* 6,4:1 sobre blanco */
+  --verde-estado-fondo: #EAF3EF;
+  --rojo-estado: #A3242A;          /* 7,4:1 sobre blanco */
+  --rojo-estado-fondo: #F8ECEC;
+  --verde-estado-claro: #8FD9B6;   /* 9,9:1 sobre azul oscuro */
+  --rojo-estado-claro: #F5A3A6;    /* 8,2:1 sobre azul oscuro */
+
+  /* ------------------------------------------------------------ tipografía */
+
+  /* El manual exige Acumin Variable Concept Semibold (lámina 11). Es de
+     Adobe Fonts y necesita un kit con licencia que el proyecto no tiene.
+     Mientras tanto va Archivo (Google Fonts, libre): variable en peso y en
+     ancho, como Acumin, y de proporciones cercanas.
+     PARA CAMBIARLA: esta variable y el <link> de `src/index.html`. Nada más. */
+  --fuente: 'Archivo', 'Acumin Variable Concept', 'Helvetica Neue', Arial, system-ui, sans-serif;
+
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-semibold: 600;     /* el peso principal de la marca */
+  --peso-bold: 700;
+
+  /* Escala. Móvil primero: los títulos crecen con la pantalla hasta su tope. */
+  --t-h1: clamp(2.25rem, 1.65rem + 3vw, 4rem);         /* 36 → 64 */
+  --t-h2: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);    /* 30 → 44 */
+  --t-h3: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);    /* 22 → 28 */
+  --t-h4: 1.25rem;                                     /* 20 */
+  --t-h5: 1.125rem;                                    /* 18 */
+  --t-h6: 1rem;                                        /* 16 */
+  --t-cuerpo-l: 1.125rem;                              /* 18 · entradillas */
+  --t-cuerpo: 1rem;                                    /* 16 · texto por defecto */
+  --t-pequeno: 0.875rem;                               /* 14 · ayudas, pie */
+  --t-micro: 0.75rem;                                  /* 12 · etiquetas */
+  --t-boton: 1rem;                                     /* 16 */
+
+  --i-titulo: 1.1;          /* interlineado de títulos grandes */
+  --i-subtitulo: 1.25;
+  --i-cuerpo: 1.6;
+  --i-compacto: 1.4;
+
+  --tracking-titulo: -0.015em;
+  --tracking-etiqueta: 0.08em;
+
+  /* Ancho cómodo de lectura. */
+  --medida: 68ch;
+
+  /* ------------------------------------------------------------ espacio */
+
+  /* Escala de 4 px. Ningún margen ni relleno fuera de ella. */
+  --e-1: 4px;
+  --e-2: 8px;
+  --e-3: 12px;
+  --e-4: 16px;
+  --e-5: 20px;
+  --e-6: 24px;
+  --e-8: 32px;
+  --e-10: 40px;
+  --e-12: 48px;
+  --e-16: 64px;
+  --e-20: 80px;
+  --e-24: 96px;
+  --e-32: 128px;
+
+  /* Margen lateral de la página y alto de cada sección: crecen con la pantalla. */
+  --margen: clamp(16px, 4vw, 40px);
+  --seccion: clamp(64px, 9vw, 128px);
+  --contenedor: 1200px;
+
+  /* ------------------------------------------------------------ forma */
+
+  /* Esquinas cortas: estilo preciso, de regla y plano técnico. */
+  --r-1: 2px;
+  --r-2: 4px;               /* botones, campos */
+  --r-3: 8px;               /* tarjetas */
+  --r-redondo: 999px;       /* solo lo literalmente redondo */
+
+  --linea-fina: 1px;
+  --linea-media: 2px;
+  --linea-gruesa: 3px;
+
+  /* Sombras suaves, tintadas de azul oscuro. NUNCA sobre el logo (lámina 9:
+     «aplicación de efectos y sombras indebidas»). */
+  --sombra-1: 0 1px 2px rgba(14, 34, 51, 0.06), 0 1px 3px rgba(14, 34, 51, 0.08);
+  --sombra-2: 0 4px 12px rgba(14, 34, 51, 0.08), 0 2px 4px rgba(14, 34, 51, 0.04);
+  --sombra-3: 0 16px 40px rgba(14, 34, 51, 0.12);
+
+  /* ------------------------------------------------------------ objetivos */
+
+  --alto-control: 48px;     /* botones y campos: objetivo táctil holgado */
+  --alto-cabecera: 72px;
+  --foco-ancho: 2px;
+  --foco-separacion: 2px;
+
+  /* ------------------------------------------------------------ movimiento */
+
+  --dur-rapida: 150ms;
+  --dur-media: 300ms;
+  --dur-dibujo: 1100ms;     /* la línea con nodos dibujándose */
+  --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* ------------------------------------------------------------ capas */
+
+  --z-decoracion: 0;
+  --z-contenido: 1;
+  --z-cabecera: 100;
+  --z-menu: 200;
+}
+
+/* Puntos de quiebre. Las variables CSS no funcionan dentro de @media, así
+   que se escriben como número en cada consulta. Son estos y ningún otro:
+
+     600px   tableta vertical
+     900px   tableta horizontal / portátil pequeño
+     1200px  escritorio
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-rapida: 0ms;
+    --dur-media: 0ms;
+    --dur-dibujo: 0ms;
+  }
+}
+
+/* =====================================================================
+   Zonas.
+
+   Cada <section> declara la suya con `data-theme`. Los componentes leen los
+   tokens semánticos de su zona y no necesitan clases propias para cambiar
+   de fondo.
+   ===================================================================== */
+
+/* Clara: la de por defecto. Fondo blanco, como la hoja membrete. */
+:root,
+[data-theme="light"] {
+  --fondo: var(--blanco);
+  --superficie: var(--blanco);
+  --superficie-2: var(--gris-50);
+  --texto: var(--azul-oscuro);          /* 16,2:1 */
+  --texto-2: var(--gris-600);           /* 6,3:1 */
+  --borde: var(--gris-200);
+  --borde-control: var(--gris-400);
+  --borde-fuerte: var(--azul-oscuro);
+  --acento: var(--celeste);
+  --linea-1: var(--azul-oscuro);        /* doble línea: la de afuera */
+  --linea-2: var(--celeste);            /* doble línea: la de adentro */
+
+  --accion: var(--azul-oscuro);
+  --sobre-accion: var(--blanco);
+  --accion-hover: var(--azul-700);
+  --enlace: var(--azul-oscuro);
+  --foco: var(--celeste);               /* 3,8:1: un borde necesita 3:1 */
+
+  --exito: var(--verde-estado);
+  --exito-fondo: var(--verde-estado-fondo);
+  --error: var(--rojo-estado);
+  --error-fondo: var(--rojo-estado-fondo);
+
+  color-scheme: light;
+}
+
+/* Tinte: fondo celeste muy claro para alternar secciones sin salir de la
+   paleta. El texto sigue en azul oscuro (14,9:1). */
+[data-theme="tint"] {
+  --fondo: var(--celeste-50);
+  --superficie: var(--blanco);
+  --superficie-2: var(--blanco);
+  --texto: var(--azul-oscuro);
+  --texto-2: var(--gris-600);           /* 5,8:1 sobre el tinte */
+  --borde: var(--celeste-100);
+  --borde-control: var(--gris-400);
+  --borde-fuerte: var(--azul-oscuro);
+  --acento: var(--celeste);
+  --linea-1: var(--azul-oscuro);
+  --linea-2: var(--celeste);
+
+  --accion: var(--azul-oscuro);
+  --sobre-accion: var(--blanco);
+  --accion-hover: var(--azul-700);
+  --enlace: var(--azul-oscuro);
+  --foco: var(--azul-oscuro);
+
+  --exito: var(--verde-estado);
+  --exito-fondo: var(--verde-estado-fondo);
+  --error: var(--rojo-estado);
+  --error-fondo: var(--rojo-estado-fondo);
+
+  color-scheme: light;
+}
+
+/* Oscura: azul oscuro, como el sobre y la tarjeta de presentación. */
+[data-theme="dark"] {
+  --fondo: var(--azul-oscuro);
+  --superficie: var(--azul-600);
+  --superficie-2: var(--azul-600);
+  --texto: var(--blanco);               /* 16,2:1 */
+  --texto-2: var(--gris-300-sobre-oscuro);
+  --borde: rgba(255, 255, 255, 0.14);
+  --borde-control: rgba(255, 255, 255, 0.5);
+  --borde-fuerte: var(--blanco);
+  --acento: var(--celeste);             /* 4,25:1: solo títulos grandes y decoración */
+  --linea-1: var(--blanco);
+  --linea-2: var(--celeste);
+
+  --accion: var(--blanco);
+  --sobre-accion: var(--azul-oscuro);
+  --accion-hover: var(--celeste-100);
+  --enlace: var(--blanco);
+  --foco: var(--blanco);
+
+  /* Los estados de la zona clara no se leen sobre azul oscuro (el rojo da
+     2,2:1). Aquí van sus versiones claras, con fondo translúcido.
+     PROPUESTA PENDIENTE DE APROBACIÓN, igual que las de la zona clara. */
+  --exito: var(--verde-estado-claro);
+  --exito-fondo: rgba(143, 217, 182, 0.14);
+  --error: var(--rojo-estado-claro);
+  --error-fondo: rgba(245, 163, 166, 0.14);
+
+  color-scheme: dark;
+}
