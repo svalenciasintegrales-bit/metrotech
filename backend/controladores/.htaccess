@@ -1,0 +1,29 @@
+# La API de MetroTech. Es una de las dos puertas que el .htaccess de la raiz
+# abre a proposito.
+#
+# Solo los controladores, y solo como PHP. Los modelos y los .sql viven en
+# carpetas hermanas y siguen negados desde arriba: un modelo no tiene por
+# que ser alcanzable desde el navegador, solo el controlador que lo usa.
+
+<IfModule mod_authz_core.c>
+  Require all granted
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Allow from all
+</IfModule>
+
+Options -Indexes
+
+# Aqui dentro solo se sirve PHP. Si algun dia cae un .sql, un .log o un .bak
+# en esta carpeta por accidente, no se entrega.
+<FilesMatch "^(?!.*\.php$).*$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>

@@ -1,0 +1,8 @@
+# Desde la web solo se entra a controladores/. Lo demás —modelos con las
+# credenciales locales, esquema, correos guardados, pruebas— se lee desde
+# PHP, nunca por URL.
+RedirectMatch 404 /backend/(modelos|sql|registros|pruebas)(/|$)
+<FilesMatch "^\.htaccess$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
