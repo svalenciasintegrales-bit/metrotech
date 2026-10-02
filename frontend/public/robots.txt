@@ -1,0 +1,4 @@
+# El muestrario del sistema de diseño es interno.
+User-agent: *
+Disallow: /sistema
+Disallow: /metrotech/sistema

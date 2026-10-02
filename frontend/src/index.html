@@ -14,6 +14,50 @@
 
   <!-- El monograma: a 32 px el logo completo no se lee (manual, lámina 7). -->
   <link rel="icon" href="img/marca/monograma-color.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Vista previa al compartir (WhatsApp, LinkedIn, Facebook). Va fija aquí
+       porque esas plataformas no ejecutan JavaScript.
+       PENDIENTE: con el dominio real, poner la URL absoluta en og:url y
+       og:image (https://dominio/…/img/compartir.png): algunas plataformas
+       no aceptan rutas relativas. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="MetroTech">
+  <meta property="og:title" content="MetroTech · Tecnología que impulsa tu operación">
+  <meta property="og:description"
+        content="Soluciones tecnológicas para empresas en Pereira. Integración, precisión y estructura para transformar datos en decisiones confiables.">
+  <meta property="og:image" content="img/compartir.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de MetroTech">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Datos estructurados de la organización. Solo lo que es cierto hoy;
+       teléfono, correo, dirección y URL se agregan cuando estén. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MetroTech",
+    "slogan": "Tecnología que impulsa tu operación",
+    "description": "Soluciones tecnológicas para empresas: integración, precisión y estructura para transformar datos en decisiones confiables.",
+    "logo": "img/marca/logo-color.svg",
+    "areaServed": "CO",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pereira",
+      "addressRegion": "Risaralda",
+      "addressCountry": "CO"
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Salazar Arias Company"
+    }
+  }
+  </script>
 
   <!-- La fuente. El manual pide Acumin Variable Concept (Adobe Fonts, con
        licencia). Mientras no haya kit, va Archivo: variable en peso y ancho
@@ -28,6 +72,11 @@
 
 <body>
   <mt-root></mt-root>
+  <noscript>
+    <p style="padding: 24px; font-family: sans-serif;">
+      MetroTech · Tecnología que impulsa tu operación. Esta página necesita JavaScript para mostrarse.
+    </p>
+  </noscript>
 </body>
 
 </html>

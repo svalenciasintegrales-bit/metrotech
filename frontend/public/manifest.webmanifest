@@ -1,0 +1,14 @@
+{
+  "name": "MetroTech",
+  "short_name": "MetroTech",
+  "description": "Tecnología que impulsa tu operación",
+  "lang": "es-CO",
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    { "src": "icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icono-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
