@@ -50,7 +50,10 @@ export interface Contenido {
   };
   navegacion: Enlace[];
   hero: {
+    etiqueta?: string;
     titulo: string;
+    /** El final del título, en celeste: como «Tech» en el logo. */
+    tituloAcento?: string;
     texto: string;
     accion: Enlace;
     accionSecundaria?: Enlace;
@@ -90,16 +93,18 @@ export interface Contenido {
     ejemplo?: boolean;
     titulo: string;
     entradilla: string;
-    correo: string;
+    /** Número completo con indicativo, sin espacios ni signos: 573001234567. Vacío = sin WhatsApp. */
     whatsapp: string;
     whatsappVisible: string;
+    mensajeWhatsapp: string;
+    correo: string;
+    correoVisible: string;
     telefono: string;
     telefonoVisible: string;
     direccion: string;
     ciudad: string;
     horario: string;
     mapaUrl: string;
-    mensajeWhatsapp: string;
   };
   redes: Red[];
   pie: {
@@ -149,4 +154,17 @@ export function cargarContenido(http: HttpClient): Promise<void> {
  */
 export function esDato(valor: string | undefined | null): valor is string {
   return !!valor && !valor.startsWith('PENDIENTE');
+}
+
+/**
+ * El enlace de WhatsApp con el mensaje ya escrito. El número va completo,
+ * con indicativo y sin signos (así lo pide wa.me); si trae espacios o un «+»
+ * se limpian. Sin número no hay enlace: null.
+ */
+export function enlaceWhatsapp(numero: string, mensaje: string): string | null {
+  const limpio = (numero || '').replace(/\D/g, '');
+  if (limpio.length < 10) {
+    return null;
+  }
+  return `https://wa.me/${limpio}?text=${encodeURIComponent(mensaje)}`;
 }

@@ -47,6 +47,14 @@ body {
   color: var(--texto);
 }
 
+/* Listas que son estructura (menús, grillas), no viñetas de texto. */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 img,
 svg {
   display: block;
@@ -443,4 +451,24 @@ textarea.campo__control {
 
 .saltar:focus-visible {
   transform: none;
+}
+
+/* ------------------------------------------------------------ aparecer */
+
+/* Lo que entra en pantalla sube un poco y aparece (directiva `mtAparecer`).
+   Solo con movimiento permitido: con `prefers-reduced-motion` todo está
+   quieto y visible desde el principio. */
+@media (prefers-reduced-motion: no-preference) {
+  .aparecer {
+    opacity: 0;
+    transform: translateY(var(--e-4));
+    transition:
+      opacity var(--dur-lenta) var(--curva) var(--aparecer-retraso, 0ms),
+      transform var(--dur-lenta) var(--curva) var(--aparecer-retraso, 0ms);
+  }
+
+  .aparecer.visible {
+    opacity: 1;
+    transform: none;
+  }
 }

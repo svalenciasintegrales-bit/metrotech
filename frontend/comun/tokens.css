@@ -141,6 +141,7 @@
 
   --dur-rapida: 150ms;
   --dur-media: 300ms;
+  --dur-lenta: 600ms;       /* aparecer al entrar en pantalla */
   --dur-dibujo: 1100ms;     /* la línea con nodos dibujándose */
   --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
 
@@ -164,6 +165,7 @@
   :root {
     --dur-rapida: 0ms;
     --dur-media: 0ms;
+    --dur-lenta: 0ms;
     --dur-dibujo: 0ms;
   }
 }
