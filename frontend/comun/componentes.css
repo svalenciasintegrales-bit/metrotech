@@ -505,20 +505,31 @@ textarea.campo__control {
 
 /* ------------------------------------------------------------ aparecer */
 
-/* Lo que entra en pantalla sube un poco y aparece (directiva `mtAparecer`).
-   Solo con movimiento permitido: con `prefers-reduced-motion` todo está
-   quieto y visible desde el principio. */
+/* Lo que entra en pantalla aparece al bajar (directiva `mtAparecer`).
+   Con movimiento permitido sube desde abajo; con `prefers-reduced-motion`
+   solo se funde, sin desplazarse. Variantes: `.aparecer--izquierda` y
+   `.aparecer--derecha` entran de lado. */
+.aparecer {
+  opacity: 0;
+  transition: opacity var(--dur-fundido) var(--curva) var(--aparecer-retraso, 0ms);
+}
+
+.aparecer.visible {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .aparecer {
-    opacity: 0;
-    transform: translateY(var(--e-4));
+    transform: translateY(var(--e-12));
     transition:
       opacity var(--dur-lenta) var(--curva) var(--aparecer-retraso, 0ms),
       transform var(--dur-lenta) var(--curva) var(--aparecer-retraso, 0ms);
   }
 
+  .aparecer--izquierda { transform: translateX(calc(-1 * var(--e-12))); }
+  .aparecer--derecha { transform: translateX(var(--e-12)); }
+
   .aparecer.visible {
-    opacity: 1;
     transform: none;
   }
 }

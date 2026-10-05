@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+import { Aparecer } from './aparecer';
 import { DobleLinea } from './doble-linea';
 import { Ejemplo } from './ejemplo';
 
@@ -10,12 +11,15 @@ import { Ejemplo } from './ejemplo';
  * `idTitulo` va en el <h2> para que la sección lo use en `aria-labelledby`:
  * así un lector de pantalla anuncia cada región por su nombre.
  *
+ * Aparece al entrar en pantalla, como el resto de bloques.
+ *
  * Uso: `<mt-titulo-seccion idTitulo="servicios-titulo" titulo="Soluciones" entradilla="…" />`
  */
 @Component({
   selector: 'mt-titulo-seccion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DobleLinea, Ejemplo],
+  hostDirectives: [Aparecer],
   host: { '[class.centrado]': 'centrado()' },
   template: `
     <mt-doble-linea />

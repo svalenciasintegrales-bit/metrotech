@@ -3,7 +3,7 @@
 
   <div class="contenedor nosotros" [class.sin-imagen]="!imagen()">
     @if (imagen(); as img) {
-      <figure class="visual" mtAparecer>
+      <figure class="visual aparecer--izquierda" mtAparecer>
         <mt-regla class="visual__regla" orientacion="vertical" [largo]="14" />
         <div class="visual__marco">
           <img
@@ -25,7 +25,7 @@
       </figure>
     }
 
-    <div class="texto" mtAparecer [retraso]="120">
+    <div class="texto aparecer--derecha" mtAparecer [retraso]="120">
       <mt-titulo-seccion idTitulo="nosotros-titulo" [titulo]="nosotros().titulo" [entradilla]="nosotros().entradilla" />
       <div class="pila-4 medida">
         @for (p of nosotros().parrafos; track $index) {

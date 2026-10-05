@@ -79,7 +79,7 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 
 `manual de marca/diseño.png` es una referencia de composición (una plantilla corporativa ajena): héroe oscuro a todo el ancho con imágenes de fondo, tarjetas que se montan sobre el borde del héroe, bloques con imagen y bandas de color. **Se toma la composición, nunca su color, tipografía, logo, textos ni imágenes**: todo eso sale del manual de MetroTech. Su naranja equivale aquí a los azules de la marca.
 
-- **Héroe:** carrusel de fondo a todo el ancho que **pasa solo cada 6 s** (también con el puntero encima y con movimiento reducido, en ese caso sin el acercamiento de la imagen). Velo azul oscuro para que el texto siempre se lea, un mensaje por diapositiva (`hero.diapositivas` en `contenido.json`). Botón de pausa (obligatorio por accesibilidad), se detiene solo mientras alguien lo recorre con el teclado o con la pestaña oculta; flechas del teclado y deslizar.
+- **Héroe:** carrusel de fondo a todo el ancho que **pasa solo cada 6 s** (también con el puntero encima y con movimiento reducido, en ese caso sin el acercamiento de la imagen). Velo azul oscuro para que el texto siempre se lea, un mensaje por diapositiva (`hero.diapositivas` en `contenido.json`). Sin botón de pausa (decisión del usuario del 3 de octubre de 2026); se detiene solo mientras alguien lo recorre con el teclado o con la pestaña oculta; flechas del teclado y deslizar.
 - **Fotos del carrusel:** 4 imágenes **generadas con IA** (Runway) en la paleta de la marca: sala de control (integración), medición con calibrador (precisión), centro de datos (estructura) y reunión de equipo de espaldas (acompañamiento). Sin textos, logos ni caras reconocibles, para que nadie las tome por el equipo o las instalaciones reales. Están en `public/img/hero/foto-*` a 960 y 1920 px; se cambian por fotos reales de la empresa con el mismo par de tamaños.
 - **Pilares** montados sobre el borde inferior del héroe; **Quiénes somos** con imagen y bloque azul oscuro encima; **banda celeste** de llamado antes de Contacto.
 
@@ -103,7 +103,9 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 
 - Móvil primero y adaptable a cualquier pantalla: se audita de 320 a 2560 px y en celular horizontal, sin desplazamiento horizontal, sin elementos fuera de pantalla ni textos cortados. Tableta (600–899) con su propia disposición (pilares en 3 columnas, datos y pie en 2); en monitores de 1920 px o más el contenedor se ensancha y la letra sube.
 - AA: contraste, foco visible (2 px en `--foco`), etiquetas en campos, textos alternativos, navegación por teclado.
-- Movimiento sutil y solo con `prefers-reduced-motion: no-preference`.
+- Los bloques aparecen al bajar (`mtAparecer`, también en los títulos de sección): suben con `prefers-reduced-motion: no-preference`; con movimiento reducido solo se funden.
+- Al recargar, la página empieza siempre arriba (`src/main.ts`).
+- Botón flotante de WhatsApp siempre visible: sin número lleva a `#contacto`.
 - Imágenes WebP al tamaño en que se muestran, `loading="lazy"` fuera de la primera pantalla.
 
 ## 11. Fases

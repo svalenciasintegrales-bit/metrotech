@@ -71,10 +71,6 @@
 
     @if (total() > 1) {
       <div class="hero__controles">
-        <button type="button" class="control" (click)="alternarPausa()"
-          [attr.aria-label]="pausaUsuario() ? 'Reanudar el carrusel' : 'Pausar el carrusel'">
-          <lucide-icon [img]="pausaUsuario() ? Play : Pause" [size]="18" aria-hidden="true" />
-        </button>
         <button type="button" class="control" (click)="anterior()" aria-label="Diapositiva anterior">
           <lucide-icon [img]="ChevronLeft" [size]="20" aria-hidden="true" />
         </button>

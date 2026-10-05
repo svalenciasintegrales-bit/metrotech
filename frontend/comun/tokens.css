@@ -143,7 +143,8 @@
 
   --dur-rapida: 150ms;
   --dur-media: 300ms;
-  --dur-lenta: 600ms;       /* aparecer al entrar en pantalla */
+  --dur-lenta: 700ms;       /* aparecer al entrar en pantalla */
+  --dur-fundido: 600ms;     /* aparecer con movimiento reducido: solo opacidad, no se anula */
   --dur-dibujo: 1100ms;     /* la línea con nodos dibujándose */
   --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
 

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy, Component, DestroyRef, afterNextRender, computed, effect, inject, input, signal
 } from '@angular/core';
-import { ChevronLeft, ChevronRight, LucideAngularModule, Pause, Play } from 'lucide-angular';
+import { ChevronLeft, ChevronRight, LucideAngularModule } from 'lucide-angular';
 
 import { Contenido } from '../../../../comun/contenido';
 import { Franjas } from '../../marca/franjas';
@@ -15,7 +15,6 @@ import { Franjas } from '../../marca/franjas';
  * la pantalla: si se detuviera con el puntero, casi nunca se movería).
  *
  * Accesibilidad (patrón de carrusel de WAI-ARIA):
- * - Botón de pausa: lo que se mueve solo más de 5 s tiene que poder parar.
  * - Se detiene mientras alguien lo recorre con el teclado (foco visible),
  *   para que el texto no cambie mientras lo lee, y con la pestaña oculta.
  * - Con `prefers-reduced-motion` sigue pasando, pero sin el acercamiento
@@ -34,16 +33,12 @@ import { Franjas } from '../../marca/franjas';
 export class Hero {
   readonly hero = input.required<Contenido['hero']>();
 
-  protected readonly Pause = Pause;
-  protected readonly Play = Play;
   protected readonly ChevronLeft = ChevronLeft;
   protected readonly ChevronRight = ChevronRight;
 
   protected readonly actual = signal(0);
   /** Cuenta los cambios: su paridad reinicia la animación de la barra de progreso. */
   protected readonly cambios = signal(0);
-  /** Pausa pedida con el botón: manda sobre todo lo demás. */
-  protected readonly pausaUsuario = signal(false);
   /** Foco de teclado dentro del carrusel. */
   private readonly enfocado = signal(false);
   private readonly pestanaVisible = signal(true);
@@ -54,7 +49,6 @@ export class Hero {
   /** ¿Está avanzando solo ahora mismo? */
   protected readonly corriendo = computed(() =>
     this.total() > 1 &&
-    !this.pausaUsuario() &&
     !this.enfocado() &&
     this.pestanaVisible()
   );
@@ -63,7 +57,7 @@ export class Hero {
   private readonly destruir = inject(DestroyRef);
 
   constructor() {
-    // Un temporizador por diapositiva: al cambiar de diapositiva o al pausar,
+    // Un temporizador por diapositiva: al cambiar de diapositiva o al detenerse,
     // el anterior se cancela y la cuenta vuelve a empezar.
     effect(onCleanup => {
       if (!this.corriendo()) {
@@ -102,10 +96,6 @@ export class Hero {
 
   protected anterior() {
     this.ir(this.actual() - 1);
-  }
-
-  protected alternarPausa() {
-    this.pausaUsuario.update(p => !p);
   }
 
   /** Solo el foco de teclado pausa: un clic en una flecha no detiene el carrusel. */
