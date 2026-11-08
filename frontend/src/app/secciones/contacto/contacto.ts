@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { CircleAlert, CircleCheck, LucideAngularModule, Send } from 'lucide-angular';
 
 import { Contenido, enlaceWhatsapp, esDato } from '../../../../comun/contenido';
+import { environment } from '../../../../comun/environments/environment';
 import { Aparecer } from '../../marca/aparecer';
+import { FondoVivo } from '../../marca/fondo-vivo';
 import { Franjas } from '../../marca/franjas';
 import { Icono } from '../../marca/icono';
 import { TituloSeccion } from '../../marca/titulo-seccion';
@@ -11,9 +15,9 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
 type Campo = 'nombre' | 'empresa' | 'correo' | 'telefono' | 'mensaje';
 
 /**
- * Contacto. Los mensajes van por WhatsApp: el formulario valida los datos y
- * abre WhatsApp con el mensaje ya escrito, listo para enviar. No pasa por
- * ningún servidor ni se guarda en ninguna parte.
+ * Contacto. El formulario valida los datos, guarda el mensaje para atenderlo
+ * en el CRM y abre WhatsApp con el mensaje ya escrito, listo para enviar. Si el
+ * servidor falla, WhatsApp abre igual: la persona no pierde su mensaje.
  *
  * Al lado, los datos de contacto que estén configurados en
  * `contenido.json`. Lo que diga PENDIENTE se muestra como pendiente y no se
@@ -22,7 +26,7 @@ type Campo = 'nombre' | 'empresa' | 'correo' | 'telefono' | 'mensaje';
 @Component({
   selector: 'mt-contacto',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, LucideAngularModule, Aparecer, Franjas, Icono, TituloSeccion],
+  imports: [ReactiveFormsModule, LucideAngularModule, Aparecer, FondoVivo, Franjas, Icono, TituloSeccion],
   templateUrl: './contacto.html',
   styleUrl: './contacto.css'
 })
@@ -36,6 +40,22 @@ export class Contacto {
 
   protected readonly esDato = esDato;
 
+  /**
+   * Mapa de Google con la dirección real. Solo aparece cuando `direccion` deja
+   * de decir PENDIENTE, para no ubicar a la empresa en un lugar inventado.
+   */
+  protected readonly mapa = computed(() => {
+    const { direccion, ciudad } = this.contacto();
+    if (!esDato(direccion)) return null;
+    const lugar = encodeURIComponent(`${direccion}, ${ciudad}, Colombia`);
+    return {
+      incrustado: this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.google.com/maps?q=${lugar}&output=embed`),
+      enlace: `https://www.google.com/maps/search/?api=1&query=${lugar}`
+    };
+  });
+
+  private readonly http = inject(HttpClient);
+  private readonly sanitizer = inject(DomSanitizer);
   private readonly fb = inject(FormBuilder);
 
   protected readonly formulario = this.fb.nonNullable.group({
@@ -126,6 +146,7 @@ export class Contacto {
     if (!enlace) {
       return;
     }
+    this.http.post(`${environment.apiUrl}/contacto.php?control=enviar`, v).subscribe({ error: () => undefined });
     window.open(enlace, '_blank', 'noopener');
     this.enviado.set(true);
   }

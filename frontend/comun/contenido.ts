@@ -1,13 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { signal } from '@angular/core';
+import { catchError, forkJoin, of, timeout } from 'rxjs';
+
+import { environment } from './environments/environment';
 
 /**
  * El contenido de la página.
  *
- * Todo el texto vive en `public/contenido.json`, separado de los
- * componentes: se edita ese archivo, se sube al servidor y la página cambia
- * sin recompilar. Aquí solo están su forma (para que el compilador avise si
- * un componente lee un campo que no existe) y la carga.
+ * Los valores de fábrica viven en `public/contenido.json` y lo que se edite en
+ * el CRM (módulo Página web) queda en la base: sus secciones reemplazan a las
+ * del archivo, sin recompilar. Si el servidor no responde, la página sale con
+ * el archivo. Aquí están su forma (para que el compilador avise si un
+ * componente lee un campo que no existe) y la carga.
  *
  * `ejemplo: true` en una sección hace que la página muestre la marca
  * CONTENIDO DE EJEMPLO. Lo que dice PENDIENTE es un dato que la empresa no
@@ -23,6 +27,8 @@ export interface ItemIcono {
   icono: string;
   titulo: string;
   texto?: string;
+  /** Foto opcional: ruta sin medida ni extensión, se arman `-960.webp` y `-1920.webp`. */
+  imagen?: string;
 }
 
 export interface Imagen {
@@ -49,6 +55,23 @@ export interface Red {
   url: string;
 }
 
+export interface Testimonio {
+  cita: string;
+  nombre: string;
+  cargo?: string;
+}
+
+export interface Articulo {
+  titulo: string;
+  categoria: string;
+  fecha: string;
+  lectura: string;
+  /** Ruta sin medida ni extensión: se arma `-960.webp`. */
+  imagen: string;
+  resumen: string;
+  parrafos: string[];
+}
+
 export interface Contenido {
   marca: {
     nombre: string;
@@ -59,6 +82,7 @@ export interface Contenido {
     ciudad: string;
   };
   navegacion: Enlace[];
+  /** Anuncio emergente al entrar. `activo: false` lo apaga sin borrar el texto. */
   hero: {
     /** Milisegundos entre diapositivas. */
     intervalo: number;
@@ -76,20 +100,38 @@ export interface Contenido {
     ejemplo?: boolean;
     titulo: string;
     entradilla: string;
-    items: ItemIcono[];
+    /** Tipos de servicio (acreditados, con trazabilidad, calificaciones). */
+    categorias: ItemIcono[];
+    /** Magnitudes que se miden, con ejemplos de equipos en `texto`. */
+    tituloMagnitudes: string;
+    magnitudes: ItemIcono[];
   };
   proceso: {
     ejemplo?: boolean;
     titulo: string;
     lema: string;
     entradilla: string;
-    pasos: { titulo: string; texto: string }[];
+    /** Foto de fondo, difuminada: ruta sin medida ni extensión. */
+    imagen?: string;
+    pasos: { icono?: string; titulo: string; texto: string }[];
   };
   valores: {
     titulo: string;
     entradilla: string;
     central: ItemIcono;
     items: ItemIcono[];
+  };
+  testimonios: {
+    ejemplo?: boolean;
+    titulo: string;
+    entradilla?: string;
+    testimonios: Testimonio[];
+  };
+  blog: {
+    ejemplo?: boolean;
+    titulo: string;
+    entradilla?: string;
+    articulos: Articulo[];
   };
   identidad: {
     visible: boolean;
@@ -146,17 +188,26 @@ export const CONTENIDO_FALLO = signal(false);
  * Nunca rechaza: si el archivo falla, la página abre igual y avisa.
  */
 export function cargarContenido(http: HttpClient): Promise<void> {
+  const archivo = http.get<Contenido>('contenido.json').pipe(
+    catchError(e => {
+      console.error('[MetroTech] No se pudo leer contenido.json', e);
+      return of(null);
+    })
+  );
+  const base = http
+    .get<{ contenido: Partial<Contenido> | null }>(`${environment.apiUrl}/sitio.php?control=contenido`)
+    .pipe(
+      timeout(2500),
+      catchError(() => of({ contenido: null }))
+    );
   return new Promise(listo => {
-    http.get<Contenido>('contenido.json').subscribe({
-      next: c => {
-        CONTENIDO.set(c);
-        listo();
-      },
-      error: e => {
-        console.error('[MetroTech] No se pudo leer contenido.json', e);
+    forkJoin([archivo, base]).subscribe(([c, b]) => {
+      if (c || b.contenido) {
+        CONTENIDO.set({ ...c, ...b.contenido } as Contenido);
+      } else {
         CONTENIDO_FALLO.set(true);
-        listo();
       }
+      listo();
     });
   });
 }

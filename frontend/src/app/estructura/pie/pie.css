@@ -10,6 +10,11 @@
   z-index: var(--z-contenido);
 }
 
+.pie > .contenedor {
+  position: relative;
+  z-index: var(--z-contenido);
+}
+
 .pie__rejilla {
   display: grid;
   gap: var(--e-10);
@@ -90,12 +95,24 @@
   gap: var(--e-2) !important;
 }
 
+.redes {
+  margin-top: var(--e-6) !important;
+}
+
 .redes a {
   justify-content: center;
   width: var(--alto-control);
   height: var(--alto-control);
-  border: var(--linea-fina) solid var(--borde);
-  border-radius: var(--r-2);
+  color: var(--texto);
+  border: var(--linea-fina) solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--r-redondo);
+  transition: color var(--dur-rapida) var(--curva), border-color var(--dur-rapida) var(--curva), background-color var(--dur-rapida) var(--curva);
+}
+
+.redes a:hover {
+  color: var(--azul-oscuro);
+  background: var(--celeste);
+  border-color: var(--celeste);
 }
 
 .pie__base {

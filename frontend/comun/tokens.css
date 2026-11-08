@@ -135,7 +135,7 @@
   /* ------------------------------------------------------------ objetivos */
 
   --alto-control: 48px;     /* botones y campos: objetivo táctil holgado */
-  --alto-cabecera: 72px;
+  --alto-cabecera: 80px;     /* más gruesa a pedido del cliente; en escritorio, 104 px (abajo) */
   --foco-ancho: 2px;
   --foco-separacion: 2px;
 
@@ -310,4 +310,12 @@
   --error-fondo: var(--rojo-estado-fondo);
 
   color-scheme: light;
+}
+
+/* Cabecera más gruesa en escritorio para que el logo luzca más grande
+   (pedido del cliente, reunión del 24 de octubre de 2026). */
+@media (min-width: 900px) {
+  :root {
+    --alto-cabecera: 104px;
+  }
 }

@@ -1,8 +1,8 @@
 <header class="cabecera" data-theme="light" [class.con-sombra]="conSombra()">
   <div class="contenedor cabecera__fila">
     <a class="cabecera__logo" href="#inicio" aria-label="MetroTech, ir al inicio" (click)="cerrar()">
-      <mt-logo class="solo-movil" variante="monograma" [alto]="32" [decorativo]="true" [reserva]="false" [prioritario]="true" />
-      <mt-logo class="solo-escritorio" variante="color" [alto]="52" [decorativo]="true" [reserva]="false" [prioritario]="true" />
+      <mt-logo class="solo-movil" variante="monograma" [alto]="44" [decorativo]="true" [reserva]="false" [prioritario]="true" />
+      <mt-logo class="solo-escritorio" variante="color" [alto]="68" [decorativo]="true" [reserva]="false" [prioritario]="true" />
     </a>
 
     <nav class="cabecera__nav" aria-label="Secciones de la página">
@@ -15,9 +15,19 @@
           }
         }
       </ul>
+      <a class="boton boton--primario cabecera__accion" [href]="'#' + accion().ancla">{{ accion().texto }}</a>
     </nav>
 
-    <a class="boton boton--primario cabecera__accion" [href]="'#' + accion().ancla">{{ accion().texto }}</a>
+    <ul class="cabecera__redes" role="list">
+      @for (r of redes(); track r.red) {
+        <li>
+          <a [href]="r.enlace" [attr.target]="r.externo ? '_blank' : null" [attr.rel]="r.externo ? 'noopener' : null"
+            [attr.aria-label]="r.nombre + ' de MetroTech'" [attr.title]="r.externo ? r.nombre : r.nombre + ' (próximamente)'">
+            <lucide-icon [img]="r.icono" [size]="18" aria-hidden="true" />
+          </a>
+        </li>
+      }
+    </ul>
 
     <button
       type="button"
@@ -40,6 +50,14 @@
       }
       <li class="menu-movil__accion">
         <a class="boton boton--primario boton--ancho" [href]="'#' + accion().ancla" (click)="cerrar()">{{ accion().texto }}</a>
+      </li>
+      <li class="menu-movil__redes">
+        @for (r of redes(); track r.red) {
+          <a [href]="r.enlace" [attr.target]="r.externo ? '_blank' : null" [attr.rel]="r.externo ? 'noopener' : null"
+            (click)="cerrar()" [attr.aria-label]="r.nombre + ' de MetroTech'">
+            <lucide-icon [img]="r.icono" [size]="18" aria-hidden="true" />
+          </a>
+        }
       </li>
     </ul>
   </nav>

@@ -7,6 +7,23 @@
 
 /* La página es zona clara (<html data-theme="light">). Las zonas de tinte y
    oscuras se declaran en su <section>. */
+/* El touchpad no empuja la página más allá de sus bordes: sin este freno se ve
+   una franja blanca al llegar arriba o abajo, o se mueve de lado. En pantallas
+   táctiles se deja el gesto vertical, que es el de recargar. */
+html,
+body {
+  overscroll-behavior-x: none;
+}
+body {
+  overflow-x: clip;
+}
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+}
+
 html { background: var(--fondo); }
 
 body { min-height: 100dvh; }

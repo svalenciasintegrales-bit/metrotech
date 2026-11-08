@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Contenido } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
+import { FondoVivo } from '../../marca/fondo-vivo';
 import { Icono } from '../../marca/icono';
 import { Regla } from '../../marca/regla';
 import { TituloSeccion } from '../../marca/titulo-seccion';
@@ -14,7 +15,7 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
 @Component({
   selector: 'mt-valores',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Aparecer, Icono, Regla, TituloSeccion],
+  imports: [Aparecer, FondoVivo, Icono, Regla, TituloSeccion],
   template: `
     <section id="valores" class="seccion" data-theme="light" aria-labelledby="valores-titulo">
       <div class="contenedor">
@@ -22,6 +23,11 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
 
         <div class="valores">
           <div class="central" data-theme="dark" mtAparecer>
+            @if (valores().central.imagen; as img) {
+              <img class="central__foto" [src]="img + '-960.webp'" alt="" loading="lazy" decoding="async" width="960" height="540" />
+              <span class="central__velo" aria-hidden="true"></span>
+            }
+            <mt-fondo-vivo [densidad]="0.6" />
             <mt-regla class="central__regla" orientacion="vertical" [largo]="14" />
             <span class="icono-marca central__icono"><mt-icono [nombre]="valores().central.icono" [tamano]="32" /></span>
             <p class="t-etiqueta central__etiqueta">VALOR CENTRAL</p>
@@ -59,10 +65,31 @@ import { TituloSeccion } from '../../marca/titulo-seccion';
       flex-direction: column;
       justify-content: flex-end;
       gap: var(--e-4);
-      min-height: 280px;
+      min-height: 360px;
       padding: var(--e-8) var(--e-8) var(--e-8) var(--e-12);
+      background: var(--fondo);
       border-radius: var(--r-3);
       overflow: hidden;
+    }
+
+    .central > :not(.central__foto, .central__velo, mt-fondo-vivo) {
+      position: relative;
+      z-index: var(--z-contenido);
+    }
+
+    .central__foto {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Velo azul: la foto se ve arriba y el texto se lee abajo. */
+    .central__velo {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(14, 34, 51, 0.35) 0%, rgba(14, 34, 51, 0.92) 70%);
     }
 
     .central .central__regla {

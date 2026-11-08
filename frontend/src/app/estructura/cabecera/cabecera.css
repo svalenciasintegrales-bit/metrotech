@@ -36,6 +36,8 @@
   display: none;
 }
 
+.cabecera__accion { white-space: nowrap; }
+
 .cabecera__nav ul {
   display: flex;
   gap: var(--e-1);
@@ -43,7 +45,7 @@
   padding: 0;
 }
 
-.cabecera__nav a {
+.cabecera__nav li a {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -53,11 +55,12 @@
   font-weight: var(--peso-semibold);
   color: var(--texto);
   text-decoration: none;
+  white-space: nowrap;
   border-radius: var(--r-2);
 }
 
 /* La sección activa: una línea celeste abajo, con su rombo, como la T. */
-.cabecera__nav a::after {
+.cabecera__nav li a::after {
   content: '';
   position: absolute;
   left: var(--e-3);
@@ -70,8 +73,8 @@
   transition: transform var(--dur-media) var(--curva);
 }
 
-.cabecera__nav a:hover::after,
-.cabecera__nav a[aria-current='true']::after {
+.cabecera__nav li a:hover::after,
+.cabecera__nav li a[aria-current='true']::after {
   transform: scaleX(1);
 }
 
@@ -147,4 +150,72 @@
 @media (min-width: 900px) {
   .cabecera__menu,
   .menu-movil { display: none; }
+}
+
+/* ------------------------------------------------------------ redes */
+
+.cabecera__redes {
+  display: none;
+  gap: var(--e-1);
+  margin: 0;
+  padding: 0;
+}
+
+.cabecera__redes a,
+.menu-movil__redes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--e-10);
+  height: var(--e-10);
+  color: var(--texto);
+  border: var(--linea-fina) solid var(--borde);
+  border-radius: var(--r-redondo);
+  transition: color var(--dur-rapida) var(--curva), border-color var(--dur-rapida) var(--curva);
+}
+
+.cabecera__redes a:hover,
+.menu-movil__redes a:hover {
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+.menu-movil__redes {
+  display: flex;
+  justify-content: center;
+  gap: var(--e-3);
+  padding-top: var(--e-6);
+}
+
+/* Escritorio: logo a la izquierda; al centro el menú con el botón a su
+   lado; las redes de último, a la derecha. */
+@media (min-width: 900px) {
+  .cabecera__logo { margin-right: 0; }
+  .cabecera__nav { flex: 1; display: flex; align-items: center; justify-content: center; gap: var(--e-6); }
+}
+
+/* Entre tableta y escritorio el menú se aprieta; en lo más angosto el botón se
+   va, porque Contacto sigue en el menú. */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .cabecera__nav ul { gap: 0; }
+  .cabecera__nav li a { padding-inline: var(--e-2); }
+}
+
+@media (min-width: 900px) and (max-width: 1099px) {
+  .cabecera__accion { display: none; }
+}
+
+@media (min-width: 1200px) {
+  .cabecera__redes { display: flex; }
+}
+
+/* Con espacio de sobra, el menú va al centro exacto de la página. */
+@media (min-width: 1700px) {
+  .cabecera__fila { position: relative; }
+  .cabecera__nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .cabecera__redes { margin-left: auto; }
 }

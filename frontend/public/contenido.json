@@ -35,6 +35,10 @@
       "texto": "Por qué MetroTech"
     },
     {
+      "ancla": "blog",
+      "texto": "Blog"
+    },
+    {
       "ancla": "contacto",
       "texto": "Contacto"
     }
@@ -83,7 +87,7 @@
   },
   "nosotros": {
     "titulo": "Quiénes somos",
-    "entradilla": "MetroTech es la marca de soluciones tecnológicas para empresas de Salazar Arias Company, en Pereira.",
+    "entradilla": "MetroTech es la marca de metrología y soluciones tecnológicas de Salazar Arias Company, en Pereira.",
     "parrafos": [
       "Nuestro propósito es transformar datos en decisiones confiables. Por eso nuestro símbolo une una regla de medición con una línea de nodos conectados: estructura, progreso y conectividad en una sola forma.",
       "Medimos con precisión, conectamos la información y construimos sobre una estructura sólida, para que cada decisión de tu operación se apoye en datos que puedes creer."
@@ -107,39 +111,66 @@
     ]
   },
   "servicios": {
+    "_nota": "Servicios de metrología según lo que pidió el cliente en la reunión del 24 de octubre de 2026 (referencias: Celsius y CONAMET). Las categorías y magnitudes son las que nombró; los equipos de cada magnitud son ejemplos habituales. Confirmar con la empresa cuáles presta, cuáles están acreditados ante ONAC y el código de acreditación antes de quitar \"ejemplo\".",
     "ejemplo": true,
-    "titulo": "Soluciones",
-    "entradilla": "PENDIENTE: una línea que resuma qué resuelve MetroTech para las empresas.",
-    "items": [
-      {
-        "icono": "red",
-        "titulo": "Servicio de ejemplo 1",
-        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
-      },
-      {
-        "icono": "analitica",
-        "titulo": "Servicio de ejemplo 2",
-        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
-      },
-      {
-        "icono": "datos",
-        "titulo": "Servicio de ejemplo 3",
-        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
-      },
-      {
-        "icono": "servidor",
-        "titulo": "Servicio de ejemplo 4",
-        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
-      },
+    "titulo": "Servicios de metrología",
+    "entradilla": "Calibramos, verificamos y validamos los equipos de tu operación para que cada medición sea confiable.",
+    "categorias": [
       {
         "icono": "seguridad",
-        "titulo": "Servicio de ejemplo 5",
-        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+        "titulo": "Servicios acreditados",
+        "texto": "Calibraciones bajo la norma ISO/IEC 17025:2017, con certificado reconocido por las entidades de control.",
+        "imagen": "img/hero/foto-precision"
       },
       {
-        "icono": "rendimiento",
-        "titulo": "Servicio de ejemplo 6",
-        "texto": "PENDIENTE: descripción real del servicio en una o dos líneas."
+        "icono": "integracion",
+        "titulo": "Servicios con trazabilidad",
+        "texto": "Mediciones referidas a patrones nacionales e internacionales, con certificado y trazabilidad documentada.",
+        "imagen": "img/hero/foto-integracion"
+      },
+      {
+        "icono": "precision",
+        "titulo": "Validaciones y calificaciones",
+        "texto": "Calificación de instalación, operación y desempeño de equipos y procesos críticos.",
+        "imagen": "img/hero/foto-estructura"
+      }
+    ],
+    "tituloMagnitudes": "Magnitudes que medimos",
+    "magnitudes": [
+      {
+        "icono": "longitud",
+        "titulo": "Longitud",
+        "texto": "Pies de rey, micrómetros, comparadores de carátula y cintas métricas."
+      },
+      {
+        "icono": "volumen",
+        "titulo": "Volumen",
+        "texto": "Pipetas, micropipetas y material volumétrico de laboratorio."
+      },
+      {
+        "icono": "temperatura",
+        "titulo": "Temperatura",
+        "texto": "Termómetros, termohigrómetros, registradores de datos e incubadoras."
+      },
+      {
+        "icono": "flujo",
+        "titulo": "Flujo",
+        "texto": "Flujómetros, bombas de infusión y equipos de gases medicinales."
+      },
+      {
+        "icono": "potencia",
+        "titulo": "Potencia",
+        "texto": "Analizadores de seguridad eléctrica, electrobisturíes y desfibriladores."
+      },
+      {
+        "icono": "torque",
+        "titulo": "Torque",
+        "texto": "Torquímetros y herramientas de apriete controlado."
+      },
+      {
+        "icono": "tiempo",
+        "titulo": "Tiempo y frecuencia",
+        "texto": "Cronómetros, tacómetros, centrífugas y temporizadores."
       }
     ]
   },
@@ -147,32 +178,44 @@
     "ejemplo": true,
     "titulo": "Cómo trabajamos",
     "lema": "Sistema que conecta todo",
-    "entradilla": "PENDIENTE: confirmar los pasos reales con los que MetroTech acompaña a un cliente.",
+    "entradilla": "Así acompañamos a cada cliente, desde la cotización hasta la próxima calibración.",
+    "imagen": "img/hero/foto-precision",
     "pasos": [
       {
-        "titulo": "Paso de ejemplo 1",
-        "texto": "PENDIENTE: qué pasa en este paso."
+        "icono": "cotizacion",
+        "titulo": "Cotización",
+        "texto": "Revisamos tus equipos y definimos desde el inicio qué se calibra, verifica o valida."
       },
       {
-        "titulo": "Paso de ejemplo 2",
-        "texto": "PENDIENTE: qué pasa en este paso."
+        "icono": "programacion",
+        "titulo": "Programación",
+        "texto": "Acordamos la visita en sitio o la recepción de los equipos en el laboratorio."
       },
       {
-        "titulo": "Paso de ejemplo 3",
-        "texto": "PENDIENTE: qué pasa en este paso."
+        "icono": "rendimiento",
+        "titulo": "Calibración",
+        "texto": "Medimos contra patrones trazables y registramos cada resultado."
       },
       {
-        "titulo": "Paso de ejemplo 4",
-        "texto": "PENDIENTE: qué pasa en este paso."
+        "icono": "certificado",
+        "titulo": "Certificado",
+        "texto": "Entregamos el certificado y actualizamos la hoja de vida de cada equipo."
+      },
+      {
+        "icono": "seguimiento",
+        "titulo": "Seguimiento",
+        "texto": "Te recordamos la próxima calibración según tu cronograma."
       }
-    ]
+    ],
+    "_nota": "Pasos basados en lo que contó el cliente en la reunión del 24 de octubre de 2026 (cotización al inicio, hojas de vida, cronogramas). Confirmar con la empresa antes de quitar \"ejemplo\"."
   },
   "valores": {
     "titulo": "Por qué MetroTech",
     "entradilla": "Los valores y la cultura que nos definen como empresa.",
     "central": {
       "icono": "familia",
-      "titulo": "Familia como valor central"
+      "titulo": "Familia como valor central",
+      "imagen": "img/hero/foto-equipo"
     },
     "items": [
       {
@@ -198,6 +241,72 @@
       {
         "icono": "empatia",
         "titulo": "Profesionalismo con empatía"
+      }
+    ]
+  },
+  "testimonios": {
+    "ejemplo": true,
+    "titulo": "Lo que dicen nuestros clientes",
+    "entradilla": "Empresas que ya confían en MetroTech para medir, integrar y decidir.",
+    "testimonios": [
+      {
+        "cita": "Aquí va lo que cuenta el primer cliente de su experiencia con MetroTech. Cámbialo por un testimonio real, con la autorización de la persona.",
+        "nombre": "Nombre del cliente",
+        "cargo": "Cargo · Empresa"
+      },
+      {
+        "cita": "Aquí va lo que cuenta el segundo cliente: qué problema tenía, qué hizo MetroTech y qué cambió en su operación.",
+        "nombre": "Otro cliente",
+        "cargo": "Cargo · Empresa"
+      },
+      {
+        "cita": "Aquí va lo que cuenta el tercer cliente. Mientras esta sección tenga la marca de ejemplo, nadie la confunde con información real.",
+        "nombre": "Un cliente más",
+        "cargo": "Cargo · Empresa"
+      }
+    ]
+  },
+  "blog": {
+    "ejemplo": true,
+    "titulo": "Ideas para medir mejor",
+    "entradilla": "Conceptos claros sobre metrología y tecnología para tomar mejores decisiones.",
+    "articulos": [
+      {
+        "titulo": "¿Qué es calibrar un equipo y por qué importa?",
+        "categoria": "Metrología",
+        "fecha": "Noviembre de 2026",
+        "lectura": "3 min",
+        "imagen": "img/hero/foto-precision",
+        "resumen": "Un instrumento puede encender y funcionar, y aun así medir mal. Calibrar es la forma de saberlo.",
+        "parrafos": [
+          "Calibrar es comparar lo que indica un instrumento con un patrón de referencia conocido, en condiciones controladas. El resultado dice cuánto se desvía y con qué incertidumbre.",
+          "Los equipos se desvían con el uso, el tiempo y las condiciones del lugar. Sin calibración, esa diferencia pasa inadvertida hasta que aparece en un producto, un proceso o una auditoría.",
+          "Calibrar no es lo mismo que ajustar: calibrar es medir la diferencia; ajustar es intervenir el equipo para reducirla. Después de un ajuste, se vuelve a calibrar."
+        ]
+      },
+      {
+        "titulo": "Trazabilidad: la cadena detrás de una medición",
+        "categoria": "Metrología",
+        "fecha": "Octubre de 2026",
+        "lectura": "2 min",
+        "imagen": "img/hero/foto-estructura",
+        "resumen": "Una medición confiable se puede relacionar con una referencia reconocida, paso a paso.",
+        "parrafos": [
+          "La trazabilidad es la propiedad de un resultado de medición de poder relacionarse con una referencia mediante una cadena documentada e ininterrumpida de calibraciones.",
+          "Cada eslabón aporta su incertidumbre, por eso importa quién calibra, con qué patrones y cómo lo documenta. Un certificado sin esa información dice muy poco."
+        ]
+      },
+      {
+        "titulo": "Datos dispersos, decisiones lentas",
+        "categoria": "Tecnología",
+        "fecha": "Septiembre de 2026",
+        "lectura": "2 min",
+        "imagen": "img/hero/foto-integracion",
+        "resumen": "Cuando cada área guarda su información por separado, cuesta ver el panorama completo.",
+        "parrafos": [
+          "Hojas de cálculo, correos y sistemas que no se hablan entre sí hacen que la misma pregunta tenga varias respuestas distintas.",
+          "Integrar no siempre significa cambiarlo todo: suele empezar por acordar qué datos importan, quién los mantiene y dónde se consultan."
+        ]
       }
     ]
   },

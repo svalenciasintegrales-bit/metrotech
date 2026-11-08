@@ -3,9 +3,12 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { Meta, Title } from '@angular/platform-browser';
 
 import { CONTENIDO, CONTENIDO_FALLO } from '../../../comun/contenido';
+import { AnuncioEmergente } from '../estructura/anuncio';
 import { Cabecera } from '../estructura/cabecera/cabecera';
+import { Intro } from '../estructura/intro';
 import { Pie } from '../estructura/pie/pie';
 import { WhatsappFlotante } from '../estructura/whatsapp-flotante';
+import { Blog } from '../secciones/blog/blog';
 import { Contacto } from '../secciones/contacto/contacto';
 import { Hero } from '../secciones/hero/hero';
 import { Llamado } from '../secciones/llamado/llamado';
@@ -13,6 +16,7 @@ import { Nosotros } from '../secciones/nosotros/nosotros';
 import { Pilares } from '../secciones/pilares/pilares';
 import { Proceso } from '../secciones/proceso/proceso';
 import { Servicios } from '../secciones/servicios/servicios';
+import { Testimonios } from '../secciones/testimonios/testimonios';
 import { Valores } from '../secciones/valores/valores';
 
 /**
@@ -22,16 +26,17 @@ import { Valores } from '../secciones/valores/valores';
 @Component({
   selector: 'mt-pagina',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Cabecera, Pie, WhatsappFlotante, Contacto, Hero, Llamado, Nosotros, Pilares, Proceso, Servicios, Valores],
+  imports: [AnuncioEmergente, Intro, Cabecera, Pie, WhatsappFlotante, Contacto, Hero, Llamado, Nosotros, Pilares, Proceso, Servicios, Valores, Testimonios, Blog],
   template: `
     <a class="saltar" href="#contenido">Saltar al contenido</a>
 
     @if (contenido(); as c) {
-      <mt-cabecera [navegacion]="c.navegacion" [accion]="c.hero.accion" />
+      <mt-intro />
+      <mt-cabecera [navegacion]="c.navegacion" [accion]="c.hero.accion" [redes]="c.redes" />
 
       <main id="contenido" tabindex="-1">
         <mt-hero [hero]="c.hero" />
-        <mt-pilares [pilares]="c.nosotros.pilares" />
+        <mt-pilares [pilares]="c.nosotros.pilares" [concepto]="c.marca.concepto" />
         <mt-nosotros
           [nosotros]="c.nosotros"
           [marca]="c.marca"
@@ -40,11 +45,14 @@ import { Valores } from '../secciones/valores/valores';
         <mt-servicios [servicios]="c.servicios" />
         <mt-proceso [proceso]="c.proceso" />
         <mt-valores [valores]="c.valores" />
+        <mt-testimonios [testimonios]="c.testimonios" />
+        <mt-blog [blog]="c.blog" />
         <mt-llamado [llamado]="c.llamado" />
         <mt-contacto [contacto]="c.contacto" [marca]="c.marca" />
       </main>
 
       <mt-pie [contenido]="c" />
+      <mt-anuncio />
       <mt-whatsapp-flotante [numero]="c.contacto.whatsapp" [mensaje]="c.contacto.mensajeWhatsapp" />
     } @else if (fallo()) {
       <main id="contenido" class="contenedor fallo">

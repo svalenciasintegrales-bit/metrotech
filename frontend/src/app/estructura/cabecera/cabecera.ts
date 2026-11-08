@@ -1,9 +1,15 @@
 import {
   ChangeDetectionStrategy, Component, DestroyRef, afterNextRender, inject, input, signal
 } from '@angular/core';
-import { LucideAngularModule, Menu, X } from 'lucide-angular';
+import { Facebook, Instagram, Linkedin, LucideAngularModule, LucideIconData, Menu, X } from 'lucide-angular';
 
-import { Enlace } from '../../../../comun/contenido';
+import { Enlace, Red, esDato } from '../../../../comun/contenido';
+
+const ICONOS_RED: Record<string, LucideIconData> = {
+  linkedin: Linkedin,
+  instagram: Instagram,
+  facebook: Facebook
+};
 import { Logo } from '../../marca/logo';
 
 /**
@@ -27,6 +33,19 @@ import { Logo } from '../../marca/logo';
 export class Cabecera {
   readonly navegacion = input.required<Enlace[]>();
   readonly accion = input.required<Enlace>();
+  /** Redes en la cabecera: con URL real abren el perfil; sin ella, llevan a Contacto. */
+  readonly redes = input([], {
+    transform: (lista: Red[]) =>
+      lista
+        .filter(r => !!ICONOS_RED[r.red])
+        .map(r => ({
+          red: r.red,
+          nombre: r.nombre,
+          icono: ICONOS_RED[r.red],
+          externo: esDato(r.url),
+          enlace: esDato(r.url) ? r.url : '#contacto'
+        }))
+  });
 
   protected readonly abierto = signal(false);
   protected readonly activa = signal<string | null>(null);

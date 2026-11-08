@@ -1,14 +1,25 @@
 <section id="contacto" class="seccion" data-theme="light" aria-labelledby="contacto-titulo">
   <mt-franjas esquina="inferior-derecha" ancho="clamp(200px, 30vw, 420px)" [nodo]="true" />
 
-  <div class="contenedor contacto">
-    <div class="contacto__datos" mtAparecer>
-      <mt-titulo-seccion
-        idTitulo="contacto-titulo"
-        [titulo]="contacto().titulo"
-        [entradilla]="contacto().entradilla"
-        [ejemplo]="contacto().ejemplo"
-      />
+  <div class="contenedor">
+    <mt-titulo-seccion
+      idTitulo="contacto-titulo"
+      [titulo]="contacto().titulo"
+      [entradilla]="contacto().entradilla"
+      [ejemplo]="contacto().ejemplo"
+    />
+
+  <!-- Una sola tarjeta: panel oscuro con foto y fondo vivo a la izquierda, formulario a la derecha. -->
+  <div class="contacto" mtAparecer [retraso]="80">
+    <div class="contacto__panel" data-theme="dark">
+      <img class="contacto__foto" src="img/hero/foto-equipo-960.webp"
+        srcset="img/hero/foto-equipo-960.webp 960w, img/hero/foto-equipo-1920.webp 1920w"
+        sizes="(min-width: 900px) 520px, 100vw" width="960" height="540" alt="" loading="lazy" decoding="async" />
+      <div class="contacto__velo" aria-hidden="true"></div>
+      <mt-fondo-vivo [densidad]="0.7" />
+
+      <div class="contacto__contenido">
+      <p class="contacto__lema">Hablemos de tu operación</p>
 
       <ul class="datos" role="list">
         <li class="dato">
@@ -55,6 +66,8 @@
             <p class="t-pequeno t-secundario">{{ contacto().ciudad }}</p>
             @if (esDato(contacto().mapaUrl)) {
               <a class="t-pequeno" [href]="contacto().mapaUrl" target="_blank" rel="noopener">Ver en el mapa</a>
+            } @else if (mapa(); as m) {
+              <a class="t-pequeno" [href]="m.enlace" target="_blank" rel="noopener">Ver en el mapa</a>
             }
           </div>
         </li>
@@ -67,9 +80,18 @@
           </div>
         </li>
       </ul>
+
+      <!-- Ubicación en Google Maps (pedido del cliente): aparece con la dirección real. -->
+      @if (mapa(); as m) {
+        <div class="mapa">
+          <iframe [src]="m.incrustado" title="Ubicación de MetroTech en Google Maps" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      }
+      </div>
     </div>
 
-    <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate mtAparecer [retraso]="120"
+    <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate
       aria-labelledby="formulario-titulo">
       <div class="pila-2">
         <h3 id="formulario-titulo" class="t-h4">Escríbenos</h3>
@@ -160,5 +182,6 @@
         Enviar por WhatsApp
       </button>
     </form>
+  </div>
   </div>
 </section>

@@ -1,9 +1,9 @@
 import {
   ChangeDetectionStrategy, Component, DestroyRef, afterNextRender, computed, effect, inject, input, signal
 } from '@angular/core';
-import { ChevronLeft, ChevronRight, LucideAngularModule } from 'lucide-angular';
 
 import { Contenido } from '../../../../comun/contenido';
+import { FondoVivo } from '../../marca/fondo-vivo';
 import { Franjas } from '../../marca/franjas';
 
 /**
@@ -26,15 +26,12 @@ import { Franjas } from '../../marca/franjas';
 @Component({
   selector: 'mt-hero',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideAngularModule, Franjas],
+  imports: [FondoVivo, Franjas],
   templateUrl: './hero.html',
   styleUrl: './hero.css'
 })
 export class Hero {
   readonly hero = input.required<Contenido['hero']>();
-
-  protected readonly ChevronLeft = ChevronLeft;
-  protected readonly ChevronRight = ChevronRight;
 
   protected readonly actual = signal(0);
   /** Cuenta los cambios: su paridad reinicia la animación de la barra de progreso. */

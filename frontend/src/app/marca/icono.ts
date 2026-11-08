@@ -19,8 +19,12 @@ export const NOMBRES_ICONO = [
   'integracion', 'precision', 'estructura',
   // soluciones
   'red', 'analitica', 'datos', 'servidor', 'seguridad', 'rendimiento',
+  // magnitudes de metrología (pedidas por el cliente)
+  'longitud', 'volumen', 'temperatura', 'flujo', 'potencia', 'torque', 'tiempo',
   // valores
   'familia', 'perseverancia', 'responsabilidad', 'lealtad', 'integralidad', 'educacion', 'empatia',
+  // pasos del proceso
+  'cotizacion', 'programacion', 'certificado', 'seguimiento',
   // contacto
   'whatsapp', 'correo', 'telefono', 'direccion', 'horario'
 ] as const;
@@ -182,6 +186,88 @@ export type NombreIcono = (typeof NOMBRES_ICONO)[number];
           <path d="M16 16V9.5M16 16H21" />
           <rect class="n" x="14.5" y="14.5" width="3" height="3" />
           <path class="a" d="M22.5 13.5L25 16L22.5 18.5L20 16Z" />
+        }
+        @case ('longitud') {
+          <!-- Pie de rey: la regla con sus marcas y las dos mordazas. -->
+          <path d="M3 7H29V13H3Z" />
+          <path d="M7 7V10M11 7V9M15 7V10M19 7V9M23 7V10" />
+          <path d="M6 13V26H10V17M18 13V22H22V13" />
+          <path class="a" d="M26 16.5L29.5 20L26 23.5L22.5 20Z" />
+        }
+        @case ('volumen') {
+          <!-- Probeta graduada con su nivel en celeste. -->
+          <path d="M9 4H23M11 4V28H21V4" />
+          <path d="M11 10H15M11 14H17M11 18H15M11 22H17" />
+          <path class="at" d="M11 19H21" />
+          <path class="a" d="M16 22.5L18.5 25L16 27.5L13.5 25Z" />
+        }
+        @case ('temperatura') {
+          <!-- Termómetro de esquina viva: columna, bulbo y marcas de escala. -->
+          <path d="M13 4H19V18H13Z" />
+          <path d="M11 18H21V28H11Z" />
+          <path d="M19 8H23M19 12H22M19 16H23" />
+          <path class="at" d="M16 10V22" />
+          <path class="a" d="M16 20.5L18.5 23L16 25.5L13.5 23Z" />
+        }
+        @case ('flujo') {
+          <!-- Un conducto con el sentido del flujo hacia el rombo. -->
+          <path d="M3 11H21M3 21H21" />
+          <path d="M21 7L28 16L21 25" />
+          <path class="at" d="M6 16H17" />
+          <rect class="n" x="3" y="14.5" width="3" height="3" />
+          <path class="a" d="M17 13.5L19.5 16L17 18.5L14.5 16Z" />
+        }
+        @case ('potencia') {
+          <!-- El rayo, en trazo anguloso como la M. -->
+          <path d="M19 3L8 18H15L12 29L24 13H17Z" />
+          <rect class="n" x="24" y="24" width="4" height="4" />
+          <path class="a" d="M6 23.5L8.5 26L6 28.5L3.5 26Z" />
+        }
+        @case ('torque') {
+          <!-- Giro alrededor de un eje: el arco con su flecha y el tornillo al centro. -->
+          <path d="M26 16A10 10 0 1 1 16 6" />
+          <path d="M16 2L20 6L16 10" />
+          <path d="M12 12H20V20H12Z" />
+          <path class="a" d="M16 13.5L18.5 16L16 18.5L13.5 16Z" />
+        }
+        @case ('tiempo') {
+          <!-- Reloj con una onda: tiempo y frecuencia. -->
+          <circle cx="16" cy="13" r="9.5" />
+          <path d="M16 7V13H21" />
+          <path class="at" d="M4 27H8L10 24L13 30L16 25L18 27H28" />
+          <path class="a" d="M16 1.5L18.5 4L16 6.5L13.5 4Z" />
+        }
+        @case ('cotizacion') {
+          <!-- La hoja de la cotización con su rombo de aprobado. -->
+          <path d="M6 3H20L25 8V29H6Z" />
+          <path d="M20 3V8H25" />
+          <path d="M10 13H20M10 18H20M10 23H14" />
+          <path class="a" d="M23 19L27.5 23.5L23 28L18.5 23.5Z" />
+        }
+        @case ('programacion') {
+          <!-- Calendario: días como nodos y el día acordado en rombo. -->
+          <path d="M4 7H28V28H4Z" />
+          <path d="M4 12.5H28" />
+          <path d="M10 3.5V9M22 3.5V9" />
+          <rect class="n" x="8" y="16" width="4" height="4" />
+          <rect class="n" x="14" y="16" width="4" height="4" />
+          <rect class="n" x="8" y="22" width="4" height="4" />
+          <path class="a" d="M22 18.5L25.5 22L22 25.5L18.5 22Z" />
+        }
+        @case ('certificado') {
+          <!-- El certificado con su sello: el rombo y la cinta. -->
+          <path d="M4 5H28V21H4Z" />
+          <path d="M8 10H24M8 15H15" />
+          <path d="M19.5 22.5V29.5L22 27.5L24.5 29.5V22.5" />
+          <path class="a" d="M22 14L26 18L22 22L18 18Z" />
+        }
+        @case ('seguimiento') {
+          <!-- La vuelta del calendario: el arco que regresa y el reloj. -->
+          <path d="M27 16A11 11 0 1 1 23.8 8.2" />
+          <path d="M24.5 3V8.7H18.8" />
+          <path d="M16 10V16H21" />
+          <rect class="n" x="14" y="14" width="4" height="4" />
+          <path class="a" d="M27 12.5L30.5 16L27 19.5L23.5 16Z" />
         }
         @default {
           <path class="a" d="M16 8L24 16L16 24L8 16Z" />

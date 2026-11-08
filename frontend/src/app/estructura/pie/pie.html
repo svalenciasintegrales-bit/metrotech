@@ -1,4 +1,5 @@
 <footer class="pie" data-theme="dark">
+  <mt-fondo-vivo [intensidad]="0.8" />
   <mt-franjas esquina="inferior-derecha" ancho="clamp(180px, 26vw, 360px)" />
 
   <div class="contenedor pie__rejilla">
@@ -43,8 +44,9 @@
         <ul class="redes" role="list">
           @for (r of redes(); track r.red) {
             <li>
-              <a [href]="r.url" target="_blank" rel="noopener" [attr.aria-label]="r.nombre + ' de MetroTech'">
-                <lucide-icon [img]="r.icono" aria-hidden="true" />
+              <a [href]="r.enlace" [attr.target]="r.externo ? '_blank' : null" [attr.rel]="r.externo ? 'noopener' : null"
+                [attr.aria-label]="r.nombre + ' de MetroTech'" [attr.title]="r.externo ? r.nombre : r.nombre + ' (próximamente)'">
+                <lucide-icon [img]="r.icono" [size]="18" aria-hidden="true" />
               </a>
             </li>
           }

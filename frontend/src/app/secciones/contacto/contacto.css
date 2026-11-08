@@ -1,14 +1,65 @@
+/* La tarjeta de contacto: panel oscuro con foto + formulario, una sola pieza. */
 .contacto {
   display: grid;
-  gap: var(--e-12);
+  margin-top: var(--e-10);
+  overflow: hidden;
+  background: var(--superficie);
+  border: var(--linea-fina) solid var(--borde);
+  border-radius: var(--r-3);
+  box-shadow: var(--sombra-3);
 }
 
 @media (min-width: 900px) {
-  .contacto {
-    grid-template-columns: 5fr 7fr;
-    gap: var(--e-16);
-    align-items: start;
-  }
+  .contacto { grid-template-columns: 5fr 7fr; }
+}
+
+/* ------------------------------------------------------------ panel */
+
+.contacto__panel {
+  position: relative;
+  overflow: hidden;
+  background: var(--fondo);
+  color: var(--texto);
+  border-top: var(--linea-gruesa) solid var(--celeste);
+}
+
+.contacto__foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+}
+
+/* Velo azul oscuro: la foto se intuye, el texto siempre se lee. */
+.contacto__velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 34, 51, 0.95) 0%, rgba(14, 34, 51, 0.86) 55%, rgba(14, 34, 51, 0.45) 100%);
+}
+
+.contacto__contenido {
+  position: relative;
+  z-index: var(--z-contenido);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-6);
+  height: 100%;
+  padding: var(--e-8) var(--e-6);
+}
+
+@media (min-width: 900px) {
+  .contacto__contenido { padding: var(--e-12) var(--e-10); }
+}
+
+.contacto__lema {
+  margin: 0;
+  padding-left: var(--e-4);
+  border-left: var(--linea-media) solid var(--acento);
+  font-size: var(--t-h4);
+  font-weight: var(--peso-semibold);
+  line-height: 1.2;
 }
 
 /* ------------------------------------------------------------ datos */
@@ -50,12 +101,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--e-5);
-  padding: var(--e-6);
-  background: var(--superficie);
-  border: var(--linea-fina) solid var(--borde);
+  padding: var(--e-8) var(--e-6);
   border-top: var(--linea-gruesa) solid var(--acento);
-  border-radius: var(--r-3);
-  box-shadow: var(--sombra-2);
 }
 
 @media (min-width: 900px) {
@@ -69,4 +116,22 @@
 
 @media (min-width: 600px) {
   .campos-dobles { grid-template-columns: 1fr 1fr; }
+}
+
+/* Mapa de Google con la direccion real. */
+.mapa {
+  position: relative;
+  margin-top: auto;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: var(--linea-fina) solid var(--borde);
+  border-radius: var(--r-3);
+}
+
+.mapa iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

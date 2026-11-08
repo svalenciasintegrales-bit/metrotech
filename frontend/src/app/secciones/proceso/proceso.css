@@ -1,8 +1,40 @@
+.proceso {
+  position: relative;
+  overflow: hidden;
+}
+
+/* La foto del laboratorio, difuminada hacia la izquierda: se ve detrás de
+   los pasos sin competir con el texto. */
+.proceso__foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.32;
+  -webkit-mask-image: linear-gradient(90deg, transparent 10%, #000 75%);
+  mask-image: linear-gradient(90deg, transparent 10%, #000 75%);
+}
+
+.proceso__velo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 85% 30%, rgba(21, 141, 180, 0.18), transparent 70%),
+    linear-gradient(180deg, rgba(14, 34, 51, 0.2), rgba(14, 34, 51, 0.85));
+}
+
+.proceso > .contenedor {
+  position: relative;
+  z-index: var(--z-contenido);
+}
+
 .proceso__cabeza {
   display: flex;
   flex-direction: column;
-  gap: var(--e-2);
-  margin-bottom: var(--e-12);
+  gap: var(--e-6);
+  margin-bottom: var(--e-16);
 }
 
 @media (min-width: 900px) {
@@ -14,42 +46,95 @@
   }
 }
 
-/* El concepto en celeste: tamaño de título, AA para texto grande (4,25:1). */
+/* «05 pasos · Sistema que conecta todo»: el número grande, en contorno. */
 .proceso__lema {
-  font-size: var(--t-h3);
+  display: flex;
+  align-items: center;
+  gap: var(--e-4);
+  margin: 0;
+  font-size: var(--t-cuerpo);
   font-weight: var(--peso-semibold);
-  line-height: var(--i-subtitulo);
-  margin-bottom: var(--e-10);
+  color: var(--celeste);
+  white-space: nowrap;
 }
 
-.proceso__recorrido {
+.proceso__lema-numero {
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--celeste);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------ riel */
+
+.recorrido {
   position: relative;
 }
 
-/* ------------------------------------------------------------ línea */
-
-.proceso__recorrido .proceso__linea {
-  position: absolute;
-}
-
-/* Móvil: la línea baja por la izquierda, por el centro de los nodos. */
-.proceso__recorrido .proceso__linea--h { display: none; }
-
-.proceso__recorrido .proceso__linea--v {
-  left: -1px;
-  top: var(--e-2);
-  bottom: 0;
-  height: auto;
+.riel {
+  display: none;
 }
 
 @media (min-width: 900px) {
-  .proceso__recorrido .proceso__linea--v { display: none; }
+  .riel {
+    position: relative;
+    display: block;
+    height: 14px;
+    margin-bottom: var(--e-8);
+  }
 
-  .proceso__recorrido .proceso__linea--h {
-    display: flex;
-    top: -3px;
-    left: 0;
-    right: 0;
+  /* La línea base, de nodo a nodo. */
+  .riel::before,
+  .riel__lleno {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(100% / var(--pasos) / 2);
+    height: var(--linea-media);
+    transform: translateY(-50%);
+  }
+
+  .riel::before {
+    right: calc(100% / var(--pasos) / 2);
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  /* El tramo recorrido, hasta el paso activo. */
+  .riel__lleno {
+    width: calc((100% - 100% / var(--pasos)) * var(--activo) / (var(--pasos) - 1));
+    background: linear-gradient(90deg, rgba(21, 141, 180, 0.2), var(--celeste));
+    transition: width 0.9s var(--curva);
+  }
+
+  .riel__nodo {
+    position: absolute;
+    top: 50%;
+    left: calc(100% / var(--pasos) * (var(--i) + 0.5));
+    width: 12px;
+    height: 12px;
+    background: var(--fondo);
+    border: var(--linea-media) solid rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: border-color var(--dur-media) var(--curva), background-color var(--dur-media) var(--curva);
+  }
+
+  .riel__nodo.hecho {
+    background: var(--celeste);
+    border-color: var(--celeste);
+  }
+
+  /* El rombo de la T viaja en la punta del tramo recorrido. */
+  .riel__rombo {
+    position: absolute;
+    top: 50%;
+    left: calc(100% / var(--pasos) * (var(--activo) + 0.5));
+    width: 14px;
+    height: 14px;
+    background: var(--celeste);
+    box-shadow: 0 0 0 6px rgba(21, 141, 180, 0.25), 0 0 24px rgba(21, 141, 180, 0.8);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: left 0.9s var(--curva);
   }
 }
 
@@ -57,16 +142,19 @@
 
 .pasos {
   display: grid;
-  gap: var(--e-10);
+  gap: var(--e-4);
   margin: 0;
-  padding: 0 0 0 var(--e-10);
+  padding: 0;
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .pasos { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 900px) {
   .pasos {
-    grid-template-columns: repeat(var(--pasos, 4), 1fr);
-    gap: var(--e-8);
-    padding: var(--e-10) 0 0;
+    grid-template-columns: repeat(var(--pasos, 5), 1fr);
+    gap: var(--e-4);
   }
 }
 
@@ -75,31 +163,84 @@
   display: flex;
   flex-direction: column;
   gap: var(--e-3);
+  padding: var(--e-6) var(--e-5);
+  background: rgba(255, 255, 255, 0.04);
+  border: var(--linea-fina) solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-3);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition:
+    transform var(--dur-media) var(--curva),
+    background-color var(--dur-media) var(--curva),
+    border-color var(--dur-media) var(--curva),
+    box-shadow var(--dur-media) var(--curva);
 }
 
-/* El nodo de cada paso sobre la línea: un cuadro, como el inicio de la
-   línea en la M. */
-.paso__nodo {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: var(--fondo);
-  border: var(--linea-media) solid var(--acento);
-  left: calc(var(--e-10) * -1 - 2px);
-  top: var(--e-1);
+/* El paso activo se enciende: borde celeste, luz y un poco más arriba. */
+.paso.activo {
+  background: rgba(21, 141, 180, 0.14);
+  border-color: var(--celeste);
+  box-shadow: 0 18px 40px -18px rgba(21, 141, 180, 0.7);
 }
 
 @media (min-width: 900px) {
-  .paso__nodo {
-    left: 0;
-    top: calc(var(--e-10) * -1 - 4px);
-  }
+  .paso.activo { transform: translateY(calc(var(--e-2) * -1)); }
+}
+
+.paso__cabeza {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--e-2);
+}
+
+.paso__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  color: var(--celeste);
+  border: var(--linea-media) solid rgba(21, 141, 180, 0.6);
+  border-radius: var(--r-2);
+  transition: background-color var(--dur-media) var(--curva), color var(--dur-media) var(--curva);
+}
+
+.paso.activo .paso__icono,
+.paso.hecho .paso__icono {
+  --icono-acento: var(--blanco);
+  color: var(--azul-oscuro);
+  background: var(--celeste);
+  border-color: var(--celeste);
 }
 
 .paso__numero {
   font-size: var(--t-h2);
   font-weight: var(--peso-semibold);
   line-height: 1;
-  color: var(--acento);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
   font-variant-numeric: tabular-nums;
+  transition: -webkit-text-stroke-color var(--dur-media) var(--curva);
+}
+
+.paso.activo .paso__numero { -webkit-text-stroke-color: var(--celeste); }
+
+.paso__titulo {
+  margin: 0;
+  font-size: var(--t-h5);
+  font-weight: var(--peso-semibold);
+  color: var(--blanco);
+}
+
+.paso__texto {
+  margin: 0;
+  font-size: var(--t-pequeno);
+  color: var(--texto-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riel__lleno,
+  .riel__rombo,
+  .paso { transition: none; }
 }

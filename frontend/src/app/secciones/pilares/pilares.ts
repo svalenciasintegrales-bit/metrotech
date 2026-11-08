@@ -2,36 +2,48 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { ItemIcono } from '../../../../comun/contenido';
 import { Aparecer } from '../../marca/aparecer';
+import { FondoVivo } from '../../marca/fondo-vivo';
 import { Icono } from '../../marca/icono';
-import { LineaNodos } from '../../marca/linea-nodos';
 
 /**
- * Los tres pilares —integración, precisión, estructura— en tarjetas que se
- * montan sobre el borde inferior del héroe. En escritorio quedan unidas por
- * la línea con nodos: el «sistema que conecta todo».
+ * Los tres pilares como la fórmula de la marca:
+ * integración + precisión + estructura = sistema que conecta todo.
+ * Una sola pieza bajo el banner del inicio, con la regla de la M arriba;
+ * los signos van en el cuadro de nodo del monograma y el resultado, en azul
+ * oscuro con el fondo en movimiento. En móvil la fórmula se lee hacia abajo.
  */
 @Component({
   selector: 'mt-pilares',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Aparecer, Icono, LineaNodos],
+  imports: [Aparecer, FondoVivo, Icono],
   template: `
     <section class="pilares" aria-label="Integración, precisión y estructura">
       <div class="contenedor">
-        <ol class="pilares__lista" role="list">
-          @for (p of pilares(); track p.titulo; let i = $index) {
-            <li class="pilar" mtAparecer [retraso]="i * 120">
-              <div class="pilar__cabeza">
-                <span class="icono-marca pilar__icono"><mt-icono [nombre]="p.icono" /></span>
-                <span class="pilar__numero" aria-hidden="true">{{ '0' + (i + 1) }}</span>
-              </div>
-              <h2 class="t-h4">{{ p.titulo }}</h2>
-              @if (p.texto) {
-                <p class="t-secundario">{{ p.texto }}</p>
-              }
-              <mt-linea-nodos class="pilar__linea" [animar]="true" />
-            </li>
-          }
-        </ol>
+        <div class="formula" mtAparecer>
+          <span class="formula__regla" aria-hidden="true"></span>
+
+          <ol class="formula__terminos" role="list">
+            @for (p of pilares(); track p.titulo; let ultimo = $last) {
+              <li class="termino">
+                <span class="termino__icono"><mt-icono [nombre]="p.icono" [tamano]="34" /></span>
+                <div>
+                  <h2 class="termino__titulo">{{ p.titulo }}</h2>
+                  @if (p.texto) {
+                    <p class="termino__texto">{{ p.texto }}</p>
+                  }
+                </div>
+                <span class="signo" [class.signo--igual]="ultimo" aria-hidden="true">{{ ultimo ? '=' : '+' }}</span>
+              </li>
+            }
+          </ol>
+
+          <div class="resultado" data-theme="dark">
+            <mt-fondo-vivo [densidad]="0.5" />
+            <p class="resultado__etiqueta">El resultado</p>
+            <p class="resultado__texto">{{ concepto() }}</p>
+            <span class="resultado__linea" aria-hidden="true"></span>
+          </div>
+        </div>
       </div>
     </section>
   `,
@@ -39,100 +51,199 @@ import { LineaNodos } from '../../marca/linea-nodos';
     .pilares {
       position: relative;
       z-index: 2;
-      margin-top: calc((var(--e-24) + var(--e-4)) * -1);
+      padding-top: var(--e-8);
     }
 
-    .pilares__lista {
-      display: grid;
-      gap: var(--e-4);
-    }
-
-    @media (min-width: 600px) {
-      .pilares__lista {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0;
-        box-shadow: var(--sombra-3);
-        border-radius: var(--r-3);
-        overflow: hidden;
-      }
-    }
-
-    .pilar {
+    .formula {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: var(--e-3);
-      padding: var(--e-8) var(--e-6) var(--e-10);
+      display: grid;
       background: var(--blanco);
-      border-top: var(--linea-gruesa) solid var(--celeste);
+      border: var(--linea-fina) solid var(--borde);
       border-radius: var(--r-3);
       box-shadow: var(--sombra-2);
-    }
-
-    @media (min-width: 600px) {
-      .pilar {
-        padding: var(--e-8) var(--e-5) var(--e-12);
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .pilar + .pilar {
-        border-left: var(--linea-fina) solid var(--borde);
-      }
-
-      /* El del centro, en azul oscuro: el nodo que conecta los otros dos. */
-      .pilar:nth-child(2) {
-        background: var(--azul-oscuro);
-        color: var(--blanco);
-      }
-
-      .pilar:nth-child(2) h2 { color: var(--blanco); }
-      .pilar:nth-child(2) .t-secundario { color: var(--gris-300-sobre-oscuro); }
-      .pilar:nth-child(2) .pilar__icono {
-        background: var(--azul-600);
-        box-shadow: inset 0 0 0 var(--linea-fina) rgba(255, 255, 255, 0.12);
-      }
-    }
-
-    .pilar__cabeza {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--e-2);
-    }
-
-    /* El número en celeste: tamaño de título, solo decorativo. */
-    .pilar__numero {
-      font-size: var(--t-h2);
-      font-weight: var(--peso-semibold);
-      line-height: 1;
-      color: var(--celeste);
-      opacity: 0.35;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .pilar .pilar__linea {
-      position: absolute;
-      left: var(--e-6);
-      right: var(--e-6);
-      bottom: var(--e-5);
-      width: auto;
-      color: var(--celeste);
-    }
-
-    @media (min-width: 600px) {
-      .pilar .pilar__linea {
-        left: var(--e-5);
-        right: var(--e-5);
-      }
+      overflow: hidden;
     }
 
     @media (min-width: 900px) {
-      .pilar { padding: var(--e-10) var(--e-8) var(--e-12); }
-      .pilar .pilar__linea { left: var(--e-8); right: var(--e-8); }
+      .formula { grid-template-columns: 3fr 1.1fr; }
     }
+
+    /* La regla de la M sobre toda la fórmula: marcas cortas y largas. */
+    .formula__regla {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 10px;
+      z-index: 3;
+      background:
+        repeating-linear-gradient(90deg, var(--celeste) 0 2px, transparent 2px 60px) top left / 100% 10px no-repeat,
+        repeating-linear-gradient(90deg, var(--celeste) 0 1px, transparent 1px 12px) top left / 100% 5px no-repeat;
+      opacity: 0.6;
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 1.4s var(--curva) 0.2s;
+    }
+
+    .formula.visible .formula__regla { transform: scaleX(1); }
+
+    .formula__terminos {
+      display: grid;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (min-width: 600px) {
+      .formula__terminos { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .termino {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--e-4);
+      padding: var(--e-8) var(--e-6);
+    }
+
+    @media (min-width: 600px) {
+      .termino {
+        flex-direction: column;
+        padding: var(--e-10) var(--e-8) var(--e-8);
+      }
+      .termino + .termino { border-left: var(--linea-fina) solid var(--borde); }
+    }
+
+    @media (max-width: 599px) {
+      .termino + .termino { border-top: var(--linea-fina) solid var(--borde); }
+    }
+
+    .termino__icono {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+      width: 64px;
+      height: 64px;
+      color: var(--azul-oscuro);
+      background: var(--superficie-2);
+      border-radius: var(--r-2);
+      transition: background-color var(--dur-media) var(--curva), color var(--dur-media) var(--curva);
+    }
+
+    .termino:hover .termino__icono {
+      --icono-acento: var(--celeste);
+      color: var(--blanco);
+      background: var(--azul-oscuro);
+    }
+
+    .termino__titulo {
+      margin: 0 0 var(--e-2);
+      font-size: var(--t-h3);
+      font-weight: var(--peso-semibold);
+      line-height: 1.1;
+      color: var(--azul-oscuro);
+    }
+
+    .termino__texto {
+      margin: 0;
+      font-size: var(--t-pequeno);
+      color: var(--texto-2);
+      max-width: 30ch;
+    }
+
+    /* El signo, en el cuadro de nodo del monograma, sobre el borde. */
+    .signo {
+      position: absolute;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      font-size: 22px;
+      font-weight: var(--peso-semibold);
+      line-height: 1;
+      color: var(--blanco);
+      background: var(--celeste);
+      box-shadow: 0 0 0 6px var(--blanco);
+      left: 50%;
+      bottom: -18px;
+      transform: translateX(-50%);
+    }
+
+    @media (min-width: 600px) {
+      .signo {
+        left: auto;
+        right: -18px;
+        bottom: auto;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    /* El = solo se ve donde el resultado sigue al lado (o debajo en móvil). */
+    @media (min-width: 600px) and (max-width: 899px) {
+      .signo--igual { display: none; }
+    }
+
+    /* ------------------------------------------------------------ resultado */
+
+    .resultado {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--e-3);
+      padding: var(--e-10) var(--e-8) var(--e-10) var(--e-10);
+      background: var(--fondo);
+      color: var(--texto);
+      overflow: hidden;
+    }
+
+    .resultado > p,
+    .resultado > span { position: relative; z-index: var(--z-contenido); }
+
+    .resultado__etiqueta {
+      margin: 0;
+      font-size: var(--t-pequeno);
+      font-weight: var(--peso-semibold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celeste);
+    }
+
+    .resultado__texto {
+      margin: 0;
+      font-size: var(--t-h3);
+      font-weight: var(--peso-semibold);
+      line-height: 1.15;
+      max-width: 14ch;
+    }
+
+    /* La línea con su rombo, que se dibuja al aparecer. */
+    .resultado__linea {
+      width: 140px;
+      height: var(--linea-media);
+      margin-top: var(--e-2);
+      background: var(--celeste);
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 1s var(--curva) 0.8s;
+    }
+
+    .resultado__linea::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      background: var(--celeste);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .formula.visible .resultado__linea { transform: scaleX(1); }
   `
 })
 export class Pilares {
   readonly pilares = input.required<ItemIcono[]>();
+  /** El concepto de la marca: «Sistema que conecta todo». */
+  readonly concepto = input.required<string>();
 }

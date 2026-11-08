@@ -19,7 +19,7 @@ MetroTech es una marca de Salazar Arias Company (Pereira, Risaralda, Colombia) e
 |---|---|---|
 | Página (Angular 21, standalone, TS estricto) | `frontend/src` | http://localhost:4220 |
 | Código compartido: tokens, componentes CSS, contenido, entornos | `frontend/comun` | — |
-| Contenido editable | `frontend/public/contenido.json` | — |
+| Contenido | Valores de fábrica en `frontend/public/contenido.json`; lo editado en el CRM (módulo Página web) va en `sitio_contenido` y reemplaza sus secciones | — |
 | API (PHP 8.2 + mysqli) | `backend/controladores` | http://localhost/metrotech/backend/controladores |
 | Base (MariaDB) | `backend/sql/metrotech.sql` | base `metrotech` |
 
@@ -79,7 +79,11 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 
 `manual de marca/diseño.png` es una referencia de composición (una plantilla corporativa ajena): héroe oscuro a todo el ancho con imágenes de fondo, tarjetas que se montan sobre el borde del héroe, bloques con imagen y bandas de color. **Se toma la composición, nunca su color, tipografía, logo, textos ni imágenes**: todo eso sale del manual de MetroTech. Su naranja equivale aquí a los azules de la marca.
 
-- **Héroe:** carrusel de fondo a todo el ancho que **pasa solo cada 6 s** (también con el puntero encima y con movimiento reducido, en ese caso sin el acercamiento de la imagen). Velo azul oscuro para que el texto siempre se lea, un mensaje por diapositiva (`hero.diapositivas` en `contenido.json`). Sin botón de pausa (decisión del usuario del 3 de octubre de 2026); se detiene solo mientras alguien lo recorre con el teclado o con la pestaña oculta; flechas del teclado y deslizar.
+- **Héroe:** carrusel como **banner contenido sobre fondo blanco**, con márgenes, esquinas y sombra, para que resalte como pieza publicitaria (pedido del cliente en la reunión del 24 de octubre de 2026, con referencia en Imcolmedica y Novamedica; reemplaza el carrusel a todo el ancho). Dentro del banner, velo azul oscuro y un mensaje por diapositiva (`hero.diapositivas`); sin flechas ni indicadores (el cliente pidió quitarlos): queda la barra de progreso, y se puede mover con el teclado o deslizando. Debajo, los pilares como fórmula: integración + precisión + estructura = «Sistema que conecta todo» (`marca.concepto`). Pasa solo cada 6 s, sin botón de pausa; se detiene solo mientras alguien lo recorre con el teclado o con la pestaña oculta; flechas del teclado y deslizar.
+- **Cabecera:** más gruesa y con el logo más grande, a pedido del cliente: 80 px en móvil y 104 px en escritorio (`--alto-cabecera`), logo de 68 px (monograma de 44 px en móvil).
+- **Testimonios y blog:** `secciones/testimonios` (una cita grande sobre azul, con una regla donde cada marca es un cliente) y `secciones/blog` (revista: artículo destacado y filas; se lee en una ventana). Traen `"ejemplo": true` hasta tener contenido real; los testimonios son textos de relleno, sin nombres inventados.
+- **Anuncio emergente:** `estructura/anuncio.ts`. Se crea, se programa y se apaga en el CRM (módulo Anuncios, tabla `anuncio`), con su frecuencia: por visita, por día o siempre (como el de Novamedica).
+- **Mapa:** en Contacto aparece Google Maps con `contacto.direccion` en cuanto deja de decir PENDIENTE.
 - **Fotos del carrusel:** 4 imágenes **generadas con IA** (Runway) en la paleta de la marca: sala de control (integración), medición con calibrador (precisión), centro de datos (estructura) y reunión de equipo de espaldas (acompañamiento). Sin textos, logos ni caras reconocibles, para que nadie las tome por el equipo o las instalaciones reales. Están en `public/img/hero/foto-*` a 960 y 1920 px; se cambian por fotos reales de la empresa con el mismo par de tamaños.
 - **Pilares** montados sobre el borde inferior del héroe; **Quiénes somos** con imagen y bloque azul oscuro encima; **banda celeste** de llamado antes de Contacto.
 
@@ -90,14 +94,14 @@ Solo los colores del manual (lámina 13: «Solo los colores establecidos en el m
 - Valores (lámina 16): familia como valor central, perseverancia y constancia, responsabilidad y disciplina, lealtad (interna y con clientes), integralidad en soluciones, educación continua del personal, profesionalismo con empatía.
 - Los datos de contacto de la papelería del manual son de ejemplo: **no se usan**.
 - Las imágenes de papelería y uniformes del manual son ilustrativas: se presentan como identidad de marca, nunca como fotos del equipo real. La de papelería **no se usa**: muestra la dirección, el teléfono y el correo de ejemplo del manual. A la de uniformes se le quitó el logo distorsionado que traía en la esquina.
-- Todo el texto vive en `frontend/public/contenido.json`.
+- Todo el texto sale de `frontend/public/contenido.json` y de lo que se edite en el CRM. Una clave nueva en el archivo aparece sola en el editor del CRM; un ícono nuevo se agrega también a `ICONOS_PAGINA` en `crm-salazar-arias/frontend/src/app/empresas/sitio/etiquetas.ts`.
 
 ## 9. Contacto
 
-- **Los mensajes van por WhatsApp** (decisión del 2 de octubre de 2026): el formulario valida los datos y abre WhatsApp con el mensaje ya escrito. No pasa por el servidor ni se guarda.
+- **Los mensajes van por WhatsApp y quedan en el CRM** (el 2 de octubre de 2026 no se guardaban; el usuario pidió atenderlos en el CRM el 5 de noviembre): el formulario valida los datos, los guarda en `mensaje_contacto` y abre WhatsApp con el mensaje ya escrito. Si el servidor falla, WhatsApp abre igual.
 - Al lado del formulario se muestran el correo y los demás datos de contacto de `contenido.json`.
 - Sin número configurado, el formulario se ve pero no envía y lo dice.
-- **Panel administrativo: más adelante**, no ahora. Cuando llegue, el backend ya tiene la estructura de Tu Móvil para crecer.
+- **Panel administrativo:** es el CRM del grupo (`crm-salazar-arias`). Las tablas de esta base que administra salen de sus migraciones (`backend/migraciones/metrotech/`).
 
 ## 10. Calidad
 

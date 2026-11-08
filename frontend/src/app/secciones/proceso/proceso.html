@@ -1,5 +1,19 @@
-<section id="proceso" class="seccion" data-theme="dark" aria-labelledby="proceso-titulo">
-  <mt-marca-agua esquina="inferior-derecha" zona="oscuro" ancho="clamp(320px, 50vw, 720px)" />
+<section id="proceso" class="seccion proceso" data-theme="dark" aria-labelledby="proceso-titulo">
+  @if (proceso().imagen; as img) {
+    <img
+      class="proceso__foto"
+      [src]="img + '-1920.webp'"
+      [attr.srcset]="img + '-960.webp 960w, ' + img + '-1920.webp 1920w'"
+      sizes="100vw"
+      width="1920"
+      height="1080"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+  }
+  <div class="proceso__velo" aria-hidden="true"></div>
+  <mt-fondo-vivo />
 
   <div class="contenedor">
     <div class="proceso__cabeza">
@@ -9,22 +23,43 @@
         [entradilla]="proceso().entradilla"
         [ejemplo]="proceso().ejemplo"
       />
-      <p class="proceso__lema t-acento">{{ proceso().lema }}</p>
+      <p class="proceso__lema">
+        <span class="proceso__lema-numero">{{ numero(proceso().pasos.length - 1) }}</span>
+        <span>pasos · {{ proceso().lema }}</span>
+      </p>
     </div>
 
-    <div class="proceso__recorrido">
-      <mt-linea-nodos class="proceso__linea proceso__linea--h" inicio="ninguno" [animar]="true" />
-      <mt-linea-nodos class="proceso__linea proceso__linea--v" orientacion="vertical" inicio="ninguno" [animar]="true" />
-
-      <ol class="pasos" role="list" [style.--pasos]="proceso().pasos.length">
+    <div class="recorrido" [style.--pasos]="proceso().pasos.length" [style.--activo]="activo()">
+      <!-- El riel: la línea con nodos que se llena hasta el paso activo,
+           con el rombo de la T en la punta. -->
+      <div class="riel" aria-hidden="true">
+        <span class="riel__lleno"></span>
         @for (p of proceso().pasos; track $index) {
-          <li class="paso" mtAparecer [retraso]="$index * 150">
-            <span class="paso__nodo" aria-hidden="true"></span>
-            <span class="paso__numero" aria-hidden="true">{{ numero($index) }}</span>
-            <h3 class="t-h4">
+          <span class="riel__nodo" [class.hecho]="$index <= activo()" [style.--i]="$index"></span>
+        }
+        <span class="riel__rombo"></span>
+      </div>
+
+      <ol class="pasos" role="list">
+        @for (p of proceso().pasos; track $index) {
+          <li
+            class="paso"
+            [class.activo]="$index === activo()"
+            [class.hecho]="$index < activo()"
+            mtAparecer
+            [retraso]="$index * 120"
+            (pointerenter)="senalar($index)"
+          >
+            <div class="paso__cabeza">
+              <span class="paso__icono">
+                <mt-icono [nombre]="p.icono || 'precision'" [tamano]="30" />
+              </span>
+              <span class="paso__numero" aria-hidden="true">{{ numero($index) }}</span>
+            </div>
+            <h3 class="paso__titulo">
               <span class="visualmente-oculto">Paso {{ $index + 1 }}: </span>{{ p.titulo }}
             </h3>
-            <p class="t-secundario">{{ p.texto }}</p>
+            <p class="paso__texto">{{ p.texto }}</p>
           </li>
         }
       </ol>
