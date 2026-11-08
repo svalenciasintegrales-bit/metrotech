@@ -22,12 +22,12 @@ class DatosInvalidos extends RuntimeException {}
 function origenesPermitidos()
 {
     // La lista es exacta a propósito, sin comodines.
-    // PENDIENTE: agregar el dominio real cuando exista (https://…).
     return [
         'http://localhost:4220',   // la página (ng serve)
         'http://localhost',        // el build servido por Apache
         'http://127.0.0.1:4220',
-        'http://127.0.0.1'
+        'http://127.0.0.1',
+        'https://darkslateblue-sardine-967851.hostingersite.com'   // Hostinger
     ];
 }
 

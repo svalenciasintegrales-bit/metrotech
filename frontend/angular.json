@@ -64,6 +64,14 @@
                   "with": "comun/environments/environment.development.ts"
                 }
               ]
+            },
+            "hostinger": {
+              "fileReplacements": [
+                {
+                  "replace": "comun/environments/environment.ts",
+                  "with": "comun/environments/environment.hostinger.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

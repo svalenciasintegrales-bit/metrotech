@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build sitio",
+    "build:hostinger": "ng build sitio --configuration production,hostinger --output-path dist/hostinger",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
