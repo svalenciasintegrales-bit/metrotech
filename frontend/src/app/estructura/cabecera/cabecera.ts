@@ -15,7 +15,7 @@ import { Logo } from '../../marca/logo';
 /**
  * La cabecera: fija arriba, blanca, con el logo, el menú de anclas y el
  * botón de contacto. En móvil el logo pasa al monograma (manual, lámina 7)
- * y el menú se abre en un panel debajo.
+ * y el menú se abre en un panel lateral.
  *
  * La sección que se está leyendo queda marcada en el menú
  * (`aria-current`), para saber dónde va uno en una página larga.
@@ -68,10 +68,17 @@ export class Cabecera {
 
   protected alternar() {
     this.abierto.update(a => !a);
+    this.bloquearFondo();
   }
 
   protected cerrar() {
     this.abierto.set(false);
+    this.bloquearFondo();
+  }
+
+  /** Con el panel abierto la página de atrás no se desplaza. */
+  private bloquearFondo() {
+    document.documentElement.style.overflow = this.abierto() ? 'hidden' : '';
   }
 
   /** Marca en el menú la sección que ocupa la franja central de la pantalla. */

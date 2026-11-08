@@ -1,4 +1,4 @@
-<header class="cabecera" data-theme="light" [class.con-sombra]="conSombra()">
+<header class="cabecera" data-theme="light" [class.con-sombra]="conSombra()" [class.menu-abierto]="abierto()">
   <div class="contenedor cabecera__fila">
     <a class="cabecera__logo" href="#inicio" aria-label="MetroTech, ir al inicio" (click)="cerrar()">
       <mt-logo class="solo-movil" variante="monograma" [alto]="44" [decorativo]="true" [reserva]="false" [prioritario]="true" />
@@ -41,8 +41,17 @@
     </button>
   </div>
 
-  <nav id="menu-movil" class="menu-movil" [class.abierto]="abierto()" aria-label="Secciones de la página" [attr.hidden]="abierto() ? null : ''">
-    <ul role="list" class="contenedor">
+  <div class="menu-fondo" [class.abierto]="abierto()" (click)="cerrar()" aria-hidden="true"></div>
+
+  <nav id="menu-movil" class="menu-movil" [class.abierto]="abierto()" aria-label="Secciones de la página" [attr.inert]="abierto() ? null : ''">
+    <div class="menu-movil__cabeza">
+      <mt-logo variante="monograma" [alto]="40" [decorativo]="true" [reserva]="false" />
+      <button type="button" class="cabecera__menu" (click)="cerrar()">
+        <lucide-icon [img]="X" aria-hidden="true" />
+        <span class="visualmente-oculto">Cerrar menú</span>
+      </button>
+    </div>
+    <ul role="list">
       @for (n of navegacion(); track n.ancla) {
         <li>
           <a [href]="'#' + n.ancla" (click)="cerrar()" [attr.aria-current]="activa() === n.ancla ? 'true' : null">{{ n.texto }}</a>

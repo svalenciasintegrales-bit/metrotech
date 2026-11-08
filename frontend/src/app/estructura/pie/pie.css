@@ -129,3 +129,31 @@
     justify-content: space-between;
   }
 }
+
+/* En celular todo va centrado, y abajo queda aire para el botón de WhatsApp. */
+@media (max-width: 599px) {
+  .pie {
+    padding-bottom: calc(var(--e-8) + 72px);
+    text-align: center;
+  }
+
+  .pie__marca,
+  .pie__columna,
+  .pie__columna ul,
+  .pie__base {
+    align-items: center;
+  }
+
+  .pie__marca mt-logo {
+    margin-left: 0;
+  }
+
+  .pie__marca .acento-linea {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .redes {
+    justify-content: center;
+  }
+}

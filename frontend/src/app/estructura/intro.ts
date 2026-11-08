@@ -16,17 +16,15 @@ const CLAVE = 'mt-intro-vista';
   template: `
     @if (visible()) {
       <div class="intro" data-theme="dark" [class.sale]="saliendo()" aria-hidden="true">
-        <svg class="trazos" viewBox="0 0 600 400">
-          <!-- La regla: una línea con sus marcas, como en la M. -->
+        <!-- Arriba la regla con sus marcas, como en la M; abajo la línea con
+             nodos y el rombo de la T. Van en el flujo, encima y debajo del
+             logo, para que en ninguna pantalla lo crucen. -->
+        <svg class="trazos" viewBox="30 30 540 40">
           <line class="regla" x1="40" y1="40" x2="560" y2="40" />
           @for (x of marcas; track x; let i = $index) {
             <line class="marca" [attr.x1]="x" y1="40" [attr.x2]="x" [attr.y2]="i % 5 === 0 ? 64 : 52"
               [style.animation-delay.ms]="300 + i * 22" />
           }
-          <!-- La línea con nodos y el rombo de la T. -->
-          <line class="nodos" x1="40" y1="372" x2="560" y2="372" />
-          <circle class="nodo n1" cx="40" cy="372" r="6" />
-          <rect class="rombo" x="553" y="365" width="14" height="14" transform="rotate(45 560 372)" />
         </svg>
 
         <div class="marca-logo">
@@ -34,6 +32,12 @@ const CLAVE = 'mt-intro-vista';
           <p class="slogan">Tecnología que impulsa tu operación</p>
           <p class="matriz">Una marca de Salazar Arias Company</p>
         </div>
+
+        <svg class="trazos" viewBox="30 360 540 24">
+          <line class="nodos" x1="40" y1="372" x2="560" y2="372" />
+          <circle class="nodo n1" cx="40" cy="372" r="6" />
+          <rect class="rombo" x="553" y="365" width="14" height="14" transform="rotate(45 560 372)" />
+        </svg>
 
         <span class="barra"><span></span></span>
       </div>
@@ -48,7 +52,8 @@ const CLAVE = 'mt-intro-vista';
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: var(--e-6);
+      gap: clamp(var(--e-6), 5vh, var(--e-12));
+      padding-inline: var(--e-6);
       background: var(--fondo);
       color: var(--texto);
       clip-path: inset(0 0 0 0);
@@ -58,8 +63,9 @@ const CLAVE = 'mt-intro-vista';
     .intro.sale { clip-path: inset(0 0 100% 0); }
 
     .trazos {
-      position: absolute;
-      width: min(720px, 92vw);
+      width: min(640px, 86vw);
+      height: auto;
+      overflow: visible;
       opacity: 0.6;
     }
 
@@ -82,8 +88,13 @@ const CLAVE = 'mt-intro-vista';
       animation: subir 0.8s var(--curva) 0.7s forwards;
     }
 
+    .marca-logo mt-logo {
+      max-width: 100%;
+    }
+
     .slogan {
       margin: var(--e-3) 0 0;
+      text-wrap: balance;
       font-size: var(--t-cuerpo-l);
       font-weight: var(--peso-semibold);
       color: var(--texto);
@@ -93,6 +104,7 @@ const CLAVE = 'mt-intro-vista';
       margin: 0;
       font-size: var(--t-pequeno);
       letter-spacing: 0.08em;
+      text-wrap: balance;
       text-transform: uppercase;
       color: var(--texto-2);
     }
